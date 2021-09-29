@@ -424,5 +424,48 @@ public class ClubDAO {
 		
 		return result;
 	}
+	public int selectOneClubNo(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int clubNo = 0;
+		String query = "SELECT CLUB_NO FROM CLUB_MANAGEMENT WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				clubNo = rset.getInt("CLUB_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return clubNo;
+	}
+	public String selectOneClubName(Connection conn, int clubNo) {
+		PreparedStatement pstmt = null;
+		String clubName = null;
+		ResultSet rset = null;
+		String query = "SELECT CLUB_NAME FROM CLUB WHERE CLUB_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, clubNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				clubName = rset.getString("CLUB_NAME");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return clubName;
+	}
 }
 
