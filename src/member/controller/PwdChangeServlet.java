@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
+
 /**
  * Servlet implementation class PwdChangeServlet
  */
@@ -34,8 +36,17 @@ public class PwdChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String userPwd = request.getParameter("pwd-recheck");
+		String userId = request.getParameter("user-id");
+		
+		int result = new MemberService().changeMemberPwd(userPwd,userId);
+		
+		if(result > 0) {
+			request.getRequestDispatcher("/WEB-INF/views/member/Successpwd.jsp").forward(request, response);
+		}else {
+			
+		}
 	}
 
 }
