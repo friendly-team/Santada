@@ -102,4 +102,19 @@ public class MemberService {
 		}
 		return result;
 	}
+	public Member printOneById(String writerId) {
+		Member member = null;
+		Connection conn = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			member = new MemberDAO().selectOneMember(conn, writerId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return member;
+	}
 }
