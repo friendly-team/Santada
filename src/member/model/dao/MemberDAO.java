@@ -126,4 +126,32 @@ public class MemberDAO {
 		}
 		return result;
 	}
+
+	public Member selectOneMember(Connection conn, String writerId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_ID = ?";
+		Member member = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, writerId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				member = new Member();
+				member.setUserId(rset.getString("USER_ID"));
+				member.setUserPwd(rset.getString("USER_PWD"));
+				member.setUserName(rset.getString("USER_NAME"));
+				member.setUserEmail(rset.getString("USER_EMAIL"));
+				member.setUserPhone(rset.getString("USER_PHONE"));
+				member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return member;
+	}
 }
