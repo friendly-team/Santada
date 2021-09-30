@@ -18,7 +18,7 @@
             <th>인증상태</th>
         </tr>
         <c:forEach items="${requestScope.mList}" var="mPost">
-        <tr>
+        <tr align="center">
             <td>${mPost.mountainPostNo}</td>
             <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
             <td>${mPost.mountainPostWriter}</td>

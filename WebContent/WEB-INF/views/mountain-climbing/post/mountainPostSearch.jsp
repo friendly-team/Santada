@@ -18,7 +18,7 @@
             <th>인증상태</th>
         </tr>
         <c:forEach items="${requestScope.mList}" var="mPost">
-        <tr>
+        <tr align="center">
             <td>${mPost.mountainPostNo}</td>
             <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
             <td>${mPost.mountainPostWriter}</td>
@@ -30,7 +30,7 @@
         <tr>
             <td colspan="4" align="center">
                 <form action="/mountainPost/search" method="get">
-                    <input type="text" name="m-search-keyword" id="">
+                    <input type="text" name="m-search-keyword">
                     <input type="submit" value="검색">
                 </form>
             </td>

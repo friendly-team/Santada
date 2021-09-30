@@ -10,6 +10,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import mountainPost.model.vo.MountainPost;
+import mountainPost.model.vo.MountainPostReply;
 import mountainPost.model.vo.MtFileData;
 
 public class MountainPostDAO {
@@ -60,6 +61,7 @@ public class MountainPostDAO {
 				mPost.setMountainPostSubject(rset.getString("MOUNTAIN_POST_SUBJECT"));
 				mPost.setMountainPostWriter(rset.getString("USER_ID"));
 				mPost.setMountainPostDate(rset.getDate("MOUNTAIN_REG_DATE"));
+				mPost.setMountainPostState(rset.getString("MOUNTAIN_POST_STATE"));
 				mList.add(mPost);
 			}
 		} catch (SQLException e) {
@@ -238,6 +240,200 @@ public class MountainPostDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return mPostNo;
+	}
+
+	public List<MountainPost> selectSearchMountainPost(Connection conn, String searchKeyword, int currentPage) {
+		List<MountainPost> mList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MOUNTAIN_POST_NO DESC) NUM, MOUNTAIN_POST_NO, MOUNTAIN_NAME, USER_ID, MOUNTAIN_POST_SUBJECT, MOUNTAIN_POST_CONTENTS, MOUNTAIN_REG_DATE, MOUNTAIN_REGION, MOUNTAIN_COURSE, MOUNTAIN_TIME, MOUNTAIN_PARTY, MOUNTAIN_LEVEL, MOUNTAIN_CAUTION, MOUNTAIN_NEED, MOUNTAIN_RECOMMEND, MOUNTAIN_POST_STATE FROM MOUNTAIN_POST WHERE MOUNTAIN_POST_SUBJECT LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			int viewCountPerPage = 10;
+			int start = (currentPage * viewCountPerPage) - (viewCountPerPage - 1);
+			int end = currentPage * viewCountPerPage;
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			mList = new ArrayList<MountainPost>();
+			while(rset.next()) {
+				MountainPost mPost = new MountainPost();
+				mPost.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
+				mPost.setMountainName(rset.getString("MOUNTAIN_NAME"));
+				mPost.setMountainPostWriter(rset.getString("USER_ID"));
+				mPost.setMountainPostSubject(rset.getString("MOUNTAIN_POST_SUBJECT"));
+				mPost.setMountainPostContents(rset.getString("MOUNTAIN_POST_CONTENTS"));
+				mPost.setMountainPostDate(rset.getDate("MOUNTAIN_REG_DATE"));
+				mPost.setMountainRegion(rset.getString("MOUNTAIN_REGION"));
+				mPost.setMountainCourse(rset.getString("MOUNTAIN_COURSE"));
+				mPost.setMountainTime(rset.getInt("MOUNTAIN_TIME"));
+				mPost.setMountainParty(rset.getInt("MOUNTAIN_PARTY"));
+				mPost.setMountainLevel(rset.getInt("MOUNTAIN_LEVEL"));
+				mPost.setMountainCaution(rset.getString("MOUNTAIN_CAUTION"));
+				mPost.setMountainNeed(rset.getString("MOUNTAIN_NEED"));
+				mPost.setMountainRecommend(rset.getInt("MOUNTAIN_RECOMMEND"));
+				mPost.setMountainPostState(rset.getString("MOUNTAIN_POST_STATE"));
+				mList.add(mPost);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return mList;
+	}
+
+	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage) {
+		int viewCountPerPage = 10;
+		int pageCountPerView = 5;
+		int viewTotalCount = searchTotalCount(conn, searchKeyword);
+		int pageTotalCount = 0;
+		if(viewTotalCount % viewCountPerPage > 0) {
+			pageTotalCount = viewTotalCount / viewCountPerPage + 1;
+		} else {
+			pageTotalCount = viewTotalCount / viewCountPerPage;
+		}
+		int startNavi = ((currentPage - 1) / pageCountPerView) * pageCountPerView + 1;
+		int endNavi = startNavi + pageCountPerView - 1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (startNavi-1) + "'> 이전 </a>");
+		}
+		for(int i = startNavi; i<= endNavi; i++) {
+			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + i + "'> " + i + " </a>");
+		}
+		if(needNext) {
+			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (endNavi+1) + "'> 다음 </a>");
+		}
+		return sb.toString();
+	}
+
+	private int searchTotalCount(Connection conn, String searchKeyword) {
+		int result = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MOUNTAIN_POST WHERE MOUNTAIN_POST_SUBJECT LIKE '%" + searchKeyword + "%'";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				result = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public int insertMountainPostReply(Connection conn, String userId, int mPostNo, String replyContents) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "INSERT INTO MP_REPLY VALUES(SEQ_MP_REPLY.NEXTVAL, ?, ?, ?, DEFAULT)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, mPostNo);
+			pstmt.setString(2, replyContents);
+			pstmt.setString(3, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public List<MountainPostReply> selectAllMountainPostReply(Connection conn, int mtPostNo) {
+		List<MountainPostReply> rList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MP_REPLY WHERE MOUNTAIN_POST_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, mtPostNo);
+			rList = new ArrayList<MountainPostReply>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				MountainPostReply reply = new MountainPostReply();
+				reply.setReplyNo(rset.getInt("REPLY_NO"));
+				reply.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
+				reply.setReplyContents(rset.getString("REPLY_CONTENTS"));
+				reply.setReplyWriter(rset.getString("REPLY_USERID"));
+				reply.setReplyDate(rset.getDate("REPLY_DATE"));
+				rList.add(reply);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return rList;
+	}
+
+	public int deleteMountainPostReply(Connection conn, int replyNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM MP_REPLY WHERE REPLY_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateReplyOne(Connection conn, String replyContents, int replyNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE MP_REPLY SET REPLY_CONTENTS = ? WHERE REPLY_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, replyContents);
+			pstmt.setInt(2, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMountainRecommend(Connection conn, int mPostNo, int recCount) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE MOUNTAIN_POST SET MOUNTAIN_RECOMMEND = ? + 1 WHERE MOUNTAIN_POST_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recCount);
+			pstmt.setInt(2, mPostNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

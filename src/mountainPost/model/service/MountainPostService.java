@@ -68,19 +68,21 @@ public class MountainPostService {
 	}
 
 	public MountainPost printOneByNo(int mtPostNo) {
-		MountainPost mOne = null;
-//		List<MountainPostReply> list = null;
+		MountainPost mPostOne = null;
+		List<MountainPostReply> rList = null;
 		Connection conn = null;
 		MountainPostDAO mDAO = new MountainPostDAO();
 		try {
 			conn = jdbcTemplate.createConnection();
-			mOne = mDAO.selectOneByNo(conn, mtPostNo);
+			mPostOne = mDAO.selectOneByNo(conn, mtPostNo);
+			rList = mDAO.selectAllMountainPostReply(conn, mtPostNo);
+			mPostOne.setReplies(rList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);
 		}
-		return mOne;
+		return mPostOne;
 	}
 
 	public int removeMountainPost(int mPostNo) {
@@ -109,6 +111,102 @@ public class MountainPostService {
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new MountainPostDAO().updateMountainPost(conn, mPost);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+	public PageData printSearchMountainPost(String searchKeyword, int currentPage) {
+		PageData pd = new PageData();
+		List<MountainPost> mList = null;
+		Connection conn = null;
+		String searchPageNavi = null;
+		MountainPostDAO mDAO = new MountainPostDAO();
+		try {
+			conn = jdbcTemplate.createConnection();
+			mList = mDAO.selectSearchMountainPost(conn, searchKeyword, currentPage);
+			searchPageNavi = mDAO.getSearchPageNavi(conn, searchKeyword, currentPage);
+			pd.setmList(mList);
+			pd.setPageNavi(searchPageNavi);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return pd;
+	}
+
+	public int registerMountainPostReply(String userId, int mPostNo, String replyContents) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MountainPostDAO().insertMountainPostReply(conn, userId, mPostNo, replyContents);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+	public int removeMountianPostReplyOne(int replyNo) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MountainPostDAO().deleteMountainPostReply(conn, replyNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+	public int modifyReplyOne(String replyContents, int replyNo) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MountainPostDAO().updateReplyOne(conn, replyContents, replyNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+	public int plusMountainRecommend(int mPostNo, int recCount) {
+		int result = 0;
+		Connection conn = null;;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MountainPostDAO().updateMountainRecommend(conn, mPostNo, recCount);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			} else {
