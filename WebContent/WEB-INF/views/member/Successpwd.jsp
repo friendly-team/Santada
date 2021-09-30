@@ -13,8 +13,7 @@
 </head>
 <body>
     
-    <h1 id="loginfail"> 로그인 실패 </h1>
-    <h3 id="loginfail2">아이디나 비밀번호를 다시 입력해주세요.</h3>
+    <h1 id="complete"> 비밀번호 변경이 완료 되었습니다.</h1>
 
     <script type="text/javascript">
         $(".txtb input").on("focus",function(){

@@ -1,6 +1,12 @@
+<%@page import="dm.model.vo.Dm"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	List<Dm> nList = (List<Dm>)request.getAttribute("nList");
+	String pageNavi = (String)request.getAttribute("pageNavi");
+%>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +16,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>쪽지 전송</title>
+    <title>Yummy | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -51,7 +57,6 @@ display:none;/*for IE10,11*/
     </div> -->
 
     <!-- Header Section Begin -->
-    <c:if test="${userId ne null and userId ne '' }">
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
@@ -60,7 +65,7 @@ display:none;/*for IE10,11*/
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="#">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="about-me.html">등산인증</a></li>
@@ -98,25 +103,40 @@ display:none;/*for IE10,11*/
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/letter/send" class="contact-form" method="post">
-                        <h3><i class="far fa-edit"></i>&nbsp;&nbsp;Note</h3>
+                    <form action="letter/delete" class="contact-form" method="post">
+                        <h3><i class="far fa-envelope"></i>&nbsp;&nbsp;Note Box</h3>
                         
-                        <div class="row">
+                        <div class="row" style="margin-bottom: 6%;">
 
                             <div class="col-lg-12">
-                                <input type="text" placeholder="To" name="recipient-id" >
+                                <h4 style="text-align: left; margin-bottom: 3%;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;보낸 쪽지함</h4>
                             </div>
 
                             <div class="col-lg-12">
-                                <input type="text" placeholder="From" name="user-id" value="${userId}" readonly>
+                                <div class="inbox-top" style="    width: 100%;height: 50px; border: 1px solid #F5F6FA;background: #F5F6FA;margin-bottom: 15px;padding-left: 35px;padding-right: 15px;color: #353535;font-size: 16px;position: relative;line-height: 48px;">
+                                    <div class="inbox" style="    text-align: left;position: relative;left: 10px;">받은 사람</div>
+                                    <div class="inbox">내용</div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px;">날짜</div>
+                                </div>
                             </div>
 
                             <div class="col-lg-12">
-                                <input type="text" placeholder="Subject" name="letter-subject">
-                                <textarea placeholder="Comment" name="letter-contents"></textarea>
+                                    <% for(Dm nOne : nList) { %>
+                                <div class="inbox-top2">
+                                    <div class="inbox" style="    text-align: left;position: relative;left: 10px;"><%= nOne.getRecipientId() %></div>
+                                    <div class="inbox"><a href="/letter/sendd?letterNo=<%= nOne.getLetterNo() %>"><%= nOne.getLetterContents() %></a><div class=""></div></div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px;"><%= nOne.getWriteDate() %></div>
+                                </div>
+                                	<% } %>
+
+                                <div class="page">
+                                    <ul class="pagination modal" style="position: relative;left: 81%;">
+                                        <%= pageNavi %>
+                                    </ul>
+                                </div>
                             </div>
+
                         </div>
-                        <button type="submit">Send</button>
                     </form>
                 </div>
             </div>
@@ -172,11 +192,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
-    </c:if>
 </body>
 
 </html>
-	<c:if test="${sessionScope.userId eq null }">
-		<script>window.location.href="/login/home"</script>
-	</c:if>
-	

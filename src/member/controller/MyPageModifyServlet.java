@@ -11,16 +11,16 @@ import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class PwdsearchServlet
+ * Servlet implementation class MyPageModifyServlet
  */
-@WebServlet("/pwd/search")
-public class PwdsearchServlet extends HttpServlet {
+@WebServlet("/info/modify")
+public class MyPageModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PwdsearchServlet() {
+    public MyPageModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +30,27 @@ public class PwdsearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/views/member/Pwdsearch.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");	////////////////////////////
+		// userId, userPwd, userEmail, userPhone, userAddress, userHobby
 		String userId = request.getParameter("user-id");
+		String userPwd = request.getParameter("pwd-check");
 		String userName = request.getParameter("user-name");
 		String userEmail = request.getParameter("user-email");
-		
-		int result = new MemberService().findMemberPwd(userId,userName,userEmail);
-		
+		String userPhone = request.getParameter("user-phone");
+		Member student = new Member(userId,userPwd,userName, userPhone,userEmail);
+		int result = new MemberService().modifyStudent(student);
 		if(result > 0) {
-			request.setAttribute("change", userId);
-			request.getRequestDispatcher("/WEB-INF/views/member/Pwdchange.jsp").forward(request, response);
+			// 성공하면 메인페이지로 이동!
+			response.sendRedirect("/mypage/info");
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/member/searchfail.jsp").forward(request, response);
+			// 실패하면 실패메시지 페이지로 이동!
+			response.sendRedirect("/member/studentError.html");
 		}
 	}
 

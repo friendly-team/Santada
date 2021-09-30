@@ -4,30 +4,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>회원가입</title>
+    <title>Title</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animatedLogin.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
 <script>
     $(function(){
-
-$('#user-id').blur(function(){
-
-var value=$('#user-id').val().trim();
-
-var reg=/^[a-zA-Z][A-Za-z0-9]{4,}/;
-
-if(!reg.test(value))
-
-{
-
-alert("5글자이상, 영문자, 숫자만 가능");
-
-$('#user-id').val('');
-
-}
-
-});
 
 $('#pwd-check').keyup(function(){
 
@@ -73,45 +55,30 @@ $('#out').css({'color':'red','font-weight':'bolder'});
 </head>
 <body>
     
-    <form action="/member/enroll" class="login-form" method="post">
-        <h1>회원가입</h1>
+    <form action="/pwd/change" class="login-form" method="post">
+        <h1>비밀번호 변경</h1>
 
 
-        <div class="txtb">
-            <input type="text" name="user-id" id="user-id">
-            <span data-placeholder="아이디"></span>
+		<div class="txtb">
+            <input class="email" type="text" name="user-id" value="${change}" readonly>
         </div>
 
         <div class="txtb">
-            <input type="password" name="user-pwd" id="user-pwd">
+            <input class="email" type="password" name="user-pwd" id="user-pwd">
             <span data-placeholder="비밀번호"></span><span id="out"></span>
         </div>
 
         <div class="txtb">
-            <input type="password" name="pwd-check" id="pwd-check">
+            <input class="email" type="password" name="pwd-recheck" id="pwd-check">
             <span data-placeholder="비밀번호 확인"></span>
         </div>
 
-        <div class="txtb">
-            <input type="text" name="user-name" id="user-name">
-            <span data-placeholder="이름"></span>
-        </div>
-
-        <div class="txtb">
-            <input type="text" name="user-phone" id="user-phone">
-            <span data-placeholder="전화번호(-제외)"></span>
-        </div>
-
-        <div class="txtb">
-            <input type="text" name="user-email" id="user-email">
-            <span data-placeholder="이메일"></span>
-        </div>
-
-
-        <input type="submit" class="logbtn" value="가입하기">
+        <input type="submit" class="logbtn" value="완료">
 
         <div class="bottom-text">
-            <a href="/member/login">뒤로가기</a>
+            계정이 있으신가요? <a href="/member/enroll">회원가입</a> <br>
+            아이디를 잊으셨나요? <a href="/member/find">아이디 찾기</a>
+            <br>메인으로가기 <a href="/index.jsp">메인으로</a>
         </div>
 
     </form>
