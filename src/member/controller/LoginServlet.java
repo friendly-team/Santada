@@ -51,9 +51,10 @@ public class LoginServlet extends HttpServlet {
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", member.getUserId());
-			session.setAttribute("cm", cm);
+			session.setAttribute("cm", cm);			
 			session.setAttribute("club", club);
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			response.sendRedirect("/index.jsp");
 		}else {
 			response.sendRedirect("/member/loginfail.jsp"); // 실패할 경우 실패메시지 페이지로 이동
 		}

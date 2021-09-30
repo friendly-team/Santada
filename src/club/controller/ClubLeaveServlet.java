@@ -1,7 +1,6 @@
 package club.controller;
 
 import java.io.IOException;
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +11,16 @@ import javax.servlet.http.HttpSession;
 import club.model.service.ClubService;
 
 /**
- * Servlet implementation class RemoveClub
+ * Servlet implementation class ClubLeave
  */
-@WebServlet("/remove/club")
-public class RemoveClubServlet extends HttpServlet implements Servlet {
+@WebServlet("/club/leave")
+public class ClubLeaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveClubServlet() {
+    public ClubLeaveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +29,7 @@ public class RemoveClubServlet extends HttpServlet implements Servlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/club/DeleteClub.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/club/ClubLeave.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,8 +38,7 @@ public class RemoveClubServlet extends HttpServlet implements Servlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		int result = new ClubService().removeClub(userId);
-		
+		int result = new ClubService().leavClub(userId);
 		if(result > 0) {
 			session.invalidate(); 
 			HttpSession ResetSession = request.getSession();
@@ -50,7 +48,6 @@ public class RemoveClubServlet extends HttpServlet implements Servlet {
 			request.getRequestDispatcher("/club/Error.html").forward(request, response);
 		}
 		
-		doGet(request, response);
 	}
 
 }
