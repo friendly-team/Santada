@@ -2,26 +2,50 @@ package mountainRecommend.model.vo;
 
 public class MountainRecommend {
 	
+	private int mountainReNo;
+	private int mountainPostNo;
 	private String mountainName;
 	private String mountainRegion;
 	private String mountainCourse;
 	private int mountainLength;
 	private int mountainTime;
+	private int mountainParty;
 	private int mountainLevel;
-	private String parking;
+	private int parkingLotNo;
 	
 	public MountainRecommend() {}
-	
-	public MountainRecommend(String mountainName, String mountainRegion, String mountainCourse, int mountainLength,
-			int mountainTime, int mountainLevel, String parking) {
+
+	public MountainRecommend(int mountainReNo, int mountainPostNo, String mountainName, String mountainRegion, String mountainCourse,
+			int mountainLength, int mountainTime, int mountainParty, int mountainLevel, int parkingLotNo) {
 		super();
+		
+		this.mountainReNo = mountainReNo;
+		this.mountainPostNo = mountainPostNo;
 		this.mountainName = mountainName;
 		this.mountainRegion = mountainRegion;
 		this.mountainCourse = mountainCourse;
 		this.mountainLength = mountainLength;
 		this.mountainTime = mountainTime;
+		this.mountainParty = mountainParty;
 		this.mountainLevel = mountainLevel;
-		this.parking = parking;
+		this.parkingLotNo = parkingLotNo;
+	}
+
+	public int getMountainReNo() {
+		return mountainReNo;
+	}
+
+	public void setMountainReNo(int mountainReNo) {
+		this.mountainReNo = mountainReNo;
+	}
+
+	
+	public int getMountainPostNo() {
+		return mountainPostNo;
+	}
+
+	public void setMountainPostNo(int mountainPostNo) {
+		this.mountainPostNo = mountainPostNo;
 	}
 
 	public String getMountainName() {
@@ -64,6 +88,14 @@ public class MountainRecommend {
 		this.mountainTime = mountainTime;
 	}
 
+	public int getMountainParty() {
+		return mountainParty;
+	}
+
+	public void setMountainParty(int mountainParty) {
+		this.mountainParty = mountainParty;
+	}
+
 	public int getMountainLevel() {
 		return mountainLevel;
 	}
@@ -72,20 +104,22 @@ public class MountainRecommend {
 		this.mountainLevel = mountainLevel;
 	}
 
-	public String getParking() {
-		return parking;
+	public int getParkingLotNo() {
+		return parkingLotNo;
 	}
 
-	public void setParking(String parking) {
-		this.parking = parking;
+	public void setParkingLotNo(int parkingLotNo) {
+		this.parkingLotNo = parkingLotNo;
 	}
 
 	@Override
 	public String toString() {
-		return "MountainRecommend [mountainName=" + mountainName + ", mountainRegion=" + mountainRegion
-				+ ", mountainCourse=" + mountainCourse + ", mountainLength=" + mountainLength + ", mountainTime="
-				+ mountainTime + ", mountainLevel=" + mountainLevel + ", parking=" + parking + "]";
+		return "MountainRecommend [mountainReNo=" + mountainReNo + ", mountainPostNo=" + mountainPostNo
+				+ ", mountainName=" + mountainName + ", mountainRegion=" + mountainRegion + ", mountainCourse="
+				+ mountainCourse + ", mountainLength=" + mountainLength + ", mountainTime=" + mountainTime
+				+ ", mountainParty=" + mountainParty + ", mountainLevel=" + mountainLevel + ", parkingLotNo="
+				+ parkingLotNo + "]";
 	}
-	
+
 		
 }

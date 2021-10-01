@@ -40,12 +40,12 @@
                         <li><a href="../index.jsp">Home</a></li>
                         <li><a href="#">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
+                                <li><a href="/mountainPost/write">등산인증</a></li>
                                 <li><a href="categories.html">등산후기</a></li>
                                 <li><a href="recipe.html">랭킹</a></li>
                             </ul>
                         </li>
-                        <li  class="active"><a href="/mountain/list">추천코스</a></li>
+                        <li  class="active"><a href="/mountain/recommend">추천코스</a></li>
                         <li><a href="categories.html">소모임</a>
                             <ul class="sub-menu">
                                 <li><a href="#">소모임가입</a></li>
@@ -67,11 +67,12 @@
     <!-- Header End -->
 
     <!-- Hero Search Section Begin -->
+    <c:if test="${userId ne null}">
     <div class="hero-search set-bg" data-setbg="imgs/등산.jpg">
         <div class="container">
             <div class="filter-table">
-                <form action="#" class="filter-search">
-                    <select name="mountain-region" id="" class="nice-select">
+                <form action="/mountain/list" class="filter-search" method=post">
+                    <select name="mountainRegion" id="region" class="nice-select">
 		            <option value="서울">서울</option>
 		            <option value="경기도">경기도</option>
 		            <option value="충청도">충청도</option>
@@ -80,15 +81,15 @@
 		            <option value="강원도">강원도</option>
 		            <option value="제주도">제주도</option>
                     </select>
-                    <select name="mountain-time" id="" class="nice-select">
-                        <option value="">1시간 이내</option>
-                        <option value="">1시간 - 2시간</option>
-                        <option value="">2시간 - 3시간</option>
-                        <option value="">3시간 - 4시간</option>
-                        <option value="">4시간 - 5시간</option>
-                        <option value="">5시간 이상 장거리</option>
+                    <select name="mountainTime" id="time" class="nice-select">
+                        <option value="1">1시간이내</option>
+                        <option value="2">1시간-2시간</option>
+                        <option value="3">2시간-3시간</option>
+                        <option value="4">3시간-4시간</option>
+                        <option value="5">4시간-5시간</option>
+                        <option value="6">장거리</option>
                     </select>
-                    <select id="mountain-level"  id="" class="nice-select">
+                    <select id="mountainLevel"  id="level" class="nice-select">
 			            <option value="1">★</option>
 			            <option value="2">★★</option>
 			            <option value="3">★★★</option>
@@ -102,20 +103,21 @@
     </div>
     <!-- Hero Search Section end -->
     <!-- Recipe Section Begin -->
+    <form action="/recommend/mountainrecommend" class="filter-search" method=post">
     <section class="recipe-section spad">
         <div class="container">
-            	<h3>'userId'님 'MountainName''MountainCourse'는 어떠세요?</h3>
+            	<h3> ${pList.mountainName} ${pList.mountainCourse}는 어떠세요?</h3>
             	<br>
 				<ul>
-					<li> 소요시간 : Mountain-time </li>
-					<li> 코스길이 : Mountain-length </li>
-					<li> 평균 동반 인원 : Mountain-party -> sum 값</li>
+					<li> 소요시간 :${pList.mountainTime} </li>
+					<li> 코스길이 : ${mList.mountainLength} </li>
+					<li> 평균 동반 인원 : ${pList.mountainParty} </li>
 				</ul>
                  <br>
                  
                  <!-- best photo part -->
             <div class="section-title">
-               <h3> 'MountainName''MountainCourse'의 BEST PHOTO</h3>
+               <h3> ${pList.mountainName} ${pList.mountainCourse} 의 BEST PHOTO</h3>
                <br>
             </div>
             <div class="row">
@@ -157,7 +159,7 @@
              <!--  best post part -->
         <div class="container po-relative">
             <div class="section-title">
-                <h3> 'MountainName''MountainCourse'의 BEST POST</h3>
+                <h3> ${pList.mountainName} ${pList.mountainCourse} 의 BEST POST</h3>
             </div>
             <br>
             <div class="row">
@@ -211,7 +213,15 @@
 		        </div>
              </div>
     </section>
-
+    </form>
+    </c:if>
+    
+    <c:if test="${userId eq null}">
+    <div align="center">
+     <p>산타다 회원만 이용 가능한 페이지 입니다.</p>
+     <a href="/member/login">회원가입 및 로그인</a>
+     </div>
+	</c:if>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section" style="text-align: center;">

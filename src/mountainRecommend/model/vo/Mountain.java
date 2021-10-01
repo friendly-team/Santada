@@ -3,16 +3,21 @@ package mountainRecommend.model.vo;
 public class Mountain {
 	
 	private String mountainName;
-	private Number parkinglotNo;
-	private String mountainRegeion;
+	private int parkingLotNo;
+	private String mountainRegion;
+	private String mountainLength;
+	private String mountainCourse;
 	
 	public Mountain() {}
 
-	public Mountain(String mountainName, Number parkinglotNo, String mountainRegeion) {
+	public Mountain(String mountainName, int parkingLotNo, String mountainRegion, String mountainLength,
+			String mountainCourse) {
 		super();
 		this.mountainName = mountainName;
-		this.parkinglotNo = parkinglotNo;
-		this.mountainRegeion = mountainRegeion;
+		this.parkingLotNo = parkingLotNo;
+		this.mountainRegion = mountainRegion;
+		this.mountainLength = mountainLength;
+		this.mountainCourse = mountainCourse;
 	}
 
 	public String getMountainName() {
@@ -23,28 +28,44 @@ public class Mountain {
 		this.mountainName = mountainName;
 	}
 
-	public Number getParkinglotNo() {
-		return parkinglotNo;
+	public int getParkingLotNo() {
+		return parkingLotNo;
 	}
 
-	public void setParkinglotNo(Number parkinglotNo) {
-		this.parkinglotNo = parkinglotNo;
+	public void setParkingLotNo(int parkingLotNo) {
+		this.parkingLotNo = parkingLotNo;
 	}
 
-	public String getMountainRegeion() {
-		return mountainRegeion;
+	public String getMountainRegion() {
+		return mountainRegion;
 	}
 
-	public void setMountainRegeion(String mountainRegeion) {
-		this.mountainRegeion = mountainRegeion;
+	public void setMountainRegion(String mountainRegion) {
+		this.mountainRegion = mountainRegion;
+	}
+
+	public String getMountainLength() {
+		return mountainLength;
+	}
+
+	public void setMountainLength(String mountainLength) {
+		this.mountainLength = mountainLength;
+	}
+
+	public String getMountainCourse() {
+		return mountainCourse;
+	}
+
+	public void setMountainCourse(String mountainCourse) {
+		this.mountainCourse = mountainCourse;
 	}
 
 	@Override
 	public String toString() {
-		return "Mountain [mountainName=" + mountainName + ", parkinglotNo=" + parkinglotNo + ", mountainRegeion="
-				+ mountainRegeion + "]";
+		return "Mountain [mountainName=" + mountainName + ", parkingLotNo=" + parkingLotNo + ", mountainRegion="
+				+ mountainRegion + ", mountainLength=" + mountainLength + ", mountainCourse=" + mountainCourse + "]";
 	}
-	
-	
 
+	
+	
 }
