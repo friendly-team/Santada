@@ -117,4 +117,17 @@ public class MemberService {
 		
 		return member;
 	}
+	public Member SearchLogin(String userId) {
+		Member Member = null;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			Member = new MemberDAO().getSearchLogin(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return Member;
+	}
 }

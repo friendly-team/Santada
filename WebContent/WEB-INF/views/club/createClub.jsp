@@ -37,19 +37,26 @@
 			<div class="nav-menu">
 				<nav class="main-menu mobile-menu">
 					<ul>
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">등산인증</a>
-							<ul class="sub-menu">
-								<li><a href="about-me.html">About Me</a></li>
-								<li><a href="categories.html">Categories</a></li>
-								<li><a href="recipe.html">Recipe</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul></li>
-						<li><a href="recipe.html">추천코스</a></li>
-						<li><a href="categories.html">소모임</a></li>
-						<li><a href="contact.html">마이페이지</a></li>
-					</ul>
+						                  <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">등산인증</a>
+                            <ul class="sub-menu">
+                                <li><a href="about-me.html">등산인증</a></li>
+                                <li><a href="club.html">등산후기</a></li>
+                                <li><a href="recipe.html">랭킹</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="recipe.html">추천코스</a></li>
+                        <li><a href="club.html">소모임</a>
+                            <ul class="sub-menu">
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/create">소모임생성</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">쪽지</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">쪽지작성</a></li>
+                                <li><a href="#">보관함</a></li>
+                            </ul>
 				</nav>
 			</div>
 			<div id="mobile-menu-wrap"></div>

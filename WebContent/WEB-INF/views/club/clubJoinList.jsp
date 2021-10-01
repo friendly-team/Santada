@@ -30,7 +30,37 @@
             font-weight: normal;
             display: flex;
         }
-        
+        table.type11 {
+		border-collapse: separate;
+		border-spacing: 1px;
+		text-align: center;
+		line-height: 1.5;
+		margin: 20px 10px;
+	  }
+	  table.type11 th {
+		width: 155px;
+		padding: 10px;
+		font-weight: bold;
+		vertical-align: top;
+		color: #fff;
+		background: #ce4869 ;
+	  }
+      table.type11 th:nth-child(2){
+          width: 400px;
+      }
+	  table.type11 td {
+		width: 155px;
+		padding: 10px;
+        font-weight: normal;
+        font-size: 10pt;
+		vertical-align: top;
+		border-bottom: 1px solid #ccc;
+		background: #eee;
+	  }
+      table{
+          position: relative;
+          left: 200px;
+      }
     </style>
 </head>
 
@@ -58,8 +88,8 @@
                         <li><a href="recipe.html">추천코스</a></li>
                         <li><a href="club.html">소모임</a>
                             <ul class="sub-menu">
-            					<li><a href="/club/ClubJoin.jsp">${club.clubName}소모임</a></li>
-                                <li><a href="/club/memberList">소모임회원관리</a></li>
+                                <li><a href="/club/ClubJoin.jsp">${club.clubName}소모임</a></li>
+                                <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
                                 <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
                                 <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇠</a></li>
                             </ul>
@@ -83,37 +113,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/clubjoin/detail" class="contact-form" method="post">
-                        <h3>회원승인</h3><br><br><br>
-                        <span style="display: flex;float: left;">
-                            닉네임 <input type="text" value="${cm.userName }" name="" id="" style="height: 30px; width: 130px;text-align: center; " readonly>
-                        </span>
-                        <span>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            아이디<input type="text" value="${cm.userId }" name="userId" id="" style="height: 30px; width: 200px;text-align: center; " readonly>
-                        </span>
-                        <br><br>
-                        <span style="display: flex; float: left;" >
-                           나이&nbsp;&nbsp;&nbsp;<input type="number" value="${cm.userAge }" name="" id="" style="height: 30px; width: 100px; " readonly></span>
-                        <span>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            신청일 <input type="text" value="${cm.joinDate }" name="" id="" style="height: 30px; width: 140px; " readonly>
-                        </span>
-                        <br><br>
-                        <span>자기소개</span> 
-                        <textarea style="width: 90%; position: relative; bottom: 140px;"  name="" id="" cols="30" rows="10" readonly>${cm.userIntroduce }</textarea>
-                        <span>가입경로</span>
-                        <textarea style="width: 90%; position: relative; bottom: 140px; display: inline-block;"  name="" id="" cols="30" rows="10" readonly>${cm.joinRoute }</textarea>
+                    <form action="#" class="contact-form">
+                        <div style="margin-right: 20px; font-weight: normal;  float: left; width: 140px; height: 40px; border-radius: 10px; "><a href="/club/memberList?userId=${userId}">소모임 회원관리</a></div>
+                       <div style="float: left;  color: white; width: 100px; height: 40px; border-radius: 10px;"><a href="/clubjoin/management?userId=${userId}">승인관리</a></div>
+                        <br><br><br><hr>
+                        <table class="type11">
+                           
+                            <tr>
+                              <th scope="cols">이름</th>
+                              <th scope="cols">아이디</th>
+                              <th scope="cols">신청일</th>
+                            </tr>
+                            
+                            <c:forEach items="${cmList }" var = "cmL" varStatus="index">
+                         
+                            <tr>
+                              <td>${cmL.userName }</td>
+                              <td><a href="/clubjoin/detail?userId=${cmL.userId }">${cmL.userId }</a></td>
+                              <td>${cmL.joinDate }</td>
+                            </tr>
+                            </c:forEach>
+                            <tr>
+                            <td colspan="3" align="center" style="font-size: 15pt; margin: 0px 10px;">
+                                  ${pageNavi}
+                            </td>
+                            </tr>
+             
+                             
+                          </table>
+                    </form>
 
-                        <button type="submit" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">가입승인</button> 
-                           </form>
-                           <form action="/club/exit" method="post" class="contact-form">
-                           <input type="hidden" value="${cm.userId }" name="userId">
-                        <button >가입거절</button>
-                           </form>
-                 
                 </div>
             </div>
+            <hr>
         </div>
     </section>
 

@@ -71,15 +71,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/remove/club" method="post" class="contact-form">
-                        <h3>" " " 소모임</h3>
-                        <h5>소모임을 폐쇠 하기 전 회원분들과 충분한 상의를 통하여 결정 하셨나요?</h5>
-                      
-                        <br> <br><br>
-                        소모임을 폐쇠하면 복구가 불가능합니다. <br>
-                        그래도 삭제 하시겠습니까?
-                        <br><br><br>
-                        <button type="submit" style="background-color: deeppink; border: none;">네</button> <button>아니요</button>
+                    <form action="/club/join" method="post" class="contact-form">
+                        <h3>소모임 가입</h3> <hr>
+                        <b>소모임 명</b><input type="text" value="산타자" name="club-Name" id="" style="width: 300px; height: 50px;"> <br><br>
+                        <b>나이</b><select name="age">
+                             <option value="10">10대</option>
+                             <option value="20">20대</option>
+                             <option value="30">30대</option>
+                             <option value="40">40대</option>
+                             <option value="50">50대</option>
+                             <option value="60">60대</option>
+                            </select> 
+                           
+                            <br><br>
+                        <b>자기소개</b><textarea name="introduce" id="" cols="30" rows="10">khuser02</textarea>
+                        <b>가입 경로</b> <textarea name="joinRoute" id="" cols="30" rows="10">khuser02</textarea>
+                        <br>
+                        소모임 장의 승인 후에 소모임에 가입 완료됩니다. <br>
+                         <input type="hidden" name="name" value="">
+                        <button type="submit" style="background-color: deeppink; border: none;">가입신청</button> 
                     </form>
                 </div>
             </div>

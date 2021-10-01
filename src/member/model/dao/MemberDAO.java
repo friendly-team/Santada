@@ -154,4 +154,28 @@ public class MemberDAO {
 		}
 		return member;
 	}
+
+	public Member getSearchLogin(Connection conn, String userId) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_ID ='" 
+		+ userId + "'";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				member = new Member();
+				member.setUserId(rset.getString("USER_ID"));
+				member.setUserName(rset.getString("USER_NAME"));
+				member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return member;
+	}
 }

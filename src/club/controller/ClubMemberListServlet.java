@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import club.model.service.ClubService;
+import club.model.vo.Club;
+import club.model.vo.ClubJoinPageData;
 import club.model.vo.ClubManagement;
-import club.model.vo.PageData;
-
 
 /**
- * Servlet implementation class ClubJoinManagement
+ * Servlet implementation class ClubMemberListServlet
  */
-@WebServlet("/clubjoin/management")
-public class ClubJoinManagementServlet extends HttpServlet {
+@WebServlet("/club/memberList")
+public class ClubMemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClubJoinManagementServlet() {
+    public ClubMemberListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,18 +39,20 @@ public class ClubJoinManagementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		String getCurrentPage = request.getParameter("currentPage");
+	
 		if(getCurrentPage ==null) {
 			currentPage =1;
 		}else {
 			currentPage = Integer.parseInt(getCurrentPage);
 		}
-		PageData pageData = new ClubService().printAllJoin(currentPage,userId);
+		ClubJoinPageData pageData = new ClubService().printAllMember(currentPage,userId);
 		List<ClubManagement> cmList = pageData.getCmList();
-		
+	
 		if(!cmList.isEmpty()) {
+			request.setAttribute("userId", userId);
 			request.setAttribute("cmList", cmList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
-			request.getRequestDispatcher("/WEB-INF/views/club/clubJoinManagement.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/club/ClubMemberList.jsp").forward(request, response);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/club/Error.html");
 			view.forward(request, response);
