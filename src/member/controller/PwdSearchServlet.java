@@ -14,13 +14,13 @@ import member.model.vo.Member;
  * Servlet implementation class PwdsearchServlet
  */
 @WebServlet("/pwd/search")
-public class PwdSearchServlet extends HttpServlet {
+public class PwdsearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PwdSearchServlet() {
+    public PwdsearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

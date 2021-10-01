@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mountainPost.model.service.MountainPostService;
+
 /**
  * Servlet implementation class MountainPostReplyModifyServlet
  */
@@ -26,16 +28,22 @@ public class MountainPostReplyModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String replyContents = request.getParameter("replyContents");
+		int replyNo = Integer.parseInt(request.getParameter("replyNo"));
+		int mPostNo = Integer.parseInt(request.getParameter("mountainPostNo"));
+		int result = new MountainPostService().modifyReplyOne(replyContents, replyNo);
+		if(result > 0) {
+			response.sendRedirect("/mountainPost/detail?mountainPostNo=" + mPostNo);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mPostError.html").forward(request, response);
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package mountainPost.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class MountainPost {
 	private int mountainPostNo;
@@ -18,6 +19,8 @@ public class MountainPost {
 	private String mountainNeed;
 	private int mountainRecommend;
 	private String mountainPostState;
+	
+	private List<MountainPostReply> replies;
 	
 	public MountainPost() {}
 	
@@ -160,6 +163,14 @@ public class MountainPost {
 
 	public void setMountainPostState(String mountainPostState) {
 		this.mountainPostState = mountainPostState;
+	}
+
+	public List<MountainPostReply> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<MountainPostReply> replies) {
+		this.replies = replies;
 	}
 
 	@Override

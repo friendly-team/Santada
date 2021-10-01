@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import mountainPost.model.service.MountainPostService;
 import mountainPost.model.vo.MountainPost;
+import mountainPost.model.vo.MtFileData;
+import mountainPostFile.model.service.MtFileService;
 
 /**
  * Servlet implementation class MountainPostModifyServlet
@@ -32,7 +34,9 @@ public class MountainPostModifyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int mtPostNo = Integer.parseInt(request.getParameter("mountainPostNo"));
 		MountainPost mPostOne = new MountainPostService().printOneByNo(mtPostNo);
+		MtFileData mFileOne = new MtFileService().printOneByNo(mtPostNo);
 		request.setAttribute("mPostOne", mPostOne);
+		request.setAttribute("mFileOne", mFileOne);
 		request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mountainPostModify.jsp").forward(request, response);
 	}
 

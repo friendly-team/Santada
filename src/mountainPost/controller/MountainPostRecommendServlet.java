@@ -1,4 +1,4 @@
-package club.controller;
+package mountainPost.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mountainPost.model.service.MountainPostService;
+
 /**
- * Servlet implementation class RemoveClub
+ * Servlet implementation class MountainPostRecommendServlet
  */
-@WebServlet("/club/remove")
-public class RemoveClub extends HttpServlet {
+@WebServlet("/mountainPost/recommend")
+public class MountainPostRecommendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveClub() {
+    public MountainPostRecommendServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +28,20 @@ public class RemoveClub extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int mPostNo = Integer.parseInt(request.getParameter("mountainPostNo"));
+		int recCount = Integer.parseInt(request.getParameter("mountainRecommend"));
+		int result = new MountainPostService().plusMountainRecommend(mPostNo, recCount);
+		if(result > 0) {
+			response.sendRedirect("/mountainPost/detail?mountainPostNo=" + mPostNo);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mPostError.html").forward(request, response);
+		}
 	}
 
 }

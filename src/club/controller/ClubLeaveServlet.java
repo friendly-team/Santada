@@ -1,4 +1,4 @@
-package member.controller;
+package club.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,18 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import club.model.service.ClubService;
 
 /**
- * Servlet implementation class ParkingReservationListCheckServlet
+ * Servlet implementation class ClubLeave
  */
-@WebServlet("/parkingReservationList/check")
-public class ParkingReservationListCheckServlet extends HttpServlet {
+@WebServlet("/club/leave")
+public class ClubLeaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ParkingReservationListCheckServlet() {
+    public ClubLeaveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +29,25 @@ public class ParkingReservationListCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/views/club/ClubLeave.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		int result = new ClubService().leavClub(userId);
+		if(result > 0) {
+			session.invalidate(); 
+			HttpSession ResetSession = request.getSession();
+			ResetSession.setAttribute("userId", userId);
+			response.sendRedirect("/index.jsp");
+		}else {
+			request.getRequestDispatcher("/club/Error.html").forward(request, response);
+		}
+		
 	}
 
 }

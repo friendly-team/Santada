@@ -119,11 +119,8 @@
             <textarea name="post-con" id="" cols="140" rows="10">${mPostOne.mountainPostContents}</textarea>
         </div>
         <div>
-<!--             <b>이미지 업로드</b><br>
-            <input type="file" name="m-post-file">
-            <span>첨부된 파일명 c: forEach</span>
-            <span>삭제</span> -->
-        </div>
+            <b>첨부된 이미지 : </b>${mFileOne.fileName}
+        </div><br>
         <input type="hidden" name="m-post-no" value="${mPostOne.mountainPostNo}">
         <input type="submit" value="등록">
         <input type="reset" value="취소">

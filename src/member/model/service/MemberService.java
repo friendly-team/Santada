@@ -8,6 +8,7 @@ import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 
 
+
 public class MemberService {
 
 	private JDBCTemplate jdbcTemplate;
@@ -101,5 +102,72 @@ public class MemberService {
 			JDBCTemplate.close(conn);	
 		}
 		return result;
+	}
+	public Member printOneById(String studentId) {
+		Member student = null;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection(); // 연결생성함
+			student = new MemberDAO().selectOneById(conn, studentId); // 연결 넘겨줌
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return student;
+	}
+	public int modifyStudent(Member student) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			// 연결 생성하고
+			conn = jdbcTemplate.createConnection();
+			result = new MemberDAO().updateMember(conn, student);
+			// 성공,실패 여부에 따라 커밋/롤백
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	public int deleteMember(String studentId) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MemberDAO().deleteMember(conn, studentId);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	public Member printPointById(String studentId) {
+		Member student = null;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection(); // 연결생성함
+			student = new MemberDAO().selectPointById(conn, studentId); // 연결 넘겨줌
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return student;
 	}
 }

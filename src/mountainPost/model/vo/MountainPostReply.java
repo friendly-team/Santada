@@ -3,58 +3,67 @@ package mountainPost.model.vo;
 import java.sql.Date;
 
 public class MountainPostReply {
-	private int ReplyNo;
+	private int replyNo;
 	private int mountainPostNo;
-	private String ReplyContents;
-	private String ReplyWriter;
-	private Date ReplyDate;
+	private String replyContents;
+	private String replyWriter;
+	private Date replyDate;
 	
 	public MountainPostReply() {}
 
 	public int getReplyNo() {
-		return ReplyNo;
+		return replyNo;
 	}
 
+
 	public void setReplyNo(int replyNo) {
-		ReplyNo = replyNo;
+		this.replyNo = replyNo;
 	}
+
 
 	public int getMountainPostNo() {
 		return mountainPostNo;
 	}
 
+
 	public void setMountainPostNo(int mountainPostNo) {
 		this.mountainPostNo = mountainPostNo;
 	}
 
+
 	public String getReplyContents() {
-		return ReplyContents;
+		return replyContents;
 	}
+
 
 	public void setReplyContents(String replyContents) {
-		ReplyContents = replyContents;
+		this.replyContents = replyContents;
 	}
+
 
 	public String getReplyWriter() {
-		return ReplyWriter;
+		return replyWriter;
 	}
+
 
 	public void setReplyWriter(String replyWriter) {
-		ReplyWriter = replyWriter;
+		this.replyWriter = replyWriter;
 	}
+
 
 	public Date getReplyDate() {
-		return ReplyDate;
+		return replyDate;
 	}
 
+
 	public void setReplyDate(Date replyDate) {
-		ReplyDate = replyDate;
+		this.replyDate = replyDate;
 	}
 
 	@Override
 	public String toString() {
-		return "MountainPostReply [ReplyNo=" + ReplyNo + ", mountainPostNo=" + mountainPostNo + ", ReplyContents="
-				+ ReplyContents + ", ReplyWriter=" + ReplyWriter + ", ReplyDate=" + ReplyDate + "]";
+		return "MountainPostReply [replyNo=" + replyNo + ", mountainPostNo=" + mountainPostNo + ", replyContents="
+				+ replyContents + ", replyWriter=" + replyWriter + ", replyDate=" + replyDate + "]";
 	}
 
 }

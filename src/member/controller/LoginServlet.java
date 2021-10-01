@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import club.model.service.ClubService;
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -43,12 +46,17 @@ public class LoginServlet extends HttpServlet {
 //		System.out.println("잘 넘어오는군 ㅎㅎ");
 		// 인증과정
 		Member member = new MemberService().printOneLogin(userId, userPwd);
+		ClubManagement cm = new ClubService().printOneId(userId);
+		Club club = new ClubService().printBossCheck(userId);
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", member.getUserId());
-			response.sendRedirect("/index.jsp"); // 성공할 경우 성공메시지 페이지로 이동
+			session.setAttribute("cm", cm);			
+			session.setAttribute("club", club);
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			response.sendRedirect("/index.jsp");
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/member/loginfail.jsp").forward(request, response); // 실패할 경우 실패메시지 페이지로 이동
+			response.sendRedirect("/member/loginfail.jsp"); // 실패할 경우 실패메시지 페이지로 이동
 		}
 	}
 

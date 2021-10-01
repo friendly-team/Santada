@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dm.model.service.DmService;
+import dm.model.vo.Dm;
+import member.model.service.MemberService;
+
 /**
  * Servlet implementation class LetterSendServlet
  */
@@ -26,16 +30,25 @@ public class LetterSendServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/views/DM/Letter.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String recipientId = request.getParameter("recipient-id");
+		String userId = request.getParameter("user-id");
+		String letterSub = request.getParameter("letter-subject");
+		String letterCon = request.getParameter("letter-contents");
+		
+		Dm Dm = new Dm(recipientId, userId, letterSub, letterCon);
+		
+		int result = new DmService().sendLetter(Dm);
+		
+		if(result > 0) {
+			response.sendRedirect("/index.jsp");
+		}else {
+			
+		}
 	}
 
 }

@@ -126,4 +126,107 @@ public class MemberDAO {
 		}
 		return result;
 	}
+
+	public Member selectOneById(Connection conn, String studentId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member student = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentId);
+			// 쿼리문 실행은 ???
+			rset = pstmt.executeQuery();
+			// 결과값 받아서 student객체에 셋팅하기
+			if(rset.next()) {
+				student = new Member();
+				student.setUserId(rset.getString("USER_ID"));
+				student.setUserPwd(rset.getString("USER_PWD"));
+				student.setUserName(rset.getString("USER_NAME"));
+				student.setUserPhone(rset.getString("USER_PHONE"));
+				student.setUserEmail(rset.getString("USER_EMAIL"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return student;
+	}
+
+	public int updateMember(Connection conn, Member student) {
+		int result = 0;
+		// PreparedStatement 객체
+		PreparedStatement pstmt = null;
+		// 쿼리문 작성
+		String query = "UPDATE MEMBER SET USER_PWD = ?,USER_NAME = ?, USER_EMAIL = ?, USER_PHONE = ? WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, student.getUserPwd());
+			pstmt.setString(2, student.getUserName());
+			pstmt.setString(3, student.getUserEmail());
+			pstmt.setString(4, student.getUserPhone());
+			pstmt.setString(5, student.getUserId());
+			// 쿼리문 실행
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 자원해제
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String studentId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM MEMBER WHERE USER_ID = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentId);
+			// 쿼리문 실행 ???
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Member selectPointById(Connection conn, String studentId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member student = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentId);
+			// 쿼리문 실행은 ???
+			rset = pstmt.executeQuery();
+			// 결과값 받아서 student객체에 셋팅하기
+			if(rset.next()) {
+				student = new Member();
+				student.setUserId(rset.getString("USER_ID"));
+				student.setUserPwd(rset.getString("USER_PWD"));
+				student.setUserName(rset.getString("USER_NAME"));
+				student.setUserPhone(rset.getString("USER_PHONE"));
+				student.setUserEmail(rset.getString("USER_EMAIL"));
+				student.setNormalPoint(rset.getInt("NORMAL_POINT"));
+				student.setTreePoint(rset.getInt("TREE_POINT"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return student;
+	}
 }
