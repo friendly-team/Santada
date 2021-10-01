@@ -10,6 +10,8 @@ public class Member {
 		private String userName;
 		private String userEmail;
 		private String userPhone;
+		private int treePoint;
+		private int normalPoint;
 		private Date enrollDate;
 
 		public Member() {}
@@ -22,6 +24,29 @@ public class Member {
 			this.userPhone = userPhone;
 			this.userEmail = userEmail;
 		}
+		public Member(String userId, int treePoint, int normalPoint) {
+			super();
+			this.userId = userId;
+			this.treePoint = treePoint;
+			this.normalPoint = normalPoint;
+		}
+		
+		public int getTreePoint() {
+			return treePoint;
+		}
+
+		public void setTreePoint(int treePoint) {
+			this.treePoint = treePoint;
+		}
+
+		public int getNormalPoint() {
+			return normalPoint;
+		}
+
+		public void setNormalPoint(int normalPoint) {
+			this.normalPoint = normalPoint;
+		}
+
 		public String getUserId() {
 			return userId;
 		}
@@ -58,10 +83,13 @@ public class Member {
 		public void setEnrollDate(Date enrollDate) {
 			this.enrollDate = enrollDate;
 		}
+
 		@Override
 		public String toString() {
 			return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userEmail="
-					+ userEmail + ", userPhone=" + userPhone + ", enrollDate=" + enrollDate + "]";
+					+ userEmail + ", userPhone=" + userPhone + ", treePoint=" + treePoint + ", normalPoint="
+					+ normalPoint + ", enrollDate=" + enrollDate + "]";
 		}
+		
 		
 }

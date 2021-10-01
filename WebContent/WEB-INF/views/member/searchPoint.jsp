@@ -10,18 +10,62 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>쪽지 전송</title>
+    <title>Yummy | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
-
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+
+<script>
+    $(function(){
+
+$('#pwd-check').keyup(function(){
+
+var pw1=$('#user-pwd').val().trim();
+
+if(pw1==""){
+
+alert("패스워드를 입력하세요");
+
+$('#pwd-check').val('');
+
+$('#user-pwd').focus();
+
+}
+
+var pw2=$('#pwd-check').val().trim();
+
+if(pw1.length!=0 && pw2.length!=0){
+
+if(pw1==pw2)
+
+{
+
+$('#out').html("패스워드가 일치합니다.");
+
+$('#out').css({'color':'green','font-weight':'bolder'});
+
+}
+
+else{
+
+$('#out').html("패스워드가 일치하지 않습니다.");
+
+$('#out').css({'color':'red','font-weight':'bolder'});
+
+}
+
+}
+
+});
+});
+    </script>
     <style>
         	select {
 
@@ -41,6 +85,20 @@ select::-ms-expand{
 display:none;/*for IE10,11*/
 
 }
+#page-aside{
+    width: 10%;
+    position: relative;
+    right: 15%;
+    /* top: 17%; */
+    margin-top: 20%;
+}
+li{
+    list-style: none;
+    margin-bottom: 15px;
+}
+form ul>li{text-align:right;width:43%;
+
+display: inline-block; margin-right:5px}
     </style>
 </head>
 
@@ -51,11 +109,10 @@ display:none;/*for IE10,11*/
     </div> -->
 
     <!-- Header Section Begin -->
-    <c:if test="${userId ne null and userId ne '' }">
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
-                <a href="/index.jsp"><img src="/imgs/lettle-logo.png" alt=""></a>
+                <a href="./index.html"><img src="/imgs/lettle-logo.png" alt=""></a>
             </div>
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
@@ -75,11 +132,10 @@ display:none;/*for IE10,11*/
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="/LetterSend/page">쪽지</a>
+                        <li><a href="contact.html">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="/LetterSend/page">쪽지작성</a></li>
-                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
-                                <li><a href="/letter/list">보낸 쪽지함</a></li>
+                                <li><a href="#">쪽지작성</a></li>
+                                <li><a href="#">보관함</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -98,26 +154,35 @@ display:none;/*for IE10,11*/
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/letter/send" class="contact-form" method="post">
-                        <h3><i class="far fa-edit"></i>&nbsp;&nbsp;Note</h3>
-                        
-                        <div class="row">
+                        <form action="#" class="contact-form">
+                        <h3 style="text-align: center;">My Page</h3>
+                        </form>
+                        <div id="page-aside">
+                                <ul>
+                                    <li><a href="/mypage/info">회원 정보</a></li>
+                                    <li><a href="/member/remove">회원 탈퇴</a></li>
+                                    <li><a href="/point/search">포인트 조회</a></li>
+                                    <li><a href="#">주차 예약 조회</a></li>
+                                    <li><a href="/report/list">나의 신고 내역</a></li>
+                                   
+                                </ul>
+                        </div> <!-- END COLORLIB-ASIDE -->
+                    <div id="member-info" style="position: relative;bottom: 190px;">
+                        <form action="/info/modify" class="contact-form" method="post">
+                            <h3>포인트 조회</h3>
+                            <ul style="    position: relative;right: 5%;width: 77%;">
 
-                            <div class="col-lg-12">
-                                <input type="text" placeholder="To" name="recipient-id" >
-                            </div>
+                                <li><label for="userId">일반 포인트 :</label></li>
+                                
+                                <li><input type="text" name="normal-point" id="normal-point" value="${student.normalPoint }점" readonly></li><br>
 
-                            <div class="col-lg-12">
-                                <input type="text" placeholder="From" name="user-id" value="${userId}" readonly>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <input type="text" placeholder="Subject" name="letter-subject">
-                                <textarea placeholder="Comment" name="letter-contents"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit">Send</button>
-                    </form>
+                                <li><label for='phone_num'>나무 포인트 :</label></li>
+                                
+                                <li><input type="text" name='tree-point' id="tree-point" value="${student.treePoint }점" readonly></li><br>
+                                
+                                </ul><br><br>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,11 +237,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
-    </c:if>
 </body>
 
-</html>
-	<c:if test="${sessionScope.userId eq null }">
-		<script>window.location.href="/login/home"</script>
-	</c:if>
-	
+</html>ml>

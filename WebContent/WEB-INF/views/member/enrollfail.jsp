@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="2 url=/member/login">
+    <meta http-equiv="refresh" content="1 url=/member/enroll">
     <title>Title</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animatedLogin.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -13,8 +13,7 @@
 </head>
 <body>
     
-    <h1 id="loginfail"> 로그인 실패 </h1>
-    <h3 id="loginfail2">아이디나 비밀번호를 다시 입력해주세요.</h3>
+    <h1 id="loginfail">이미 존재하는 아이디입니다.</h1>
 
     <script type="text/javascript">
         $(".txtb input").on("focus",function(){
@@ -28,4 +27,4 @@
     </script>
 
 </body>
-</html>
+</html>l>

@@ -1,8 +1,6 @@
-package report.controller;
+package member.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import report.model.service.ReportService;
-import report.model.vo.Report;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class ReportListServlet
+ * Servlet implementation class MyPageRemoveServlet
  */
-@WebServlet("/report/list")
-public class ReportListServlet extends HttpServlet {
+@WebServlet("/member/remove")
+public class MyPageRemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportListServlet() {
+    public MyPageRemoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +32,23 @@ public class ReportListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String studentId = (String)session.getAttribute("userId");
-		List<Report> sList = new ReportService().printAllList(studentId);
-		if(sList != null) {
-			request.setAttribute("sList", sList);
-			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
+		Member student = new MemberService().printOneById(studentId);
+		if(student != null) {
+			request.setAttribute("student", student);
+			request.getRequestDispatcher("/WEB-INF/views/member/remove.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("/member/studentError.html");
 		}
-	
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		String studentId = (String)session.getAttribute("userId");
+		int result = new MemberService().deleteMember(studentId);
+		if(result > 0) {
+			response.sendRedirect("/member/logout");
+		}else {
+		}
 	}
-
 }
+
+

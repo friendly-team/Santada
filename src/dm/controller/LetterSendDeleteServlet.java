@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import dm.model.service.DmService;
 
 /**
- * Servlet implementation class LetterDeleteServlet
+ * Servlet implementation class LetterSendDeleteServlet
  */
-@WebServlet("/letter/delete")
-public class LetterDeleteServlet extends HttpServlet {
+@WebServlet("/letter/deleteT")
+public class LetterSendDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LetterDeleteServlet() {
+    public LetterSendDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,7 @@ public class LetterDeleteServlet extends HttpServlet {
 		int letterNo = Integer.parseInt(request.getParameter("letter-no"));
 		int result = new DmService().removeLetterOne(letterNo);
 		if(result > 0) {
-			response.sendRedirect("/letter/inbox");
+			response.sendRedirect("/letter/list");
 		}else {
 			
 		}
@@ -41,7 +41,8 @@ public class LetterDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
