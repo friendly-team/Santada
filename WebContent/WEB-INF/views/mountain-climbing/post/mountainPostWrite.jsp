@@ -96,7 +96,7 @@
     <div style="margin-top: 100px;">
         <h1 style="text-align: center; font-size: 30px;">등산인증</h1>
     </div>
-    <form action="/mountainPost/modify" method="post">
+    <form action="/mountainPost/write" method="post" enctype="multipart/form-data">
         <table class="t__contents">
             <tr>
                 <th colspan="6">
@@ -105,7 +105,7 @@
             </tr>
             <tr>
                 <td colspan="6">
-                    <input type="text" name="post-sub" style="width: 1500px;" value="${mPostOne.mountainPostSubject}">
+                    <input type="text" name="post-sub" style="width: 1500px;" placeholder="제목을 입력해주세요">
                 </td>
             </tr>
             <tr align="center">
@@ -200,10 +200,10 @@
                     </select>
                 </td>
                 <td>
-                    <input type="number" name="mountain-time" value="${mPostOne.mountainTime}">시간
+                    <input type="number" name="mountain-time">시간
                 </td>
                 <td>
-                    <input type="number" name="mountain-party" value="${mPostOne.mountainParty}">명
+                    <input type="number" name="mountain-party">명
                 </td>
                 <td>
                     <select name="mountain-level" id="">
@@ -221,10 +221,10 @@
             </tr>
             <tr align="center">
                 <td colspan="3">
-                    <textarea name="mountain-caution" id="" cols="60" rows="5" placeholder="내용을 입력해주세요">${mPostOne.mountainCaution}</textarea>
+                    <textarea name="mountain-caution" id="" cols="60" rows="5" placeholder="내용을 입력해주세요"></textarea>
                 </td>
                 <td colspan="3">
-                    <textarea name="mountain-need" id="" cols="60" rows="5" placeholder="내용을 입력해주세요">${mPostOne.mountainNeed}</textarea>
+                    <textarea name="mountain-need" id="" cols="60" rows="5" placeholder="내용을 입력해주세요"></textarea>
                 </td>
             </tr>
             <tr>
@@ -234,17 +234,17 @@
             </tr>
             <tr>
                 <td colspan="6" align="center">
-                    <textarea name="post-con" id="" cols="150" rows="10">${mPostOne.mountainPostContents}</textarea>
+                    <textarea name="post-con" id="" cols="150" rows="10" placeholder="내용을 입력해주세요"></textarea>
                 </td>
             </tr>
             <tr>
                 <th colspan="6" align="center">
-                    첨부된 이미지
+                    이미지 업로드
                 </th>
             </tr>
             <tr>
                 <td colspan="6" align="center">
-                    ${mFileOne.fileName}
+                    <input type="file" name="m-post-file">
                 </td>
             </tr>
             <tr>
@@ -256,7 +256,42 @@
                 </td>
             </tr>
         </table>
-        <input type="hidden" name="m-post-no" value="${mPostOne.mountainPostNo}">
     </form>
+    <!-- Contents End-->
+
+<!-- Footer Section Begin -->
+    <footer class="footer-section" style="text-align: center;">
+        <div class="container">
+            <div>
+                <div>
+                    <div class="logo">
+                        <a href="${pageContext.request.contextPath}/index.jsp">
+                            <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
+                        </a>
+                        <p>등산인증 by Ahram-Jeong</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
