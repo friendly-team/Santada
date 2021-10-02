@@ -98,7 +98,7 @@
                         <li><a href="recipe.html">추천코스</a></li>
                         <li><a href="club.html">소모임</a>
                             <ul class="sub-menu">
-                                <li><a href="/club/ClubJoin.jsp">${club.clubName}소모임</a></li>
+                                <li><a href="/club/ClubJoin.jsp">${clubName.clubName}소모임</a></li>
                                 <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
                                 <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
                                 <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇠</a></li>
@@ -140,7 +140,7 @@
                          
                             <tr>
                               <td>${cm.userName }</td>
-                              <td>${cm.userId }</td>
+                              <td><a href="/clubMember/detail?userId=${cm.userId }">${cm.userId }</a></td>
                               <td>${cm.userAge }</td>
                               <td>${cm.joinDate }</td>
                               

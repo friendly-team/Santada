@@ -55,22 +55,22 @@
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-		<form action="/clubPost/write" method="post" name="form" enctype="multipart/form-data">
+		<form action="#" method="post">
 			<div style="height: 900px; width: 100%;">
-				<div style="height: 15%; width: 60%;">
-		 			<h5 style="display: inline; position: relative; top: 20%; left: 16.7%;">제목</h5>
-					<input type="text" name="clubPost-subject" placeholder="제목을 입력하세요." style="height: 30%; width: 40%; position: relative; left: 13%; top: 55%;">
+				<div style="height: 15%; width: 100%">
+		 			<h5 style="display: inline; position: relative; top: 20%; left: 10%;">제목</h5>
+					<input type="text" placeholder="제목을 입력하세요." style="height: 30%; width: 40%; position: relative; left: 7.8%; top: 55%;">
 				</div>
 				<div style="height: 60%; width: 100%;">
 					<div style="height: 10%; width: 100%;">
 						<h5 style="display:inline; position: relative; left: 10%;">내용</h5>
-						<input type="file" name="clubPost-file" style="position: relative; left: 20%;">
+						<input type="file" style="position: relative; left: 20%;">
 					</div>
-					<textarea name="clubPost-contents" style="height: 90%; width: 80%; position: relative; left: 10%;" placeholder="내용을 입력해주세요."></textarea>
+					<textarea style="height: 90%; width: 80%; position: relative; left: 10%;" placeholder="내용을 입력해주세요."></textarea>
 				</div>
 				<div style="height: 25%; width: 100%; text-align: center;">
-					<input type="submit" value="작성하기" style="display:inline; width: 10%; height: 30%; position: relative; top: 20%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="reset" value="취소" style="display:inline; width: 10%; height: 30%; position: relative; top: 20%;">
+					<input type="submit" value="작성하기" style="width: 10%; height: 30%; position: relative; top: 20%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="reset" value="취소" style="width: 10%; height: 30%; position: relative; top: 20%;">
 				</div>
 			</div>
 		</form>
