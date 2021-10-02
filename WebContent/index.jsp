@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 화면</title>
+<title>Santada</title>
 <link rel="stylesheet" href="css/animatedLogin.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
@@ -15,8 +15,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
-<%-- 	<% if(studentId == null) { %> --%>
-
 	<c:if test="${sessionScope.userId eq null }">
 		<header class="header-section">
         <div class="container">
@@ -27,11 +25,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산인증</a></li>
+                                <li><a href="#">나무심기 캠페인</a></li>
+                                <li><a href="#">랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="recipe.html">추천코스</a></li>
@@ -51,9 +49,7 @@
                         <li style="display: none;"><a href="/mypage/info">마이페이지</a></li>
                         <li style="display: none;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
-
                 </nav>
-                
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
@@ -71,7 +67,7 @@
                         </div>
                         <div class="pt-recipe-text">
                             <span>March 10, 2019</span>
-                            <h3>설악산 갔다왔어요~</h3>
+                            <h3>산중에 제일 높은 산은?</h3>
                         </div>
                     </div>
                 </div>
@@ -123,7 +119,7 @@
                             <a href="./index.html">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>여기에는 이제 글씨가 들어갑니다!</p>
+                        <p>Friendly-Team</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -162,10 +158,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
 	</c:if>
 </body>
-
 </html>
-<%-- 	<% } %> --%>
-<%-- 	<% if(studentId != null && studentId != "") { %> --%>
 	<c:if test="${userId ne null and userId ne ''}">
 	<header class="header-section">
         <div class="container">
@@ -176,17 +169,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산인증</a></li>
+                                <li><a href="#">나무심기 캠페인</a></li>
+                                <li><a href="#">랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="recipe.html">추천코스</a></li>
                         <li><a href="#">소모임</a>
                             <ul class="sub-menu">
-                            	 <c:set var="clubName" value="${clubName.clubName }" />
+                            	<c:set var="clubName" value="${clubName.clubName }" />
                                 <c:if test="${cm eq null}">
                                 <li><a href="/club/join">소모임가입</a></li>
                                 <li><a href="/club/create">소모임생성</a></li>
@@ -216,9 +209,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <li style="display: inline-block;"><a href="/mypage/info">마이페이지</a></li>
                         <li style="display: inline-block; margin-right: -11px;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
-
                 </nav>
-                
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
@@ -236,7 +227,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         </div>
                         <div class="pt-recipe-text">
                             <span>March 10, 2019</span>
-                            <h3>설악산 갔다왔어요~</h3>
+                            <h3>산중에 제일 높은 산은?</h3>
                         </div>
                     </div>
                 </div>
@@ -288,7 +279,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <a href="./index.html">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>여기에는 이제 글씨가 들어갑니다!</p>
+                        <p>Friendly-Team</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -334,6 +325,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </script>
     </c:if>
 </body>
-
 </html>
 
