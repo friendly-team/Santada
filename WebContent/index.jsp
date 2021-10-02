@@ -24,11 +24,11 @@
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="/mountainPost/list">등산인증</a>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
+                        <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스 입니다.')">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산인증</a></li>
-                                <li><a href="#">나무심기 캠페인</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스 입니다.')">등산인증</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스 입니다.')">나무심기 캠페인</a></li>
                                 <li><a href="#">랭킹</a></li>
                             </ul>
                         </li>
@@ -115,8 +115,8 @@
         <div class="container">
             <div>
                 <div>
-                        <div class="logo">
-                            <a href="./index.html">
+                    <div class="logo">
+                            <a href="./index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
                         <p>Friendly-Team</p>
@@ -163,12 +163,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/index.html"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
+                <a href="/index.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산인증</a></li>
@@ -276,7 +276,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div>
                 <div>
                         <div class="logo">
-                            <a href="./index.html">
+                            <a href="./index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
                         <p>Friendly-Team</p>
