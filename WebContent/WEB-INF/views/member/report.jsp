@@ -189,10 +189,10 @@ display: inline-block; margin-right:5px}
                                     <div class="inbox" style="    text-align: left;position: relative;left: 10px; width: 25%;">${report.reportTitle }</div>
                                     <div class="inbox" style="width: 40%;">${report.reportContents }</div>
                                     <div class="inbox" style="    position: relative;text-align: right;right: 10px; width: 25%;">
-                                    <c:if test="${report.answer eq 0 }">
+                                    <c:if test="${report.answer eq 'N' }">
                                      	대기 
                                     </c:if>
-                                    <c:if test="${report.answer eq 1 }">
+                                    <c:if test="${report.answer eq 'Y' }">
                                      	완료
                                     </c:if>
                                     </div>

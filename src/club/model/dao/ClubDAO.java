@@ -562,9 +562,9 @@ public class ClubDAO {
 		return cmList;
 	}
 
-	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage) {
+	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage, int clubNo) {
 		int pageCountPerView = 5;
-		int viewTotalCount = searchTotalCount(conn,searchKeyword);
+		int viewTotalCount = searchTotalCount(conn,searchKeyword,clubNo);
 		int viewCountPerPage = 10;
 		int pageTotalCount = 0;
 		if(viewTotalCount % viewCountPerPage >0) {
@@ -599,11 +599,11 @@ public class ClubDAO {
 		return sb.toString();
 	}
 	
-	public int searchTotalCount(Connection conn, String searchKeyword) {
+	public int searchTotalCount(Connection conn, String searchKeyword, int clubNo) {
 		int result = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE USER_ID LIKE '%"+searchKeyword+"%'";
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = '"+clubNo+"'AND APPROVAL_POSITION ='Y' AND USER_ID LIKE '%"+searchKeyword+"%'";
 		
 		try {
 			stmt = conn.createStatement();
@@ -638,5 +638,123 @@ public class ClubDAO {
 		}
 		return result;
 	}
+
+	public Club selectClubName(Connection conn, int clubNo) {
+		PreparedStatement pstmt = null;
+		Club club = null;
+		String query= "SELECT * FROM CLUB WHERE CLUB_NO =? ";
+		ResultSet rset = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, clubNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				club = new Club();
+				club.setClubName(rset.getString("CLUB_NAME"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}		
+		return club;
+	}public int selectOneClubNo(Connection conn, String userId) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      int clubNo = 0;
+	      String query = "SELECT CLUB_NO FROM CLUB_MANAGEMENT WHERE USER_ID = ?";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, userId);
+	         rset = pstmt.executeQuery();
+	         if(rset.next()) {
+	            clubNo = rset.getInt("CLUB_NO");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      return clubNo;
+	   }
+	   public String selectOneClubName(Connection conn, int clubNo) {
+	      PreparedStatement pstmt = null;
+	      String clubName = null;
+	      ResultSet rset = null;
+	      String query = "SELECT CLUB_NAME FROM CLUB WHERE CLUB_NO = ?";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, clubNo);
+	         rset = pstmt.executeQuery();
+	         if(rset.next()) {
+	            clubName = rset.getString("CLUB_NAME");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      
+	      return clubName;
+	   }
+
+	   public String selectMasterId(Connection conn, int clubNo) {
+	      PreparedStatement pstmt = null;
+	      String masterId = null;
+	      ResultSet rset = null;
+	      String query = "SELECT USER_ID FROM CLUB WHERE CLUB_NO = ?";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, clubNo);
+	         rset = pstmt.executeQuery();
+	         if(rset.next()) {
+	            masterId=rset.getString("USER_ID");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      return masterId;
+	   }
+
+	public ClubManagement selectMemberDetail(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ClubManagement cm = null;
+		String query = "SELECT * FROM CLUB_MANAGEMENT WHERE USER_ID = ?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				cm = new ClubManagement();
+				cm.setUserId(rset.getString("USER_ID"));
+				cm.setUserName(rset.getString("USER_NAME"));
+				cm.setUserAge(rset.getInt("USER_AGE"));
+				cm.setJoinDate(rset.getDate("JOIN_DATE"));
+				cm.setUserIntroduce(rset.getString("USER_INTRODUCE"));
+				cm.setJoinRoute(rset.getString("JOIN_ROUTE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return cm;
+		
+	}
+
+	
 }
 

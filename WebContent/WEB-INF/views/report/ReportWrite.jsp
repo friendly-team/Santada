@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zxx">
 
 <head>
 <meta name="description" content="Yoga Studio Template">
@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <title>Yummy | Template2222222</title>
+    <title>Yummy | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -24,12 +24,31 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+
+    <style>
+        	select {
+
+    width:300px;
+     padding:5px;
+     border:1px solid #999;
+     font-family:'Nanumgothic';
+     border-radius:3px;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance : none;
+     
+}
+
+select::-ms-expand{
+
+display:none;/*for IE10,11*/
+
+}
+    </style>
 </head>
 
 <body>
-    <!-- Page Preloder -->
-
-    <!-- Header Section Begin -->
+  
     <header class="header-section-other">
         <div class="container-fluid">
 			<div class="logo" style="height: 100%; width: 25%;">
@@ -50,8 +69,8 @@
                         <li><a href="recipe.html">추천코스</a></li>
                         <li><a href="club.html">소모임</a>
                             <ul class="sub-menu">
-                               <li><a href="/club/ClubJoin.jsp">${clubName.clubName}소모임</a></li>
-                                <li><a href="/club/leave?clubNo=${cm.clubNo}">소모임탈퇴</a></li>
+                                <li><a href="#">소모임가입</a></li>
+                                <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">쪽지</a>
@@ -62,36 +81,66 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="nav-right search-switch">
+                    <i class="fa fa-search"></i>
+                </div>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-    <!-- Header End -->
-
-    <!-- Hero Search Section Begin -->
+   
     <section class="contact-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/club/leave" method="post" class="contact-form">
-                        <h3>${club.clubName} 소모임 탈퇴</h3> <hr>
-                        탈퇴 후 다른 소모임에 자유롭게 가입이 가능 <br><br><br>
-                        <button type="submit">소모임탈퇴</button>
+                    <form action="/report/write" method="post" class="contact-form">
+                        <h3>신고 하기</h3>
+                        <div class="col-lg-6">
+                            <div style="float: left;">
+                                <b>게시판&nbsp;&nbsp;&nbsp;
+                                <select name="postType" id=""> 
+                                    <option value="등산인증">등산인증</option>
+                                    <option value="소모임">소모임</option>
+                               </select><br></b>
+                            </div>
+                            <b style="line-height: 37px;">신고 유형</b>
+                            <div style="position: relative; left: 440px; top: 30px;">
+                                <span><select name="reportType" id="">
+                                 <option value="광고">광고</option>
+                                 <option value="사기">사기</option>
+                                 <option value="욕설/비방">욕설/비방</option>
+                                 <option value="기타">기타</option>
+                            </select></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                             <div class="col-lg-12" style="display: inherit;">
+                                <input type="text" style="margin-right: 20%; font-weight: bold;display: inline-block; " readonly value="신고자 ID : ${Report.userId }">
+                           
+                           
+                               <b style="width: 22%; position: relative; right: 5%; top: 20%; ">게시글번호</b><input type="text" name="postNo" style="font-weight: bold;"value="">
+                            </div>
+                            <div class="col-lg-12">
+                                <input name="Title" type="text" placeholder="제목">
+                                <textarea name="Contents" placeholder="내용"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit">신고하기</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Contact Section End -->
 
   
-
-    <!-- Footer Section Begin -->
     <footer class="footer-section" style="text-align: center;">
         <div class="container">
             <div>
                 <div>
                    
-                        <div class="logo">
+          			<div class="logo">
                             <a href="../index.jsp">
                                 <img src="../imgs/로고6.png" alt="">
                             </a>
@@ -114,18 +163,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    
     <!-- Search model -->
 	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
-
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+    
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

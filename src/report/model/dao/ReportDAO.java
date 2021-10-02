@@ -33,9 +33,8 @@ public class ReportDAO {
 				report.setReportType(rset.getString("REPORT_TYPE"));
 				report.setReportTitle(rset.getString("REPORT_TITLE"));
 				report.setReportContents(rset.getString("REPORT_CONTENTS"));
-				report.setAnswer(rset.getInt("ANSWER"));
-				report.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
-				report.setGroupPostNo(rset.getInt("GROUP_POST_NO"));
+				report.setAnswer(rset.getString("ANSWER"));
+				report.setPostNo(rset.getInt("POST_NO"));
 				nList.add(report);
 			}
 		} catch (SQLException e) {
@@ -46,6 +45,30 @@ public class ReportDAO {
 		}
 		
 		return nList;
+	}	public int inserReport(Connection conn, Report report) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query="INSERT INTO REPORT VALUES(SEQ_REPORT.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, report.getUserId());
+			pstmt.setString(2, report.getPostType());
+			pstmt.setString(3, report.getReportType());
+			pstmt.setString(4, report.getReportTitle());
+			pstmt.setString(5, report.getReportContents());
+			pstmt.setInt(6, report.getPostNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
 	}
+	
+	
 
 }

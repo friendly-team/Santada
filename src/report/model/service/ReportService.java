@@ -29,6 +29,26 @@ private JDBCTemplate jdbcTemplate;
 			JDBCTemplate.close(conn);
 		}
 		return sList;
+	}	
+	public int writeReport(Report report) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ReportDAO().inserReport(conn,report);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 
 }

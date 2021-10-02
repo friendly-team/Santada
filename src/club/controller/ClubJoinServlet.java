@@ -68,5 +68,5 @@ public class ClubJoinServlet extends HttpServlet {
 		request.getRequestDispatcher("/club/Error.html").forward(request, response);
 	}
 	}
-	
+
 }
