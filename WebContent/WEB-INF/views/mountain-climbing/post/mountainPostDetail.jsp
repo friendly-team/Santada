@@ -190,7 +190,7 @@
                 </form>
             </td>
             <td colspan="3" align="left">
-                <form action="#">
+                <form action="/report/write">
                     <button>신고</button>
                 </form>
             </td>

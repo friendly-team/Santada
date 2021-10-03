@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.model.vo.Member;
+import treeCampaign.model.service.TreeCampaignService;
+import treeCampaign.model.vo.TreeCampaign;
 
 /**
  * Servlet implementation class TreeCampaignWriteServlet
@@ -26,16 +31,35 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/views/tree-campaign/treeCampaignWrite.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		Member member = new Member();
+		HttpSession session = request.getSession();
+		session.setAttribute("treePoint", member.getTreePoint());
+		String userId = (String)session.getAttribute("userId");
+		String treeParticipant = request.getParameter("tree-participant");
+		String treeContents = request.getParameter("tree-con");
+		int treePoint = Integer.parseInt(request.getParameter("tree-point"));
+		treePoint = (Integer)session.getAttribute("treePoint");
+		TreeCampaign tCampaign = new TreeCampaign();
+		tCampaign.setTreeUserId(userId);
+		tCampaign.setTreeParticipant(treeParticipant);
+		tCampaign.setTreeContents(treeContents);
+		Member tPoint = new Member();
+		tPoint.setUserId(userId);
+		tPoint.setTreePoint(treePoint);
+		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, tPoint);
+		if(result > 500) {
+			response.sendRedirect("/index.jsp");
+		} else {
+			response.sendRedirect("/treeCampaign/write");
+		}
 	}
 
 }
