@@ -91,7 +91,7 @@
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산인증</a></li>
-                                <li><a href="#">나무심기 캠페인</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
                                 <li><a href="#">랭킹</a></li>
                             </ul>
                         </li>

@@ -135,7 +135,7 @@
     </form>
     <script>
         function treeSubmit() {
-            alert("${userId}님의 나무 포인트 : ${treePoint}점 \n진행 하시겠습니까? \n* 참여 시, 나무 포인트 500점 차감");
+            alert("${userId}님의 나무 포인트 : ${user.treePoint}점 \n진행 하시겠습니까? \n* 참여 시, 나무 포인트 500점 차감");
             let result = document.getElementById('camPoint').value;
             if(result < 500) {
                 alert("포인트가 부족하여 참여하실 수 없습니다 ;(");

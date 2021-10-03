@@ -45,16 +45,16 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 		String userId = (String)session.getAttribute("userId");
 		String treeParticipant = request.getParameter("tree-participant");
 		String treeContents = request.getParameter("tree-con");
-		int treePoint = Integer.parseInt(request.getParameter("tree-point"));
-		treePoint = (Integer)session.getAttribute("treePoint");
+		int tPoint = Integer.parseInt(request.getParameter("tree-point"));
+		tPoint = (Integer)session.getAttribute("treePoint");
 		TreeCampaign tCampaign = new TreeCampaign();
 		tCampaign.setTreeUserId(userId);
 		tCampaign.setTreeParticipant(treeParticipant);
 		tCampaign.setTreeContents(treeContents);
-		Member tPoint = new Member();
-		tPoint.setUserId(userId);
-		tPoint.setTreePoint(treePoint);
-		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, tPoint);
+		Member user = new Member();
+		user.setUserId(userId);
+		user.setTreePoint(tPoint);
+		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, user);
 		if(result > 500) {
 			response.sendRedirect("/index.jsp");
 		} else {
