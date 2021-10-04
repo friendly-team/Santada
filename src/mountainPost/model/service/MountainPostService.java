@@ -219,5 +219,23 @@ public class MountainPostService {
 		}
 		return result;
 	}
+
+	// 메인화면 POST
+	public MountainPost printMainPost(int mountainPostNo) {
+		MountainPost mPost = null;
+		Connection conn = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			mPost = new MountainPostDAO().selectMountainPost(conn, mountainPostNo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return mPost;
+	}
 	
 }

@@ -436,4 +436,34 @@ public class MountainPostDAO {
 		return result;
 	}
 
+	// 메인화면 post
+	public MountainPost selectMountainPost(Connection conn, int mountainPostNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MountainPost mPost = null;
+		String query = "SELECT * FROM (SELECT * FROM MOUNTAIN_POST ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM <= 5";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, mountainPostNo);
+			// 쿼리문 실행
+			rset = pstmt.executeQuery();
+			// 결과 값 받아서 student에 셋팅하기
+			if(rset.next()) {
+				mPost = new MountainPost();
+				mPost.setMountainPostSubject(rset.getString("MOUNTAIN_POST_SUBJECT"));
+				// mPost.setStudentPw(rset.getString("STUDENT_PW")); => 사진 출력해야함
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return mPost;
+
+	}
+
 }

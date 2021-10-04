@@ -2,6 +2,7 @@ package member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import common.JDBCTemplate;
 import member.model.dao.MemberDAO;
@@ -170,4 +171,27 @@ public class MemberService {
 		}
 		return student;
 	}
+	
+	
+	public List<Member> printAllList() {
+			Connection conn = null;
+			List<Member> mList = null;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				mList = new MemberDAO().selectAllList(conn);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			
+			return mList;
+		}
+	
+
+	
+	
 }
