@@ -449,7 +449,65 @@ public class clubPostDAO {
 	}
 
 	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage, int clubNo) {
-		// TODO Auto-generated method stub
-		return null;
+		int pageCountPerview = 5;
+		int viewTotalCount = searchTotalCount(conn, searchKeyword, clubNo);
+		int viewCountPerPage = 10;
+		int pageTotalCount = 0;
+		if(viewTotalCount % viewCountPerPage > 0) {
+			pageTotalCount = viewTotalCount / viewCountPerPage + 1;
+		} else {
+			pageTotalCount = viewTotalCount / viewCountPerPage;
+		}
+		int startNavi = ((currentPage - 1) / pageCountPerview) * pageCountPerview + 1;
+		int endNavi = startNavi + pageCountPerview - 1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/clubPost/List?searchKeyword=" + searchKeyword + "&currentPage=" + (startNavi-1) + "'> [이전] </a>");
+		}
+		for(int i = startNavi; i <= endNavi; i++) {
+			if(i == currentPage) {
+				sb.append(i);
+			}else {
+				sb.append("<a href='/clubPost/List?searchKeyword=" + searchKeyword + "&currentPage=" + i +  i + " </a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='/clubPost/List?searchKeyword=" + searchKeyword + "&currentPage=" + (endNavi + 1) + "'> [다음] </a>");
+		}
+		return sb.toString();
+	}
+
+	private int searchTotalCount(Connection conn, String searchKeyword, int clubNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_POST WHERE CLUB_POST_SUBJECT = ? AND CLUB_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, searchKeyword);
+			pstmt.setInt(2, clubNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 }
