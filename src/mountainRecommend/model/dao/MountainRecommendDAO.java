@@ -16,27 +16,87 @@ public class MountainRecommendDAO {
 
 
 	// 셀렉트에서 고른 값과 같은 것을 디비에서 불러와서 출력하는 쿼리문 
-	public List<MountainPost> printMountainPost(Connection conn, String MountainRegion, int MountainTime, int MountainLevel) {
-		List<MountainPost> pList = null;
+	public List<Mountain> printMountain(Connection conn, String mountainRegion) {
+		List<Mountain> mList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM MOUNTAIN_POST WHERE MOUNTAIN_REGION = ?, MOUNTAIN_TIME = ?, MOUNTAIN_LEVEL = ?  ODER BY MOUNTAIN_RECOMMEND DESC";
+		String query = "SELECT * FROM MOUNTAIN WHERE MOUNTAIN_REGION = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, MountainRegion);
-			pstmt.setInt(2, MountainTime);
-			pstmt.setInt(3, MountainLevel);
-			pList = new ArrayList<MountainPost>();
+			pstmt.setString(1, mountainRegion);
+			mList = new ArrayList<Mountain>();
 			rset = pstmt.executeQuery(); // => 쿼리문 실행
 			while(rset.next()) {
-				MountainRecommend mRecommend = new MountainRecommend(); // => 객체생성
+				Mountain mountain = new Mountain(); // => 객체생성
+				mountain.setMountainName(rset.getString("MOUNTAIN_NAME"));
+				mountain.setMountainCourse(rset.getString("MOUNTAIN_COURSE"));
+				mountain.setMountainLength(rset.getString("MOUNTAIN_LENGTH"));
+				mountain.setMountainRegion(rset.getString("MOUNTAIN_REGION"));
+				mountain.setParkingLotNo(rset.getInt("PARKINGLOT_NO"));
+				mList.add(mountain);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return mList;
+	}
+	
+	public int printRandomNumber(Connection conn, String mountainRegion) {
+		int totalValue = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MOUNTAIN WHERE MOUNTAIN_REGION = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, mountainRegion);
+			rset = pstmt.executeQuery(); // => 쿼리문 실행
+			if(rset.next()) {
+				totalValue = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return totalValue;
+	}
+
+	public List<MountainPost> printMountainPost(Connection conn, String	mountainCourse, String mountainRegion, int mountainTime, int mountainLevel) {
+		// TODO Auto-generated method stub
+		List<MountainPost> pList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MOUNTAIN_POST WHERE MOUNTAIN_COURSE = ? AND MOUNTAIN_REGION = ? AND MOUNTAIN_TIME = ? AND MOUNTAIN_LEVEL = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, mountainCourse);
+			pstmt.setString(2, mountainRegion);
+			pstmt.setInt(3, mountainTime);
+			pstmt.setInt(4, mountainLevel);
+			pList = new ArrayList<MountainPost>();
+			rset = pstmt.executeQuery(); // => 쿼리문 실행 
+			while(rset.next()) {
+				MountainPost mRecommend = new MountainPost(); // => 객체생성 
 				mRecommend.setMountainName(rset.getString("MOUNTAIN_NAME"));
-				mRecommend.setMountainTime(rset.getInt("MOUNTAIN_TIME"));
 				mRecommend.setMountainParty(rset.getInt("MOUNTAIN_PARTY"));
+				mRecommend.setMountainTime(rset.getInt("MOUNTAIN_TIME")); // -> 추후 변수명 변경 가능성 있음	
 				mRecommend.setMountainCourse(rset.getString("MOUNTAIN_COURSE"));
-				mRecommend.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
-				mRecommend.setParkingLotNo(rset.getInt("PARKING")); // -> 추후 변수명 변경 가능성 있음			
+				mRecommend.setMountainRegion(rset.getString("MOUNTAIN_REGION"));
+				mRecommend.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));	
+				mRecommend.setMountainLevel(rset.getInt("MOUNTAIN_LEVEL"));	
+				pList.add(mRecommend); // -> 저장
 			}
 
 		} catch (SQLException e) {
@@ -50,34 +110,7 @@ public class MountainRecommendDAO {
 		return pList;
 	}
 
-	public List<Mountain> printMountain(Connection conn, String MountainCouse) {
-		// TODO Auto-generated method stub
-		List<Mountain> mList = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String query = "SELECT * FROM MOUNTAIN WHERE MOUNTAIN_COURSE = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, MountainCouse);
-			mList = new ArrayList<Mountain>();
-			rset = pstmt.executeQuery(); // => 쿼리문 실행 
-			while(rset.next()) {
-				Mountain mountain = new Mountain(); // => 객체생성 
-				mountain.setMountainLength("MOUNTAIN_LENGTH");
-				mountain.setParkingLotNo(rset.getInt("PARKING")); // -> 추후 변수명 변경 가능성 있음				
-			}
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rset);
-		}
-		
-		return mList;
-	}
 	
 
 

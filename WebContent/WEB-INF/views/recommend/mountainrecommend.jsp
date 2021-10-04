@@ -67,11 +67,10 @@
     <!-- Header End -->
 
     <!-- Hero Search Section Begin -->
-    <c:if test="${userId ne null}">
-    <div class="hero-search set-bg" data-setbg="imgs/등산.jpg">
+    <div class="hero-search set-bg"  data-setbg="imgs/등산.jpg">
         <div class="container">
             <div class="filter-table">
-                <form action="/mountain/list" class="filter-search" method=post">
+                <form action="/mountain/list" class="filter-search" method="get">
                     <select name="mountainRegion" id="region" class="nice-select">
 		            <option value="서울">서울</option>
 		            <option value="경기도">경기도</option>
@@ -89,45 +88,45 @@
                         <option value="5">4시간-5시간</option>
                         <option value="6">장거리</option>
                     </select>
-                    <select id="mountainLevel"  id="level" class="nice-select">
+                    <select name="mountainLevel"  id="level" class="nice-select">
 			            <option value="1">★</option>
 			            <option value="2">★★</option>
 			            <option value="3">★★★</option>
 			            <option value="4">★★★★</option>
 			            <option value="5">★★★★★</option>
                     </select>
-                    <button type="submit">Search</button>
+                    <input type="submit" value="Search">
                 </form>
             </div>
         </div>
     </div>
     <!-- Hero Search Section end -->
     <!-- Recipe Section Begin -->
-    <form action="/recommend/mountainrecommend" class="filter-search" method=post">
     <section class="recipe-section spad">
         <div class="container">
-            	<h3> ${pList.mountainName} ${pList.mountainCourse}는 어떠세요?</h3>
+            	<h3> ${pList[0].mountainName} ${pList[0].mountainCourse}는 어떠세요?</h3>
             	<br>
-				<ul>
-					<li> 소요시간 :${pList.mountainTime} </li>
-					<li> 코스길이 : ${mList.mountainLength} </li>
-					<li> 평균 동반 인원 : ${pList.mountainParty} </li>
+				<ul> 
+					<li> 소요시간 : ${pList[0].mountainTime} 시간</li>
+					<li> 코스길이 : ${mList[0].mountainLength} </li>
+					<li> 평균 동반 인원 : ${pList[0].mountainParty} 명</li>
 				</ul>
                  <br>
                  
-                 <!-- best photo part -->
+                  <!-- best photo part -->
             <div class="section-title">
-               <h3> ${pList.mountainName} ${pList.mountainCourse} 의 BEST PHOTO</h3>
+               <h3> ${pList[0].mountainName} ${pList[0].mountainCourse} 의 BEST POST</h3>
                <br>
             </div>
+            <c:forEach var="post" items="${pList[0].mountainCourse}" varStatus="status">
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
                         <a href="#"><img src="img/recipe/recipe-4.jpg" alt=""></a>
                         <div class="ri-text">
-                            <div class="cat-name">BEST PHOTO 1</div>
+                            <div class="cat-name">BEST POST 1</div>
                             <a href="#">
-                                <h4>공룡능선의 경치</h4>
+                                <h4>${pList[0].mountainPostSubject}</h4>
                             </a>
                         </div>
                     </div>
@@ -136,7 +135,7 @@
                     <div class="recipe-item">
                         <a href="#"><img src="img/recipe/recipe-5.jpg" alt=""></a>
                         <div class="ri-text">
-                            <div class="cat-name">BEST PHOTO 2</div>
+                            <div class="cat-name">BEST POST 2</div>
                             <a href="#">
                                 <h4>공룡능선에 공룡이 사나요</h4>
                             </a>
@@ -148,7 +147,7 @@
                     <div class="recipe-item">
                         <a href="#"><img src="img/recipe/recipe-6.jpg" alt=""></a>
                         <div class="ri-text">
-                            <div class="cat-name">BEST PHOTO 3</div>
+                            <div class="cat-name">BEST POST 3</div>
                             <a href="#">
                                 <h4>티라노사우르스는 없어요</h4>
                             </a>
@@ -156,8 +155,9 @@
                     </div>
                 </div>
               </div>
+              </c:forEach>
              <!--  best post part -->
-        <div class="container po-relative">
+<%--         <div class="container po-relative">
             <div class="section-title">
                 <h3> ${pList.mountainName} ${pList.mountainCourse} 의 BEST POST</h3>
             </div>
@@ -203,7 +203,7 @@
 		                </div>
 		            </div>
 		       	 </div>
-		        </div>
+		        </div> --%>
 		        <div class="row">
                      <div class="col-sm-4" align="center">
 		        <h3>자동차 타고 가세요?</h3><br>
@@ -213,15 +213,13 @@
 		        </div>
              </div>
     </section>
-    </form>
-    </c:if>
     
-    <c:if test="${userId eq null}">
+ <!--    <c:if test="${userId eq null}">
     <div align="center">
      <p>산타다 회원만 이용 가능한 페이지 입니다.</p>
      <a href="/member/login">회원가입 및 로그인</a>
      </div>
-	</c:if>
+	</c:if> --> 
 
     <!-- Footer Section Begin -->
     <footer class="footer-section" style="text-align: center;">

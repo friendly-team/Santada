@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.JDBCTemplate;
 import member.model.vo.Member;
@@ -228,5 +230,36 @@ public class MemberDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return student;
+	}
+
+	public List<Member> selectAllList(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<Member> mList = null;
+		String query = "SELECT * FROM MEMBER";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			mList = new ArrayList<Member>();
+			while(rset.next()) {
+				Member student = new Member();
+				student.setUserId(rset.getString("USER_ID"));
+				student.setUserName(rset.getString("USER_NAME"));
+				student.setUserPhone(rset.getString("USER_PHONE"));
+				student.setUserEmail(rset.getString("USER_EMAIL"));
+				student.setNormalPoint(rset.getInt("NORMAL_POINT"));
+				student.setTreePoint(rset.getInt("TREE_POINT"));
+				// 최종적으로 저장
+				mList.add(student);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return mList;
 	}
 }
