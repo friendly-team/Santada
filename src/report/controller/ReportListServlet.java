@@ -14,9 +14,9 @@ import report.model.service.ReportService;
 import report.model.vo.Report;
 
 /**
- * Servlet implementation class ReportListServlet
+ * Servlet implementation class ReportList
  */
-@WebServlet("/report/list")
+@WebServlet("/member/reportList")
 public class ReportListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,23 +33,30 @@ public class ReportListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String studentId = (String)session.getAttribute("userId");
-		List<Report> sList = new ReportService().printAllList(studentId);
-		if(sList != null) {
-			request.setAttribute("sList", sList);
+		String userId = (String)session.getAttribute("userId");
+		List<Report> rList = new ReportService().printAllReport(userId);
+		
+		if(!rList.isEmpty()) {
+			request.setAttribute("rList", rList);
 			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
 		}else {
-			response.sendRedirect("/member/studentError.html");
+			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
 		}
-	
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String [] check = request.getParameterValues("check");
+		int result = new ReportService().removeReport(check);
+		if(result > 0) {
+			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
+		}
+		
 	}
 
 }

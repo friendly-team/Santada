@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <title>Yummy | Template</title>
+    <title>${clubName.clubName } 소모임 승인관리</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -149,7 +149,7 @@
         </div>
     </section>
 
-   
+  
     <footer class="footer-section" style="text-align: center;">
         <div class="container">
             <div>

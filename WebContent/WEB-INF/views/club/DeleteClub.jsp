@@ -10,7 +10,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
+    <title>${clubName.clubName } 소모임 폐쇠</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form action="/remove/club" method="post" class="contact-form">
-                        <h3>${club.clubName}소모임</h3>
+                        <h3>${club.clubName} 소모임</h3>
                         <h5>소모임을 폐쇠 하기 전 회원분들과 충분한 상의를 통하여 결정 하셨나요?</h5>
                       
                         <br> <br><br>

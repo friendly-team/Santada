@@ -78,9 +78,9 @@
                                 <li><a href="#">보관함</a></li>
                             </ul>
                         </li>
-                        <li style="display: inline-block;"><a href="/member/login">로그인</a></li>
+                        <li style="display: none;"><a href="/member/login">로그인</a></li>
                         <li style="display: none;"><a href="#">마이페이지</a></li>
-                        <li style="display: none;"><a href="/member/logout">로그아웃</a></li>
+                        <li style="display: inline-block;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
                 </nav>
@@ -127,63 +127,31 @@
                         <div class="recipe-desc">
                                <table class="type11" align="left" >
 							        <tr>
+							   
 							        <th> 선택 </th>
 							        <th> 제목 </th> 
-							        <th> 내용 </th>
 							        <th> 작성자 </th>
 							        <th> 작성일 </th>
-							        <th> 답변 </th>
+							        <th> 답변 상태 </th>
 							        </tr>
+							        <form action="/admin/report" method="post" >
+							        <c:forEach items="${rList }" var = "rList" varStatus="index">
 							        <tr>
-							            <td><input type="checkbox" checked></td>
-							            <td> 광고글 신고 </td> 
-							            <td> 신고 </td>
-							            <td> user02</td>
-							            <td> sysdate </td>
-							            <td>
-							            	<select>
-							            	 <option>대기</option>
-							            	 <option>완료</option>
-							            	</select>
-							            </td>
-							        </tr>
+							             <td><input type="checkbox" name="check" id="" style="width: 20px;
+                                    height: 20px;"value="${rList.reportNo }"></td>
+							            <td><a href="/report/detail?reportNo=${rList.reportNo }">${rList.reportTitle }</a></td> 
+							            <td> ${rList.userId }</td>
+							            <td> ${rList.reportDate } </td>
+							            <td>대기</td>
+							          </c:forEach>
+							             
 							        <tr>
-							            <td><input type="checkbox" checked></td>
-							            <td> 광고글 신고 </td> 
-							            <td> 신고 </td>
-							            <td> user02</td>
-							            <td> sysdate </td>
-							            <td>
-							            	<select>
-							            	 <option>대기</option>
-							            	 <option>완료</option>
-							            	</select>
-							            </td>
+                          		  	<td colspan="5" align="center" style="font-size: 15pt; margin: 0px 10px;">
+                                  		${pageNavi}	<input type="submit" value="삭제">
+                            		</td>
 							        </tr>
-							        <tr>
-							            <td><input type="checkbox" checked></td>
-							            <td> 광고글 신고 </td> 
-							            <td> 신고 </td>
-							            <td> user02</td>
-							            <td> sysdate </td>
-							            <td>
-							            	<select>
-							            	 <option>대기</option>
-							            	 <option>완료</option>
-							            	</select>
-							            </td>
-							        </tr>
-							        <tr>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td>
-							        <button type="submit">처리</button>
-							        <button type="submit">삭제</button>
-							        </td>
-							        </tr>
+							        </form>
+
 							    </table>
                         </div>
                     </div>
