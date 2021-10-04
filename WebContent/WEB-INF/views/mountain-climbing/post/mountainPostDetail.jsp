@@ -124,8 +124,10 @@
         <tr>
             <td colspan="6" align="right">
                 <a href="/mountainPost/list" class="btn">목록</a>
+                <c:if test="${userId eq mPostOne.mountainPostWriter}">
                 <a href="/mountainPost/modify?mountainPostNo=${mPostOne.mountainPostNo}" class="btn">수정</a>
                 <a href="/mountainPost/remove?mountainPostNo=${mPostOne.mountainPostNo}" class="btn">삭제</a>
+                </c:if>
             </td>
         </tr>
         <tr>
@@ -203,10 +205,12 @@
                 <td>${reply.replyWriter}</td>
                 <td style="width: 60%;">${reply.replyContents}</td>
                 <td>${reply.replyDate}</td>
+                <c:if test="${userId eq reply.replyWriter}">
                 <td>
                     <a href="javascript:void(0)" onclick="showModifyReply(this)" class="btn">수정</a>&nbsp;&nbsp;
                     <a href="/mountainPostReply/delete?mountainPostNo=${reply.mountainPostNo}&replyNo=${reply.replyNo}" class="btn">삭제</a>
                 </td>
+                </c:if>
             </tr>
             <tr style="display: none; width: 1500px;" colspan="6" align="center";>
                 <td>${reply.replyWriter}</td>
