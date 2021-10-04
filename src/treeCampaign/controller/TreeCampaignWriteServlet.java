@@ -51,10 +51,9 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 		tCampaign.setTreeUserId(userId);
 		tCampaign.setTreeParticipant(treeParticipant);
 		tCampaign.setTreeContents(treeContents);
-		Member user = new Member();
-		user.setUserId(userId);
-		user.setTreePoint(tPoint);
-		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, user);
+		member.setUserId(userId);
+		member.setTreePoint(tPoint);
+		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, member);
 		if(result > 500) {
 			response.sendRedirect("/index.jsp");
 		} else {

@@ -29,18 +29,18 @@ public class TreeCampaignDAO {
 		return result;
 	}
 
-	public int selectTreePoint(Connection conn, Member user) {
+	public int selectTreePoint(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "SELECT USER_ID, TREE_POINT FROM MEMBER WHERE USER_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, user.getUserId());
+			pstmt.setString(1, member.getUserId());
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				user.setUserId(rset.getString("USER_ID"));
-				user.setTreePoint(rset.getInt("TREE_POINT"));
+				member.setUserId(rset.getString("USER_ID"));
+				member.setTreePoint(rset.getInt("TREE_POINT"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
