@@ -31,7 +31,13 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/tree-campaign/treeCampaignWrite.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		Member member = new TreeCampaignService().selectMember(userId);
+		if(member != null) {
+			request.setAttribute("member", member);
+			request.getRequestDispatcher("/WEB-INF/views/tree-campaign/treeCampaignWrite.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -39,21 +45,18 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		Member member = new Member();
 		HttpSession session = request.getSession();
-		session.setAttribute("treePoint", member.getTreePoint());
 		String userId = (String)session.getAttribute("userId");
 		String treeParticipant = request.getParameter("tree-participant");
 		String treeContents = request.getParameter("tree-con");
-		int tPoint = Integer.parseInt(request.getParameter("tree-point"));
-		tPoint = (Integer)session.getAttribute("treePoint");
+		int treePoint = Integer.parseInt(request.getParameter("tree-point"));
 		TreeCampaign tCampaign = new TreeCampaign();
 		tCampaign.setTreeUserId(userId);
 		tCampaign.setTreeParticipant(treeParticipant);
 		tCampaign.setTreeContents(treeContents);
+		Member member = new Member();
 		member.setUserId(userId);
-		member.setTreePoint(tPoint);
-		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, member);
+		int result = new TreeCampaignService().registerTreeCampaign(tCampaign, member, treePoint);
 		if(result > 500) {
 			response.sendRedirect("/index.jsp");
 		} else {
