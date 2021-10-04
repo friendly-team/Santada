@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <form action="/member/login.jsp" class="login-form">
+    <form action="/member/login" class="login-form">
         <h1>아이디 찾기</h1>
 
         <b>고객님의 정보와 일치하는 아이디 목록입니다.</b>

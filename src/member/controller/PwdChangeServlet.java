@@ -43,7 +43,7 @@ public class PwdChangeServlet extends HttpServlet {
 		int result = new MemberService().changeMemberPwd(userPwd,userId);
 		
 		if(result > 0) {
-			request.getRequestDispatcher("/WEB-INF/views/member/Successpwd.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/member/successPwd.jsp").forward(request, response);
 		}else {
 			
 		}

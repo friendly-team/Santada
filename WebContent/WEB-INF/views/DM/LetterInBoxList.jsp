@@ -80,9 +80,9 @@ display:none;/*for IE10,11*/
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="/DM/Letter.jsp">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="/DM/Letter.jsp">쪽지작성</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
                                 <li><a href="/letter/inbox">받은 쪽지함</a></li>
                                 <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>

@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
@@ -112,7 +113,7 @@ display: inline-block; margin-right:5px}
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
-                <a href="./index.html"><img src="/imgs/lettle-logo.png" alt=""></a>
+                <a href="/index.jsp"><img src="/imgs/lettle-logo.png" alt=""></a>
             </div>
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
@@ -132,10 +133,11 @@ display: inline-block; margin-right:5px}
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -162,14 +164,14 @@ display: inline-block; margin-right:5px}
                                     <li><a href="/mypage/info">회원 정보</a></li>
                                     <li><a href="/member/remove">회원 탈퇴</a></li>
                                     <li><a href="/point/search">포인트 조회</a></li>
-                                    <li><a href="#">주차 예약 조회</a></li>
+                                    <li><a href="/mypage/list">주차 예약 조회</a></li>
                                     <li><a href="/report/list">나의 신고 내역</a></li>
                                    
                                 </ul>
                         </div> <!-- END COLORLIB-ASIDE -->
                     <div id="member-info" style="position: relative;bottom: 190px;">
                         <form action="/info/modify" class="contact-form" method="post">
-                            <h3>포인트 조회</h3>
+                            <h3><i class="fas fa-search"></i>&nbsp;&nbsp;포인트 조회</h3>
                             <ul style="    position: relative;right: 5%;width: 77%;">
 
                                 <li><label for="userId">일반 포인트 :</label></li>
@@ -239,4 +241,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
 </body>
 
-</html>ml>
+</html>

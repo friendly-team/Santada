@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
@@ -68,7 +69,7 @@ display: inline-block; margin-right:5px}
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
-                <a href="./index.html"><img src="/imgs/lettle-logo.png" alt=""></a>
+                <a href="/index.jsp"><img src="/imgs/lettle-logo.png" alt=""></a>
             </div>
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
@@ -88,10 +89,11 @@ display: inline-block; margin-right:5px}
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                 <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -116,10 +118,10 @@ display: inline-block; margin-right:5px}
                         <div id="page-aside">
                             <nav>
                                 <ul>
-                                    <li><a href="/mypage/info">회원 정보</a></li>
+                                     <li><a href="/mypage/info">회원 정보</a></li>
                                     <li><a href="/member/remove">회원 탈퇴</a></li>
                                     <li><a href="/point/search">포인트 조회</a></li>
-                                    <li><a href="#">주차 예약 조회</a></li>
+                                    <li><a href="/mypage/list">주차 예약 조회</a></li>
                                     <li><a href="/report/list">나의 신고 내역</a></li>
                                    
                                 </ul>
@@ -127,7 +129,7 @@ display: inline-block; margin-right:5px}
                         </div> <!-- END COLORLIB-ASIDE -->
                     <div id="member-info" style="position: relative;bottom: 190px;">
                         <form action="/member/remove" class="contact-form" method="post">
-                            <h3>회원탈퇴</h3>
+                            <h3><i class="far fa-frown"></i>&nbsp;&nbsp;회원탈퇴</h3>
                             <ul style="position: relative;right: 5%;width: 77%;">
 
                                 <li><label for="userId">아이디 :</label></li>
@@ -153,7 +155,7 @@ display: inline-block; margin-right:5px}
                                 <li><input type="text" name='user-phone' id="user-phone" value="${student.userPhone }" readonly></li><br>
                                 
                                 </ul><br><br>
-                                <button type="submit">탈퇴하기</button>
+                                <button type="submit" id = "insert_btn">탈퇴하기</button>
                         </form>
                     </div>
                 </div>
@@ -210,6 +212,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
+     <script>
+    $("#insert_btn").click(function(){
+        if(confirm("정말로 탈퇴하시겠습니까 ?") == true){
+            alert("회원탈퇴가 완료되었습니다");
+        }
+        else{
+            return false;
+        }
+    });
+    </script>
 </body>
 
 </html>

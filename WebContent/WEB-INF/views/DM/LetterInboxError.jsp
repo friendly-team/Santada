@@ -3,10 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	List<Dm> nList = (List<Dm>)request.getAttribute("nList");
-	String pageNavi = (String)request.getAttribute("pageNavi");
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -109,7 +106,7 @@ display:none;/*for IE10,11*/
                         <div class="row" style="margin-bottom: 6%;">
 
                             <div class="col-lg-12">
-                                <h4 style="text-align: left; margin-bottom: 3%;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;보낸 쪽지함</h4>
+                                <h4 style="text-align: left; margin-bottom: 3%;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;받은 쪽지함</h4>
                             </div>
 
                             <div class="col-lg-12">
@@ -121,17 +118,17 @@ display:none;/*for IE10,11*/
                             </div>
 
                             <div class="col-lg-12">
-                                    <% for(Dm nOne : nList) { %>
+                             
                                 <div class="inbox-top2">
-                                    <div class="inbox" style="    text-align: left;position: relative;left: 10px;"><%= nOne.getRecipientId() %></div>
-                                    <div class="inbox"><a href="/letter/sendd?letterNo=<%= nOne.getLetterNo() %>"><%= nOne.getLetterContents() %></a><div class=""></div></div>
-                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px;"><%= nOne.getWriteDate() %></div>
+                                    <div class="inbox" style="    text-align: left;position: relative;left: 10px;"></div>
+                                    <div class="inbox"><a href="/letter/sendd?letterNo="></a><div class=""></div></div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px;"></div>
                                 </div>
-                                	<% } %>
+                                	
 
                                 <div class="page">
                                     <ul class="pagination modal" style="position: relative;left: 81%;">
-                                        <%= pageNavi %>
+                                    
                                     </ul>
                                 </div>
                             </div>

@@ -39,6 +39,7 @@ public class EnrollServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect("/member/login");
 		}else {
+			request.getRequestDispatcher("/WEB-INF/views/member/enrollfail.jsp").forward(request, response);
 		}
 
 	}

@@ -1,9 +1,10 @@
-package report.model.dao;
+ package report.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,8 @@ public class ReportDAO {
 				report.setReportType(rset.getString("REPORT_TYPE"));
 				report.setReportTitle(rset.getString("REPORT_TITLE"));
 				report.setReportContents(rset.getString("REPORT_CONTENTS"));
-				report.setAnswer(rset.getInt("ANSWER"));
-				report.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
-				report.setGroupPostNo(rset.getInt("GROUP_POST_NO"));
+				report.setAnswer(rset.getString("ANSWER"));
+				report.setPostNo(rset.getInt("POST_NO"));
 				nList.add(report);
 			}
 		} catch (SQLException e) {
@@ -46,6 +46,31 @@ public class ReportDAO {
 		}
 		
 		return nList;
+	}
+
+	public int deleteReportList(Connection conn, int[] nums) {
+		Statement stmt = null;
+		int result = 0;
+		String params = "";
+		
+		for(int i =0; i<nums.length; i++) {
+			params += nums[i];
+			
+			if(i < nums.length-1)
+				params += ",";
+		}
+		
+		String query = "DELETE REPORT WHERE REPORT_NO IN ("+params+")";
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(stmt);
+		}
+		
+		return result;
 	}
 
 }

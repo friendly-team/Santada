@@ -31,4 +31,18 @@ private JDBCTemplate jdbcTemplate;
 		return sList;
 	}
 
+	public int deleteReport(int[] nums) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ReportDAO().deleteReportList(conn, nums);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
 }
