@@ -96,9 +96,9 @@
 		</div>
 	</header>
 	<section style="width: 100%; height: 900px;">
-		<h2 style="position: relative; top: 3%; left: 3%;">${clubName } 게시판이에요~</h2>
+		<h2 style="position: relative; top: 3%; left: 3%;">${clubName } 게시판</h2>
 		<hr style="position: relative; top: 3%; background-color: D3D3D3;">
-		<div style="width: 100%; height: 80%; background-color: pink; position: relative; top: 3%; text-align: center;">
+		<div style="width: 100%; height: 80%; position: relative; top: 3%; text-align: center;">
 			<table class="type11" style="position: relative; left: 6.5%; top: 3%;">
 				<tr>
 					<th>글번호</th>
@@ -122,6 +122,15 @@
 						</td>
 					</tr>
 			</table>
+			<!-- 여기서 serch작업 -->
+			<form action="/clubPost/search" method="post" style="display: inline; position: relative; right: 34.8%;">
+				<input type="text" placeholder="제목을 입력하세요" name="keyword">
+				<input type="hidden" value="">
+				<input type="submit" value="검색">
+			</form>
+			<form style="display: inline; position: relative; left: 34.4%;" action="/clubPost/write" method="get">
+				<input type="submit" value="글쓰기">
+			</form>
 		</div>
 	</section>
 	<footer class="footer-section" style="text-align: center;">

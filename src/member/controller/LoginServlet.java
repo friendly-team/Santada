@@ -48,14 +48,24 @@ public class LoginServlet extends HttpServlet {
 		Member member = new MemberService().printOneLogin(userId, userPwd);
 		ClubManagement cm = new ClubService().printOneId(userId);
 		Club club = new ClubService().printBossCheck(userId);
-		if(member != null) {
+			
+		if(member != null && cm != null) {
+			Club clubName = new ClubService().printClubName(cm.getClubNo());	
 			HttpSession session = request.getSession();
+			session.setAttribute("clubName", clubName);
 			session.setAttribute("userId", member.getUserId());
 			session.setAttribute("cm", cm);			
 			session.setAttribute("club", club);
 //			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			response.sendRedirect("/index.jsp");
-		}else {
+		}else if(member != null && cm == null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", member.getUserId());
+			session.setAttribute("cm", cm);			
+			session.setAttribute("club", club);
+			response.sendRedirect("/index.jsp");
+		}
+		 else {
 			response.sendRedirect("/member/loginfail.jsp"); // 실패할 경우 실패메시지 페이지로 이동
 		}
 	}

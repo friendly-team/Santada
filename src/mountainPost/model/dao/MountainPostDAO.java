@@ -99,7 +99,7 @@ public class MountainPostDAO {
 		}
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/mountainPost/list?currentPage=" + (startNavi-1) + "'> [이전] </a>");
+			sb.append("<a href='/mountainPost/list?currentPage=" + (startNavi-1) + "'> < </a>");
 		}
 		for(int i = startNavi; i <= endNavi; i++) {
 			if(i == currentPage) {
@@ -109,7 +109,7 @@ public class MountainPostDAO {
 			}
 		}
 		if(needNext) {
-			sb.append("<a href='/mountainPost/list?currentPage=" + (endNavi+1) + "'> [다음] </a>");
+			sb.append("<a href='/mountainPost/list?currentPage=" + (endNavi+1) + "'> > </a>");
 		}
 		return sb.toString();
 	}
@@ -310,13 +310,13 @@ public class MountainPostDAO {
 		}
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (startNavi-1) + "'> 이전 </a>");
+			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (startNavi-1) + "'> < </a>");
 		}
 		for(int i = startNavi; i<= endNavi; i++) {
 			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + i + "'> " + i + " </a>");
 		}
 		if(needNext) {
-			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (endNavi+1) + "'> 다음 </a>");
+			sb.append("<a href='/mountainPost/search?m-search-keyword=" + searchKeyword + "&currentPage=" + (endNavi+1) + "'> > </a>");
 		}
 		return sb.toString();
 	}

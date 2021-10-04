@@ -69,12 +69,14 @@ public class ClubService {
 			return result;
 		}
 		public ClubManagement printOneId(String userId) {
+			
 			ClubManagement cm = null;
 			Connection conn = null;
 			
 			try {
 				conn = jdbcTemplate.createConnection();
 				cm = new ClubDAO().joinCheck(conn, userId);
+				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -192,6 +194,25 @@ public class ClubService {
 			}
 			return result;
 		}
+		 public String selectOneClubName(String userId) {
+		      String clubName = null;
+		      int clubNo = 0;
+		      ClubDAO cDao = new ClubDAO();
+		      Connection conn = null;
+
+		      try {
+		         conn = jdbcTemplate.createConnection();
+		         clubNo = cDao.selectOneClubNo(conn, userId);
+		         clubName = cDao.selectOneClubName(conn, clubNo);
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         JDBCTemplate.close(conn);
+		      }
+		      return clubName;
+		   }
+
+		
 		public ClubJoinPageData printAllMember(int currentPage, String userId) {
 			ClubJoinPageData cjpd = new ClubJoinPageData();
 			Connection conn = null;
@@ -225,7 +246,7 @@ public class ClubService {
 				conn = jdbcTemplate.createConnection();
 				clubNo = new ClubDAO().selectUserClubNo(conn, userId);
 				cmList = cDAO.selectSearchMember(conn,searchKeyword,currentPage,clubNo);
-				searchPageNavi = cDAO.getSearchPageNavi(conn, searchKeyword, currentPage);
+				searchPageNavi = cDAO.getSearchPageNavi(conn, searchKeyword, currentPage,clubNo);
 				cjpd.setCmList(cmList);
 				cjpd.setPageNavi(searchPageNavi);
 				
@@ -255,6 +276,54 @@ public class ClubService {
 			}finally {
 				JDBCTemplate.close(conn);
 			}
+			return result;
+		}
+		public Club printClubName(int clubNo) {
+			Connection conn = null;
+			Club club = null;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				club = new ClubDAO().selectClubName(conn,clubNo);
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return club;
+		}
+		public ClubManagement printMemberDetail(String userId) {
+			ClubManagement cm = null;
+			Connection conn = null;
+			try {
+				conn = jdbcTemplate.createConnection();
+				cm = new ClubDAO().selectMemberDetail(conn, userId);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(conn);
+			}
+			return cm;
+		}
+		public int removeMember(String userId) {
+			int result = 0;
+			Connection conn = null;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				result = new ClubDAO().deleteMember(conn,userId);
+				
+				if(result>0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(conn);
+			}
+			
 			return result;
 		}
 
