@@ -15,16 +15,14 @@ public class TreeCampaignService {
 		jdbctemplate = JDBCTemplate.getConnection();
 	}
 
-	public int registerTreeCampaign(TreeCampaign tCampaign, Member member) {
+	public int registerTreeCampaign(TreeCampaign tCampaign, Member member, int treePoint) {
 		int sum = 0;
 		int result = 0;
-		int treePoint = 0;
 		Connection conn = null;
 		TreeCampaignDAO tDAO = new TreeCampaignDAO();
 		try {
 			conn = jdbctemplate.createConnection();
 			result = tDAO.insertTreeCampaign(conn, tCampaign);
-			treePoint = tDAO.selectTreePoint(conn, member);
 			sum = result + treePoint;
 			if(result > 0 && treePoint > 500) {
 				JDBCTemplate.commit(conn);
@@ -37,6 +35,20 @@ public class TreeCampaignService {
 			JDBCTemplate.close(conn);
 		}
 		return sum;
+	}
+
+	public Member selectMember(String userId) {
+		Member member = null;
+		Connection conn = null;
+		try {
+			conn = jdbctemplate.createConnection();
+			member = new TreeCampaignDAO().selectMember(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return member;
 	}
 
 }

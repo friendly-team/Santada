@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.sun.corba.se.impl.orb.PrefixParserAction;
+
 import common.JDBCTemplate;
 import member.model.vo.Member;
 import treeCampaign.model.vo.TreeCampaign;
@@ -29,18 +31,19 @@ public class TreeCampaignDAO {
 		return result;
 	}
 
-	public int selectTreePoint(Connection conn, Member member) {
-		int result = 0;
+	public Member selectMember(Connection conn, String userId) {
+		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "SELECT USER_ID, TREE_POINT FROM MEMBER WHERE USER_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getUserId());
+			pstmt.setString(1, userId);
+			member = new Member();
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				member.setUserId(rset.getString("USER_ID"));
 				member.setTreePoint(rset.getInt("TREE_POINT"));
+				member.setUserId(rset.getString("USER_ID"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,7 +51,7 @@ public class TreeCampaignDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return result;
+		return member;
 	}
 
 }

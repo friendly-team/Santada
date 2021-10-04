@@ -96,7 +96,7 @@
     <div style="margin-top: 100px;">
         <h1 style="text-align: center; font-size: 30px;">나무심기 캠페인</h1>
     </div>
-    <form action="/treeCampaign/write" method="post">
+    <form action="/treeCampaign/write" method="post" id="tree-form">
         <table class="t__contents">
             <tr>
                 <th>
@@ -121,7 +121,7 @@
             <tr>
                 <td>
                     <p>※ 캠페인 진행 확정 여부는 '마이페이지 > 포인트 조회 > 나무 포인트'의 포인트 현황을 통하여 확인 가능합니다.
-                        <br>(확정 시, 나무 포인트 500점 차감)
+                        <br>가용 포인트를 초과하여 중복 참여할 경우, 최초 참여 내역으로 진행이 확정됩니다. (확정 시, 나무 포인트 500점 차감)
                     </p>
                 </td>
             </tr>
@@ -131,17 +131,20 @@
                 </td>
             </tr>
         </table>
-        <input type="hidden" name="tree-point" id="camPoint" value="${treePoint}">
+        <input type="hidden" name="tree-point" id="camPoint" value="${member.treePoint}">
+<!--         <input type="hidden" name="tree-participant">
+        <input type="hidden" name="tree-con"> -->
     </form>
     <script>
         function treeSubmit() {
-            alert("${userId}님의 나무 포인트 : ${member.tPoint}점 \n진행 하시겠습니까? \n* 참여 시, 나무 포인트 500점 차감");
+            alert("${userId}님의 나무 포인트 : ${member.treePoint}점 \n진행 하시겠습니까? \n* 참여 시, 나무 포인트 500점 차감");
             let result = document.getElementById('camPoint').value;
             if(result < 500) {
                 alert("포인트가 부족하여 참여하실 수 없습니다 ;(");
                 return false;
             } else {
                 alert("나무심기 캠페인에 참여되었습니다 :)");
+                $("#tree-form").submit();
                 return true;
             }
         }
