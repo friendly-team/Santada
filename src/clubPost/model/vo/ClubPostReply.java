@@ -5,19 +5,17 @@ import java.sql.Date;
 public class ClubPostReply {
 	private int replyNo;
 	private int postNo;
-	private int clubNo;
 	private String replyContents;
 	private String replyUserId;
 	private Date replyDate;
 	
 	public ClubPostReply() {}
 
-	public ClubPostReply(int replyNo, int postNo, int clubNo, String replyContents, String replyUserId,
+	public ClubPostReply(int replyNo, int postNo, String replyContents, String replyUserId,
 			Date replyDate) {
 		super();
 		this.replyNo = replyNo;
 		this.postNo = postNo;
-		this.clubNo = clubNo;
 		this.replyContents = replyContents;
 		this.replyUserId = replyUserId;
 		this.replyDate = replyDate;
@@ -39,13 +37,7 @@ public class ClubPostReply {
 		this.postNo = postNo;
 	}
 
-	public int getClubNo() {
-		return clubNo;
-	}
 
-	public void setClubNo(int clubNo) {
-		this.clubNo = clubNo;
-	}
 
 	public String getReplyContents() {
 		return replyContents;
@@ -73,7 +65,7 @@ public class ClubPostReply {
 
 	@Override
 	public String toString() {
-		return "ClubPostReply [replyNo=" + replyNo + ", postNo=" + postNo + ", clubNo=" + clubNo + ", replyContents="
+		return "ClubPostReply [replyNo=" + replyNo + ", postNo=" + postNo + ", replyContents="
 				+ replyContents + ", replyUserId=" + replyUserId + ", replyDate=" + replyDate + "]";
 	}
 }

@@ -38,10 +38,8 @@ public class ClubPostWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/club/clubPostWrite.jsp").forward(request, response);
 	}
 
 	/**
@@ -78,20 +76,9 @@ public class ClubPostWriteServlet extends HttpServlet {
 			cPostFile.setFileSize(fileSize);
 			cPost.setClubPostFile(cPostFile);
 		}
-		int currentPage = 0;
-		String getCurrentPage = request.getParameter("currentPage");
-		if (getCurrentPage == null) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(getCurrentPage);
-		}
 		int result = new ClubPostService().writeClubPost(cPost);
 		if (result > 0) {
-			PageData pageData = new ClubPostService().printAllClubPost(currentPage, userId);
-			List<ClubPost> cpList = pageData.getClubPostList();
-			request.setAttribute("cpList", cpList);
-			request.setAttribute("pageNavi", pageData.getPageNavi());
-			request.getRequestDispatcher("/WEB-INF/views/club/postList.jsp").forward(request, response);
+			response.sendRedirect("/clubPost/List");
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/club/Error.html").forward(request, response);
 		}
