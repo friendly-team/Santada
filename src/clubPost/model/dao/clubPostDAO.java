@@ -275,9 +275,181 @@ public class clubPostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return fileName;
 	}
 
+	public int deleteClubPost(Connection conn, int postNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM CLUB_POST WHERE CLUB_POST_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, postNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
+	public int deleteClubFile(Connection conn, String fileName) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM CLUB_POST_FILE WHERE FILE_NAME=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fileName);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateClubPost(Connection conn, ClubPost cp) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE CLUB_POST SET CLUB_POST_SUBJECT = ?, CLUB_POST_CONTENTS=? WHERE CLUB_POST_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, cp.getPostSubject());
+			pstmt.setString(2, cp.getPostContents());
+			pstmt.setInt(3, cp.getPostNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertClubPostReply(Connection conn, ClubPostReply cpReply) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO CP_REPLY VALUES(SEQ_CP_REPLY_NO.NEXTVAL,?,?,?,SYSDATE)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, cpReply.getPostNo());
+			pstmt.setString(2, cpReply.getReplyContents());
+			pstmt.setString(3, cpReply.getReplyUserId());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteClubPostReply(Connection conn, int replyNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM CP_REPLY WHERE REPLY_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateClubPostReply(Connection conn, int replyNo, String replyContents, int postNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE CP_REPLY SET REPLY_CONTENTS = ? WHERE REPLY_NO = ? AND CLUB_POST_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, replyContents);
+			pstmt.setInt(2, replyNo);
+			pstmt.setInt(3, postNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int recommendClubPost(Connection conn, int postNo, int recommend) {
+		PreparedStatement pstmt = null;
+		recommend ++;
+		int result = 0;
+		String query = "UPDATE CLUB_POST SET RECOMMEND = ? WHERE CLUB_POST_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recommend);
+			pstmt.setInt(2, postNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ClubPost> printSearchClubPost(Connection conn, String searchKeyword, int clubNo, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ClubPost> cpList = null;
+		String query = "SELECT * FROM(SELECT ROW_NUMBER() "
+				+ "OVER(ORDER BY CLUB_POST_NO DESC)AS NUM, CLUB_NO, CLUB_POST_NO, CLUB_POST_SUBJECT,"
+				+ " CLUB_POST_CONTENTS, USER_ID, CLUB_POST_DATE, RECOMMEND FROM CLUB_POST WHERE CLUB_POST_SUBJECT LIKE ? AND CLUB_NO = ?)"
+				+ " WHERE NUM BETWEEN ? AND ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			int viewCountPerPage = 10; // 한 페이지에 10개의 게시물
+			int start = currentPage * viewCountPerPage - (viewCountPerPage - 1);
+			int end = currentPage * viewCountPerPage;
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			pstmt.setInt(2, clubNo);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
+			cpList = new ArrayList<ClubPost>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ClubPost cp = new ClubPost();
+				cp.setPostNo(rset.getInt("CLUB_POST_NO"));
+				cp.setClubNo(rset.getInt("CLUB_NO"));
+				cp.setUserId(rset.getString("USER_ID"));
+				cp.setPostSubject(rset.getString("CLUB_POST_SUBJECT"));
+				cp.setPostContents(rset.getString("CLUB_POST_CONTENTS"));
+				cp.setRecommend(rset.getInt("RECOMMEND"));
+				cp.setWriteDate(rset.getDate("CLUB_POST_DATE"));
+				cpList.add(cp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return cpList;
+	}
+
+	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage, int clubNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
