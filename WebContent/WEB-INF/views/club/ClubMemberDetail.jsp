@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <title>Yummy | Template</title>
+    <title>${clubName.clubName } 소모임 회원 가입 정보</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form action="/clubMember/detail" class="contact-form" method="post">
-                        <h3>회원승인</h3><br><br><br>
+                        <h3>회원정보</h3><br><br><br>
                         <span style="display: flex;float: left;">
                             닉네임 <input type="text" value="${cm.userName }" name="" id="" style="height: 30px; width: 130px;text-align: center; " readonly>
                         </span>

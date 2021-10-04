@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import club.model.service.ClubService;
 import club.model.vo.ClubManagement;
+import club.model.vo.Club;
 import club.model.vo.ClubJoinPageData;
 
 
@@ -46,8 +47,11 @@ public class ClubJoinListServlet extends HttpServlet {
 		}
 		ClubJoinPageData pageData = new ClubService().printAllJoin(currentPage,userId);
 		List<ClubManagement> cmList = pageData.getCmList();
+		ClubManagement cm = new ClubService().printOneId(userId);
 		
 		if(!cmList.isEmpty()) {
+			Club clubName = new ClubService().printClubName(cm.getClubNo());
+			session.setAttribute("clubName", clubName);
 			request.setAttribute("userId", userId);
 			request.setAttribute("cmList", cmList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
