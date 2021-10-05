@@ -41,14 +41,15 @@
                                 <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="/DM/Letter.jsp">쪽지</a>
+                        <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="/DM/Letter.jsp">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">쪽지작성</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">받은 쪽지함</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                         <li style="display: inline-block;"><a href="/member/login">로그인</a></li>
-                        <li style="display: none;"><a href="#">마이페이지</a></li>
+                        <li style="display: none;"><a href="/mypage/info">마이페이지</a></li>
                         <li style="display: none;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
@@ -167,6 +168,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
+     
 	</c:if>
 </body>
 </html>
@@ -209,14 +211,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 </c:if>
                             </ul>
                         </li>
-                        <li><a href="/DM/Letter.jsp">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="/DM/Letter.jsp">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
-                        <li style="display: none;"><a href="login.html">로그인</a></li>
-                        <li style="display: inline-block;"><a href="#">마이페이지</a></li>
+                        <li style="display: none;"><a href="/login/home">로그인</a></li>
+                        <li style="display: inline-block;"><a href="/mypage/info">마이페이지</a></li>
                         <li style="display: inline-block; margin-right: -11px;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
@@ -360,10 +363,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                         <li style="display: none;"><a href="/member/login">로그인</a></li>
