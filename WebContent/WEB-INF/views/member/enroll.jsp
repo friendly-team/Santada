@@ -126,6 +126,6 @@ $('#out').css({'color':'red','font-weight':'bolder'});
             $(this).removeClass("focus");
         })
     </script>
-	
+    
 </body>
 </html>
