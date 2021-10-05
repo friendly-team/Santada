@@ -66,8 +66,7 @@ public class MountainListServlet extends HttpServlet {
 			request.setAttribute("pList", pList);
 			request.getRequestDispatcher("/WEB-INF/views/recommend/mountainrecommend.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/recommend/mountainrecommend.jsp").forward(request, response);
-			//response.sendRedirect("/recommend/mountainrecommend.jsp");
+			response.sendRedirect("/index.jsp");
 		}
 	}
 

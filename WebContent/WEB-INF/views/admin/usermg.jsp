@@ -131,6 +131,7 @@
 							        <th> 이름 </th>
 							        <th> 이메일 </th>
 							        <th> 연락처 </th>
+							        <th> 가입일 </th>
 							        <th> 처리 </th>
 							        </tr>
 							        <c:forEach items="${requestScope.mList}" var="student" varStatus="index">
@@ -144,8 +145,9 @@
 							            <td>${student.userName}</td>
 							            <td>${student.userEmail}</td>
 							            <td>${student.userPhone}</td>
-							            <!-- <td><input type="submit" value="강퇴"></td>   -->
-							            <td><a href="/user/delete?userId=${student.userId}">강퇴</a></td>
+							            <td>${student.enrollDate}</td>
+							            <td><input type="submit" value="강퇴"></td>
+							            <!-- <td><a href="/user/delete?userId=${student.userId}">강퇴</a></td>  -->
 							          </tr>
 							        </c:forEach>
 							    </table>

@@ -263,21 +263,4 @@ public class MemberDAO {
 		}
 		return mList;
 	}
-
-	public int removeMember(Connection conn, String studentId) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query = "DELETE FROM MEMBER WHERE USER_ID = ?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, studentId);
-			// 쿼리문 실행 ???
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
 }

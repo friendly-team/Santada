@@ -25,20 +25,6 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 
-	    <style>
-        input#search {
-        background:url(../imgs/car.png);
-        background-repeat: no-repeat;
-        
-        width:150px;
-        height:150px;
-        border: 0;
-        }
-        
-        
-        
-    </style>
-    
 </head>
 
 <body>
@@ -85,7 +71,7 @@
     <!-- Header End -->
 
     <!-- Hero Search Section Begin -->
-    <div class="hero-search set-bg" data-setbg="./imgs/등산.jpg" style="background-image: url("./imgs/등산.jpg")">
+    <div class="hero-search set-bg" date-setbg="" style="background-color:lightblue" >
         <div class="container" >
             <div class="filter-table">
                 <form action="/mountain/list" class="filter-search" method="get">
@@ -197,17 +183,70 @@
                </div>
               </div>
                </c:forEach>
+             <!--  best post part -->
+<%--         <div class="container po-relative">
+            <div class="section-title">
+                <h3> ${pList.mountainName} ${pList.mountainCourse} 의 BEST POST</h3>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-2.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">BEST POST 1</div>
+                                    <a href="#">
+                                        <h4>설악산에 다녀오다</h4>
+                                    </a>
+                                    <p>힘들어</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-recipe-item">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="top-recipe-img set-bg" data-setbg="img/top-recipe/recipe-3.jpg">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="top-recipe-text">
+                                    <div class="cat-name">BEST POST 2</div>
+                                    <a href="#">
+                                        <h4>공룡능선 뿌수기</h4>
+                                    </a>
+                                    <p>공룡 만나는 줄 알았네</p>
+                                </div>
+
+                            </div>
+		                </div>
+		                </div>
+		            </div>
+		       	 </div>
+		        </div> --%>
 		        <div class="row">
                      <div class="col-sm-4" align="center">
-                    	<div class="car"  style="align-content: center">
-		        <h3><b>자동차</b> 타고 가세요?</h3><br>
-		        	<input type="submit" id="search" name="submit" alt="search" value="">
-		        	 <h5>주차장 예약 페이지로 이동합니다.</h5>
-		        	 </div>
+		        <h3>자동차 타고 가세요?</h3><br>
+		        	 <button type="submit"><img src="../imgs/car.png" width="150px" height="150px"></button>
+		        	 <p>주차장 예약 페이지로 이동합니다.</p>
 		        </div>
 		        </div>
              </div>
     </section>
+    
+ <!--    <c:if test="${userId eq null}">
+    <div align="center">
+     <p>산타다 회원만 이용 가능한 페이지 입니다.</p>
+     <a href="/member/login">회원가입 및 로그인</a>
+     </div>
+	</c:if> --> 
 
     <!-- Footer Section Begin -->
     <footer class="footer-section" style="text-align: center;">

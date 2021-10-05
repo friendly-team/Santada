@@ -81,9 +81,9 @@
                                 <li><a href="#">보관함</a></li>
                             </ul>
                         </li>
-                        <li style="display: none;"><a href="/member/login">로그인</a></li>
+                        <li style="display: inline-block;"><a href="/member/login">로그인</a></li>
                         <li style="display: none;"><a href="#">마이페이지</a></li>
-                        <li style="display: inline-block;"><a href="/member/logout">로그아웃</a></li>
+                        <li style="display: none;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
                 </nav>

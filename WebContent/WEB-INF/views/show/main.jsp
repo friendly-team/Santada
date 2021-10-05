@@ -21,7 +21,7 @@
 		<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/index.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
+                <a href="/show/main.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
@@ -72,9 +72,8 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                        <!--  href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo} -->
-                        
-                            <h3><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
+                            <span>March 10, 2019</span>
+                            <h3><a href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo}">
                             ${mList[0].mountainPostSubject}</a></h3>
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[1].mountainPostNo}">
                             ${mList[1].mountainPostSubject}</a></h4>
                         </div>
                     </div>
@@ -94,7 +93,7 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
                             ${mList[2].mountainPostSubject}</a></h4>
                         </div>
                     </div>
@@ -105,7 +104,7 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
                             ${mList[3].mountainPostSubject}</a></h4>
                         </div>
                     </div>
@@ -114,7 +113,7 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                           <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
+                           <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
                             ${mList[4].mountainPostSubject}</a></h4>
                         </div>
                     </div>
@@ -129,7 +128,7 @@
             <div>
                 <div>
                         <div class="logo">
-                            <a href="/index.jsp">
+                            <a href="/show/main.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
                         <p>Friendly-team</p>
@@ -177,7 +176,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/index.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
+                <a href="/show/main.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
@@ -237,7 +236,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Page Top Recipe Section Begin -->
     <section class="page-top-recipe">
         <div class="container">
-        	<c:forEach items="${mList}" var="mountainCourse" begin="0" end="0">
             <div class="row">
                 <div class="col-lg-6 order-lg-2">
                     <div class="pt-recipe-item large-item">
@@ -245,8 +243,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h3><a href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo}">
-                            ${mList[0].mountainPostSubject}</a></h3>
+                            <h3>첫번째 포스트</h3>
                         </div>
                     </div>
                 </div>
@@ -256,8 +253,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[1].mountainPostNo}">
-                            ${mList[1].mountainPostSubject}</a></h4>
+                            <h4>두번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -265,8 +261,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
-                            ${mList[2].mountainPostSubject}</a></h4>
+                            <h4>세번째</h4>
                         </div>
                     </div>
                 </div>
@@ -276,8 +271,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
-                            ${mList[3].mountainPostSubject}</a></h4>
+                            <h4>네번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -285,13 +279,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                           <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
-                            ${mList[4].mountainPostSubject}</a></h4>
+                            <h4>다섯번째</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            </c:forEach>
         </div>
     </section>
     <!-- Footer Section Begin -->
@@ -353,7 +345,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/index.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
+                <a href="../index.jsp"><img src="./imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
@@ -397,7 +389,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
    
     <section class="page-top-recipe">
         <div class="container">
-        	<c:forEach items="${mList}" var="mountainCourse" begin="0" end="0">
             <div class="row">
                 <div class="col-lg-6 order-lg-2">
                     <div class="pt-recipe-item large-item">
@@ -405,8 +396,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h3><a href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo}">
-                            ${mList[0].mountainPostSubject}</a></h3>
+                            <span>March 10, 2019</span>
+                            <h3>첫번째 포스트</h3>
                         </div>
                     </div>
                 </div>
@@ -416,8 +407,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[1].mountainPostNo}">
-                            ${mList[1].mountainPostSubject}</a></h4>
+                            <h4>두번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -425,8 +415,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
-                            ${mList[2].mountainPostSubject}</a></h4>
+                            <h4>세번째</h4>
                         </div>
                     </div>
                 </div>
@@ -436,8 +425,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
-                            ${mList[3].mountainPostSubject}</a></h4>
+                            <h4>네번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -445,13 +433,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                           <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
-                            ${mList[4].mountainPostSubject}</a></h4>
+                            <h4>다섯번째</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            </c:forEach>
         </div>
     </section>
     <!-- Footer Section Begin -->
@@ -461,7 +447,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div>
                         <div class="logo">
                             <a href="../index.jsp">
-                                <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
+                                <img src="./imgs/로고6.png" alt="">
                             </a>
                         <p>Friendly-Team</p>
                     </div>
