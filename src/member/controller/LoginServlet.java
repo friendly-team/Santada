@@ -64,8 +64,9 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("cm", cm);			
 			session.setAttribute("club", club);
 			response.sendRedirect("/index.jsp");
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/member/loginfail.jsp").forward(request, response); // 실패할 경우 실패메시지 페이지로 이동
+		}
+		 else {
+			 request.getRequestDispatcher("/WEB-INF/views/member/loginfail.jsp").forward(request, response); // 실패할 경우 실패메시지 페이지로 이동
 		}
 	}
 
