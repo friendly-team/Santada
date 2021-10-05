@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dm.model.service.DmService;
 import dm.model.vo.Dm;
-import member.model.service.MemberService;
 import report.model.service.ReportService;
-import report.model.vo.Report;
 
 /**
  * Servlet implementation class LetterSendServlet

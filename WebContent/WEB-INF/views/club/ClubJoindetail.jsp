@@ -26,9 +26,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 
     <style>
-        span{
-            font-weight: normal;
+                span{
+            
             display: flex;
+            margin-left: 30%;
+        }
+        th{
+            padding: 80px;
         }
         
     </style>
@@ -100,11 +104,18 @@
                             신청일 <input type="text" value="${cm.joinDate }" name="" id="" style="height: 30px; width: 140px; " readonly>
                         </span>
                         <br><br>
-                        <span>자기소개</span> 
-                        <textarea style="width: 90%; position: relative; bottom: 140px;"  name="" id="" cols="30" rows="10" readonly>${cm.userIntroduce }</textarea>
-                        <span>가입경로</span>
-                        <textarea style="width: 90%; position: relative; bottom: 140px; display: inline-block;"  name="" id="" cols="30" rows="10" readonly>${cm.joinRoute }</textarea>
-
+                 <table>
+                     <tr>
+                          <th>  
+                           		자기소개 <textarea style="width: 90%; "  name="" id="" cols="30" rows="10" readonly>${cm.userIntroduce }
+                                      </textarea>  
+                          </th>
+                          <th>
+                                                                       가입경로<textarea style="width: 90%;"  name="" id="" cols="30" rows="10" readonly>${cm.joinRoute }
+                                    </textarea>
+                          </th>
+                    </tr>
+                 </table>
                         <button type="submit" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">가입승인</button> 
                            </form>
                            <form action="/club/exit" method="post" class="contact-form">

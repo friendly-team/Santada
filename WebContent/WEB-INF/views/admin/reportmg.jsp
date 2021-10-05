@@ -139,7 +139,7 @@
 							        <tr>
 							             <td><input type="checkbox" name="check" id="" style="width: 20px;
                                     height: 20px;"value="${rList.reportNo }"></td>
-							            <td><a href="/report/detail?reportNo=${rList.reportNo }">${rList.reportTitle }</a></td> 
+							            <td><a href="/reportAdmin/detail?reportNo=${rList.reportNo }">${rList.reportTitle }</a></td> 
 							            <td> ${rList.userId }</td>
 							            <td> ${rList.reportDate } </td>
 							            <td>대기</td>

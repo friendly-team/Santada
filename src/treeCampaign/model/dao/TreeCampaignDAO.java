@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.sun.corba.se.impl.orb.PrefixParserAction;
-
 import common.JDBCTemplate;
 import member.model.vo.Member;
 import treeCampaign.model.vo.TreeCampaign;

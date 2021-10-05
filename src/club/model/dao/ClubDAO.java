@@ -24,7 +24,7 @@ public class ClubDAO {
 	public int insertClub(Connection conn, Club club) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO CLUB VALUES(SEQ_CLUB.NEXTVAL,?,?,?,?,?)";
+		String query = "INSERT INTO CLUB VALUES(SEQ_CLUB.NEXTVAL,?,?,?,?,?,DEFAULT)";
 
 		try {
 			pstmt = conn.prepareStatement(query);

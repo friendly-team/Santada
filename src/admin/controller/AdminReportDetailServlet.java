@@ -13,7 +13,7 @@ import report.model.vo.Report;
 /**
  * Servlet implementation class AdminReportDetail
  */
-@WebServlet("/report/detail")
+@WebServlet("/reportAdmin/detail")
 public class AdminReportDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

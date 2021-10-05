@@ -27,8 +27,11 @@
 
     <style>
         span{
-            font-weight: normal;
             display: flex;
+            margin-left: 30%;
+        }
+        th{
+            padding: 80px;
         }
         
     </style>
@@ -89,7 +92,7 @@
                             닉네임 <input type="text" value="${cm.userName }" name="" id="" style="height: 30px; width: 130px;text-align: center; " readonly>
                         </span>
                         <span>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             아이디<input type="text" value="${cm.userId }" name="userId" id="" style="height: 30px; width: 200px;text-align: center; " readonly>
                         </span>
                         <br><br>
@@ -100,10 +103,18 @@
                             신청일 <input type="text" value="${cm.joinDate }" name="" id="" style="height: 30px; width: 140px; " readonly>
                         </span>
                         <br><br>
-                        <span>자기소개</span> 
-                        <textarea style="width: 90%; position: relative; bottom: 140px;"  name="" id="" cols="30" rows="10" readonly>${cm.userIntroduce }</textarea>
-                        <span>가입경로</span>
-                        <textarea style="width: 90%; position: relative; bottom: 140px; display: inline-block;"  name="" id="" cols="30" rows="10" readonly>${cm.joinRoute }</textarea>
+                 <table>
+                     <tr>
+                          <th>  
+                           		자기소개 <textarea style="width: 90%; "  name="" id="" cols="30" rows="10" readonly>${cm.userIntroduce }
+                                      </textarea>  
+                          </th>
+                          <th>
+                                                                       가입경로<textarea style="width: 90%;"  name="" id="" cols="30" rows="10" readonly>${cm.joinRoute }
+                                    </textarea>
+                          </th>
+                    </tr>
+                 </table>
 						  <c:if test="${club.userId ne cm.userId }">
                         <button type="submit" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">강퇴하기</button> 
                            </c:if>
