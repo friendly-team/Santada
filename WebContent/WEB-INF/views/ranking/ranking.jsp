@@ -9,12 +9,12 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Santada ｜ 등산인증</title>
-
-<!-- Google Font -->
+    <title>Santada ｜ 랭킹</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 
-<!-- Css Styles -->
+    <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nice-select.css" type="text/css">
@@ -22,39 +22,32 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
     <style>
         .t__contents {
-            border: 1px solid white;
             align-items: center;
-            width:1500px;
+            text-align: center;
+            width:1300px;
             margin-left: auto;
             margin-right: auto;
             margin-top: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             border-collapse: separate;
 		    border-spacing: 1px;
 		    line-height: 1.5;
         }
-        .t__contents tr {
-            height: 50px;
-        }
-        .t__head {
-            background: #b2dfdb;
+        .t__contents th {
+            background-color: #b2dfdb;
             color: white;
             font-size: 1.2em;
+            height: 60px;
         }
-        .btn {
-            background-color: #b2dfdb;
-            align-items: center;
-            color: white;
-            padding: 6px;
-            font-weight: bolder;
-            letter-spacing: 1px;
+        .t__contents td {
+            height: 80px;
         }
     </style>
 </head>
 <body>
-<!-- Page Preloder -->
+    <!-- Page Preloder -->
 
-<!-- Header Section Begin -->
+    <!-- Header Section Begin -->
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo" style="height: 100%; width: 25%;">
@@ -92,52 +85,29 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-<!-- Header End -->
+    <!-- Header End -->
 
-<!-- Contents Begin-->
+    <!-- Contents Begin-->
     <div style="margin-top: 100px;">
-        <h1 style="text-align: center; font-size: 30px;">등산인증</h1>
+        <h1 style="text-align: center; font-size: 30px;">Santada 등산 랭킹</h1>
     </div>
     <table class="t__contents">
-        <tr class="t__head" align="center">
-            <th>No.</th>
-            <th style="width: 60%;">제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
-            <th>인증상태</th>
+        <tr>
+            <th>순위</th>
+            <th style="width: 60%;">아이디</th>
+            <th>점수</th>
         </tr>
-        <c:forEach items="${requestScope.mList}" var="mPost">
-        <tr align="center">
-            <td>${mPost.mountainPostNo}</td>
-            <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
-            <td>${mPost.mountainPostWriter}</td>
-            <td>${mPost.mountainPostDate}</td>
-            <td>${mPost.mountainPostState}</td>
+        <c:forEach var="user" items="${mList}" varStatus="status">
+        <tr>
+            <td>${status.count}위</td>
+            <td style="font-size: 1.1em;">${user.userId}</td>
+            <td>${user.normalPoint}</td>
         </tr>
         </c:forEach>
-<!-- 검색, 글쓰기, 네비게이터 -->
-        <tr>
-            <td colspan="4" align="center">
-                <form action="/mountainPost/search" method="get">
-                    <input type="text" name="m-search-keyword" style="width: 80%; padding: 5px;">
-                    <input type="submit" value="검색" class="btn">
-                </form>
-            </td>
-            <td align="center">
-                <form action="/mountainPost/write" method="get">
-                    <input type="submit" value="글쓰기" class="btn">
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5" align="center">
-                ${pageNavi}
-            </td>
-        </tr>
     </table>
-<!-- Contents End-->
+    <!-- Contents End-->
 
-<!-- Footer Section Begin -->
+    <!-- Footer Section Begin -->
     <footer class="footer-section" style="text-align: center;">
         <div class="container">
             <div>
@@ -146,7 +116,7 @@
                         <a href="${pageContext.request.contextPath}/index.jsp">
                             <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                         </a>
-                        <p>등산인증 by Ahram-Jeong</p>
+                        <p>랭킹 by Ahram-Jeong</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -155,21 +125,21 @@
                 <div class="col-lg-12">
                     <div class="copyright-text">
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-<!-- Footer Section End -->
+    <!-- Footer Section End -->
 
-<!-- Js Plugins -->
+    <!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>    
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>

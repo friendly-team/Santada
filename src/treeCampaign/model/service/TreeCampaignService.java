@@ -9,10 +9,10 @@ import treeCampaign.model.dao.TreeCampaignDAO;
 import treeCampaign.model.vo.TreeCampaign;
 
 public class TreeCampaignService {
-	private JDBCTemplate jdbctemplate;
+	private JDBCTemplate jdbcTemplate;
 	
 	public TreeCampaignService() {
-		jdbctemplate = JDBCTemplate.getConnection();
+		jdbcTemplate = JDBCTemplate.getConnection();
 	}
 
 	public int registerTreeCampaign(TreeCampaign tCampaign, Member member, int treePoint) {
@@ -21,7 +21,7 @@ public class TreeCampaignService {
 		Connection conn = null;
 		TreeCampaignDAO tDAO = new TreeCampaignDAO();
 		try {
-			conn = jdbctemplate.createConnection();
+			conn = jdbcTemplate.createConnection();
 			result = tDAO.insertTreeCampaign(conn, tCampaign);
 			sum = result + treePoint;
 			if(result > 0 && treePoint > 500) {
@@ -37,11 +37,11 @@ public class TreeCampaignService {
 		return sum;
 	}
 
-	public Member selectMember(String userId) {
+	public Member printMember(String userId) {
 		Member member = null;
 		Connection conn = null;
 		try {
-			conn = jdbctemplate.createConnection();
+			conn = jdbcTemplate.createConnection();
 			member = new TreeCampaignDAO().selectMember(conn, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();

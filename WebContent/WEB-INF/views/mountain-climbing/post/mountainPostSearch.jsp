@@ -70,7 +70,7 @@
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산인증</a></li>
                                 <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="#">랭킹</a></li>
+                                <li><a href="/ranking">랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="#">추천코스</a></li>

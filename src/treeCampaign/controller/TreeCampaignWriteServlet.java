@@ -33,7 +33,7 @@ public class TreeCampaignWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		Member member = new TreeCampaignService().selectMember(userId);
+		Member member = new TreeCampaignService().printMember(userId);
 		if(member != null) {
 			request.setAttribute("member", member);
 			request.getRequestDispatcher("/WEB-INF/views/tree-campaign/treeCampaignWrite.jsp").forward(request, response);
