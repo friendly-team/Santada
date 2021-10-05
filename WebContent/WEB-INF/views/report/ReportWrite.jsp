@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <title>Yummy | Template</title>
+    <title>신고하기</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -105,7 +105,7 @@ display:none;/*for IE10,11*/
                             </div>
                             <b style="line-height: 37px;">신고 유형</b>
                             <div style="position: relative; left: 440px; top: 30px;">
-                                <span><select name="reportType" id="">
+                                <span><select name="reportType" id="" style="position: relative; bottom: 67px;">
                                  <option value="광고">광고</option>
                                  <option value="사기">사기</option>
                                  <option value="욕설/비방">욕설/비방</option>

@@ -16,7 +16,7 @@ public class DmDAO {
 	public int insertDm(Connection conn, Dm dm) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO DM VALUES(SEQ_DM.NEXTVAL,?,?,?,DEFAULT,?)"; 
+		String query = "INSERT INTO DM VALUES(SEQ_LETTER.NEXTVAL,?,?,?,DEFAULT,?)"; 
 		
 		try {
 			pstmt = conn.prepareStatement(query); 
