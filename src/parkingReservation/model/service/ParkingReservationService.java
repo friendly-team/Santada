@@ -90,7 +90,15 @@ public class ParkingReservationService {
 			JDBCTemplate.close(conn);
 		}
 		return result;
-			pList = new ParkingReservationDAO().selectOneById(conn, memberId);
+		
+	}
+		public List<ParkingReservation> printOneId(String memberId) {
+			List<ParkingReservation> pList = null;
+			Connection conn = null;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				pList = new ParkingReservationDAO().selectOneById(conn, memberId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

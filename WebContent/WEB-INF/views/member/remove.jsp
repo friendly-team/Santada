@@ -138,7 +138,7 @@ display: inline-block; margin-right:5px}
                                 
                                 <li><label for="password">비밀번호 :</label></li>
                                 
-                                <li><input type="password" name='user-pwd' id="user-pwd"  value="${student.userPwd }" readonly></li><span id="out" style="display: inline-block;position: absolute; left: 71%;top: 113px; "></span>
+                                <li><input type="password" name='user-pwd' id="user-pwd" ></li><span id="out" style="display: inline-block;position: absolute; left: 71%;top: 113px; "></span>
                                 
                                 <br>
                                 
@@ -215,7 +215,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
      <script>
     $("#insert_btn").click(function(){
         if(confirm("정말로 탈퇴하시겠습니까 ?") == true){
-            alert("회원탈퇴가 완료되었습니다");
+            
         }
         else{
             return false;

@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/index.jsp");
 		}
 		 else {
-			 request.getRequestDispatcher("/WEB-INF/views/member/loginfail.jsp").forward(request, response); // 실패할 경우 실패메시지 페이지로 이동
+			 request.getRequestDispatcher("/WEB-INF/views/member/loginFail.jsp").forward(request, response); // 실패할 경우 실패메시지 페이지로 이동
 		}
 	}
 

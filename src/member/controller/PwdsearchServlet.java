@@ -30,7 +30,7 @@ public class PwdSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/views/member/Pwdsearch.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/pwdSearch.jsp").forward(request, response);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class PwdSearchServlet extends HttpServlet {
 		
 		if(result > 0) {
 			request.setAttribute("change", userId);
-			request.getRequestDispatcher("/WEB-INF/views/member/pwdChange.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/member/Pwdchange.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/member/searchfail.jsp").forward(request, response);
 		}

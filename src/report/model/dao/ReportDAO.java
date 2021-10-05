@@ -204,7 +204,7 @@ public class ReportDAO {
 		return result;
 	}
 	
-}
+
 
 	public int deleteReportList(Connection conn, int[] nums) {
 		Statement stmt = null;
@@ -229,6 +229,40 @@ public class ReportDAO {
 		}
 		
 		return result;
+	}
+
+	public List<Report> selectOneById(Connection conn, String studentId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM REPORT WHERE USER_ID = ?";
+		List<Report> nList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentId);
+			rset = pstmt.executeQuery();
+			nList = new ArrayList<Report>();
+			while(rset.next()) {
+				Report report = new Report();
+				report = new Report();
+				report.setReportNo(rset.getInt("REPORT_NO"));
+				report.setUserId(rset.getString("USER_ID"));
+				report.setPostType(rset.getString("POST_TYPE"));
+				report.setReportType(rset.getString("REPORT_TYPE"));
+				report.setReportTitle(rset.getString("REPORT_TITLE"));
+				report.setReportContents(rset.getString("REPORT_CONTENTS"));
+				report.setAnswer(rset.getString("ANSWER"));
+				report.setPostNo(rset.getInt("POST_NO"));
+				nList.add(report);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return nList;
 	}
 
 }
