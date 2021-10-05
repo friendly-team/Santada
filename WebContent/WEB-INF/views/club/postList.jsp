@@ -96,7 +96,7 @@
 		</div>
 	</header>
 	<section style="width: 100%; height: 900px;">
-		<h2 style="position: relative; top: 3%; left: 3%;">${clubName } 게시판</h2>
+		<h2 style="position: relative; top: 3%; left: 3%;">${clubName.clubName } 게시판</h2>
 		<hr style="position: relative; top: 3%; background-color: D3D3D3;">
 		<div style="width: 100%; height: 80%; position: relative; top: 3%; text-align: center;">
 			<table class="type11" style="position: relative; left: 6.5%; top: 3%;">

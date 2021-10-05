@@ -15,13 +15,13 @@ import clubPost.model.vo.ClubPostFile;
  * Servlet implementation class PrintDetailClutPostServlet
  */
 @WebServlet("/clubPost/detail")
-public class PrintDetailClutPostServlet extends HttpServlet {
+public class PrintDetailClubPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrintDetailClutPostServlet() {
+    public PrintDetailClubPostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

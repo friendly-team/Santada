@@ -38,7 +38,6 @@ public class ClubPostList extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String userId = String.valueOf(session.getAttribute("userId"));
-		String clubName = new ClubService().selectOneClubName(userId);
 		int currentPage = 0;
 		String getCurrentPage = request.getParameter("currentPage");
 		if(getCurrentPage == null) {
@@ -51,7 +50,6 @@ public class ClubPostList extends HttpServlet {
 		if(!cpList.isEmpty()) {
 			request.setAttribute("cpList", cpList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
-			request.setAttribute("clubName", clubName);
 			request.getRequestDispatcher("/WEB-INF/views/club/postList.jsp").forward(request, response);
 		}else {
 			request.setAttribute("cpList", cpList);

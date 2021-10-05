@@ -192,22 +192,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <li><a href="/mountain/recommend">추천코스</a></li>
                         <li><a href="#">소모임</a>
                             <ul class="sub-menu">
-                                <c:if test="${cm.clubNo eq null}">
+                                <c:set var="clubName" value="${clubName.clubName }" />
+                                <c:if test="${cm eq null}">
                                 <li><a href="/club/join">소모임가입</a></li>
                                 <li><a href="/club/create">소모임생성</a></li>
+                                <li><a href="/club/list">소모임 리스트</a></li>
                                 </c:if>
-                            	<c:if test="${cm.clubNo ne null and cm.approvalPosition eq 'N'}">
-                                <li>소모임가입대기중</li>
+                               <c:if test="${cm.clubNo ne null and cm.approvalPosition eq 'N'}">
+                                <li>${clubName}소모임가입대기중</li>
                                 </c:if>
                                 <c:if test="${cm.clubNo ne null and cm.clubNo ne '' and cm.approvalPosition eq 'Y' and club.userId eq null}">
-                                <li><a href="/club/ClubJoin.jsp">ㅁㅁ소모임</a></li>
-                                <li><a href="/club/createClub.jsp">소모임탈퇴</a></li>
+                                <li><a href="/clubPost/List">${clubName }소모임</a></li>
+                                <li><a href="/club/leave?clubNo=${cm.clubNo}">소모임탈퇴</a></li>
                                 </c:if>
-                                <c:if test="${club.userId ne null and clubNo ne ''}">
-                                <li><a href="/club/ClubJoin.jsp">ㅁㅁ소모임</a></li>
-                                <li><a href="/club/createClub.jsp">소모임회원관리</a></li>
-                                <li><a href="/clubjoin/management?clubNo=${cm.clubNo }&userId=${club.userId}">소모임승인관리</a></li>
-                                <li><a href="/club/createClub.jsp">소모임폐쇠</a></li>
+                                <c:if test="${club.userId ne null}">
+                                <li><a href="/clubPost/List">${clubName}소모임</a></li>
+                                <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
+                                <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
+                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇠</a></li>
                                 </c:if>
                             </ul>
                         </li>

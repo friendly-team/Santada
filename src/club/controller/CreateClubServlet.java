@@ -54,8 +54,10 @@ public class CreateClubServlet extends HttpServlet {
 		club.setClubAge(clubAge);
 		int result = new ClubService().createClub(club, userAge);
 		if(result > 0) {
-			ClubManagement cm = new ClubService().printOneId(userId);
-			Club clubBossCheck = new ClubService().printBossCheck(userId);
+	         ClubManagement cm = new ClubService().printOneId(userId);
+	         Club writeClubName = new ClubService().printClubName(cm.getClubNo());
+	         session.setAttribute("clubName", writeClubName);
+	         Club clubBossCheck = new ClubService().printBossCheck(userId);
 			session.setAttribute("cm", cm);
 			session.setAttribute("club", clubBossCheck);
 			response.sendRedirect("/index.jsp");

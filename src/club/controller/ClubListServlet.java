@@ -46,7 +46,7 @@ public class ClubListServlet extends HttpServlet {
 			request.setAttribute("pageNavi", cPd.getPageNavi());
 			request.getRequestDispatcher("/WEB-INF/views/club/clubList.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/club/error.html").forward(request, response);
+			response.sendRedirect("/show/main");
 		}
 	}
 
