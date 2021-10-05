@@ -1,5 +1,7 @@
 package club.model.vo;
 
+import java.sql.Date;
+
 public class Club {
 	private int clubNo;
 	private String userId;
@@ -7,12 +9,12 @@ public class Club {
 	private String clubRegion;
 	private int clubAge;
 	private String clubIntroduce;
-
+	private Date clubCreateDate;
 	public Club() {}
 
 	
 	
-	public Club(int clubNo, String userId, String clubName, String clubRegion, int clubAge, String clubIntroduce) {
+	public Club(int clubNo, String userId, String clubName, String clubRegion, int clubAge, String clubIntroduce, Date clubCreateDate) {
 		super();
 		this.clubNo = clubNo;
 		this.userId = userId;
@@ -20,6 +22,19 @@ public class Club {
 		this.clubRegion = clubRegion;
 		this.clubAge = clubAge;
 		this.clubIntroduce = clubIntroduce;
+		this.clubCreateDate = clubCreateDate;
+	}
+
+
+
+	public Date getClubCreateDate() {
+		return clubCreateDate;
+	}
+
+
+
+	public void setClubCreateDate(Date clubCreateDate) {
+		this.clubCreateDate = clubCreateDate;
 	}
 
 

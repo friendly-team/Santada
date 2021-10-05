@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>소모임 게시판</title>
+<title>소모임 리스트</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/bootstrap.min.css"type="text/css">
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/font-awesome.min.css"type="text/css">
@@ -96,24 +96,20 @@
 		</div>
 	</header>
 	<section style="width: 100%; height: 900px;">
-		<h2 style="position: relative; top: 3%; left: 3%;">${clubName } 게시판</h2>
+		<h2 style="position: relative; top: 3%; left: 3%;">소모임 리스트</h2>
 		<hr style="position: relative; top: 3%; background-color: D3D3D3;">
 		<div style="width: 100%; height: 80%; position: relative; top: 3%; text-align: center;">
-			<table class="type11" style="position: relative; left: 6.5%; top: 3%;">
+			<table class="type11" style="position: relative;top: 3%; margin-left: auto; margin-right: auto;">
 				<tr>
-					<th>글번호</th>
-					<th>글제목</th>
-					<th>글쓴이</th>
-					<th>작성일</th>
-					<th>추천수</th>
+					<th>소모임장</th>
+					<th>소모임명</th>
+					<th>생성일</th>
 				</tr>
-				<c:forEach items="${cpList }" var ="cpOne" varStatus="index">
+				<c:forEach items="${cList }" var ="cOne" varStatus="index">
 					<tr>
-						<td>${cpOne.postNo }</td>
-						<td><a href="/clubPost/detail?postNo=${cpOne.postNo }">${cpOne.postSubject }</a></td>
-						<td>${cpOne.userId }</td>
-						<td>${cpOne.writeDate }</td>
-						<td>${cpOne.recommend }</td>
+						<td>${cOne.userId }</td>
+						<td><a href="/club/detail?clubNo=${cOne.clubNo }">${cOne.clubName }</a></td>
+						<td>${cOne.clubCreateDate }</td>
 					</tr>
 				</c:forEach>
 					<tr>
@@ -123,12 +119,9 @@
 					</tr>
 			</table>
 			<!-- 여기서 serch작업 -->
-			<form action="/clubPost/search" method="post" style="display: inline; position: relative; right: 34.8%;">
-				<input type="text" placeholder="제목을 입력하세요" name="keyword">
+			<form action="/club/search" method="post" style="display: inline; position: relative; right: 28.4%;">
+				<input type="text" placeholder="소모임명을 입력하세요" name="keyword">
 				<input type="submit" value="검색">
-			</form>
-			<form style="display: inline; position: relative; left: 34.4%;" action="/clubPost/write" method="get">
-				<input type="submit" value="글쓰기">
 			</form>
 		</div>
 	</section>

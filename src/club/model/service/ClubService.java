@@ -6,6 +6,7 @@ import java.util.List;
 
 import club.model.dao.ClubDAO;
 	import club.model.vo.ClubManagement;
+import club.model.vo.ClubPageData;
 import club.model.vo.ClubJoinPageData;
 import common.JDBCTemplate;
 import club.model.vo.Club;
@@ -326,6 +327,69 @@ public class ClubService {
 			
 			return result;
 		}
-
+		public ClubPageData printAllClub(int currentPage) {
+			Connection conn = null;
+			ClubPageData cPd = null;
+			ClubDAO cDao = new ClubDAO();
+			
+			try {
+				cPd = new ClubPageData();
+				conn = jdbcTemplate.createConnection();
+				cPd.setcList(cDao.printAllClub(conn,currentPage));
+				cPd.setPageNavi(cDao.getClubPageNavi(conn,currentPage));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return cPd;
+		}
+		public Club printDetailClub(int clubNo) {
+			Club c = null;
+			Connection conn = null;
+			try {
+				conn = jdbcTemplate.createConnection();
+				c = new ClubDAO().printDetailClub(conn, clubNo);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return c;
+		}
+		public int printClubPersonnel(int clubNo) {
+			Connection conn = null;
+			int value = 0;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				value = new ClubDAO().printClubPersonnel(conn, clubNo);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return value;
+		}
+		public ClubPageData ClubSearch(String keyword, int currentPage) {
+			Connection conn = null;
+			List<Club> cList = null;
+			String searchPageNavi = null;
+			ClubPageData cPd = new ClubPageData();
+			ClubDAO cDao = new ClubDAO();
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				cList = cDao.clubSearch(conn, keyword, currentPage);
+				searchPageNavi = cDao.getClubSearchPageNavi(conn, keyword, currentPage);
+				cPd.setcList(cList);
+				cPd.setPageNavi(searchPageNavi);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return cPd;
+		}
 }
 	

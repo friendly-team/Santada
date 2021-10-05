@@ -24,7 +24,7 @@ public class ClubDAO {
 	public int insertClub(Connection conn, Club club) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO CLUB VALUES(SEQ_CLUB.NEXTVAL,?,?,?,?,?)";
+		String query = "INSERT INTO CLUB VALUES(SEQ_CLUB.NEXTVAL,?,?,?,?,?,DEFAULT)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -754,7 +754,243 @@ public class ClubDAO {
 		return cm;
 		
 	}
+	public List<Club> printAllClub(Connection conn, int currentPage) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<Club> cList = null;
+		String query = "SELECT * FROM CLUB";
+		try {
+			stmt = conn.createStatement();
+			cList = new ArrayList<Club>();
+			rset = stmt.executeQuery(query);
+			while(rset.next()) {
+				Club club = new Club();
+				club.setClubNo(rset.getInt("CLUB_NO"));
+				club.setUserId(rset.getString("USER_ID"));
+				club.setClubName(rset.getString("CLUB_NAME"));
+				club.setClubRegion(rset.getString("CLUB_REGION"));
+				club.setClubAge(rset.getInt("CLUB_AGE"));
+				club.setClubIntroduce(rset.getString("CLUB_INTRODUCE"));
+				club.setClubCreateDate(rset.getDate("CLUB_CREATE_DATE"));
+				cList.add(club);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return cList;
+	}
 
+	public String getClubPageNavi(Connection conn, int currentPage) {
+		int pageCountPerView = 5;
+		int viewTotalCount = clubTotalCount(conn, currentPage);
+		int viewCountPerPage = 10;
+		int pageTotalCount = 0;
+		int pageTotalCountMod = viewTotalCount % viewCountPerPage;
+		if(pageTotalCountMod > 0) {
+			pageTotalCount = viewTotalCount / viewCountPerPage + 1;
+		}else {
+			pageTotalCount = viewTotalCount / viewCountPerPage;
+		}
+		int startNavi = ((currentPage - 1) / pageCountPerView) * pageCountPerView + 1;
+		int endNavi = startNavi + pageCountPerView - 1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/club/list?currentPage=" + (startNavi - 1) + "'> [이전] </a>");
+		}
+		for(int i = startNavi; i <= endNavi; i++) {
+			if(i == currentPage) {
+				sb.append(i);
+			}else {
+				sb.append("<a href='/club/list?currentPage=" + i + "'>" + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='/club/list?currentPage=" + (endNavi + 1) + "'> [다음] </a>");
+		}
+		return sb.toString();
+	}
+
+	private int clubTotalCount(Connection conn, int currentPage) {
+		int totalValue = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				totalValue = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return totalValue;
+	}
+
+	public Club printDetailClub(Connection conn, int clubNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Club c = null;
+		String query = "SELECT * FROM CLUB WHERE CLUB_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, clubNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				c = new Club();
+				c.setClubNo(rset.getInt("CLUB_NO"));
+				c.setUserId(rset.getString("USER_ID"));
+				c.setClubName(rset.getString("CLUB_NAME"));
+				c.setClubRegion(rset.getString("CLUB_REGION"));
+				c.setClubAge(rset.getInt("CLUB_AGE"));
+				c.setClubIntroduce(rset.getString("CLUB_INTRODUCE"));
+				c.setClubCreateDate(rset.getDate("CLUB_CREATE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return c;
+	}
+
+	public int printClubPersonnel(Connection conn, int clubNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, clubNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public List<Club> clubSearch(Connection conn, String keyword, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Club> cList = null;
+		String query = "SELECT * FROM CLUB WHERE CLUB_NAME = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			int viewCountPerPage = 10;
+			int start = currentPage * viewCountPerPage - (viewCountPerPage - 1);
+			int end = currentPage * viewCountPerPage;
+			pstmt.setString(1, keyword);
+			cList = new ArrayList<Club>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Club club = new Club();
+				club.setClubNo(rset.getInt("CLUB_NO"));
+				club.setUserId(rset.getString("USER_ID"));
+				club.setClubName(rset.getString("CLUB_NAME"));
+				club.setClubRegion(rset.getString("CLUB_REGION"));
+				club.setClubAge(rset.getInt("CLUB_AGE"));
+				club.setClubIntroduce(rset.getString("CLUB_INTRODUCE"));
+				club.setClubCreateDate(rset.getDate("CLUB_CREATE_DATE"));
+				cList.add(club);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return cList;
+	}
+
+	public String getClubSearchPageNavi(Connection conn, String keyword, int currentPage) {
+		int pageCountPerview = 5;
+		int viewTotalCount = clubSearchTotalCount(conn, keyword);
+		int viewCountPerPage = 10;
+		int pageTotalCount = 0;
+		if(viewTotalCount % viewCountPerPage > 0) {
+			pageTotalCount = viewTotalCount / viewCountPerPage + 1;
+		} else {
+			pageTotalCount = viewTotalCount / viewCountPerPage;
+		}
+		int startNavi = ((currentPage - 1) / pageCountPerview) * pageCountPerview + 1;
+		int endNavi = startNavi + pageCountPerview - 1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a herf='/club/list?keyword=" + keyword + "&currentPage=" + (startNavi-1) + "'> [이전] </a>");
+		}
+		for(int i=startNavi; i <= endNavi; i++) {
+			if(i == currentPage) {
+				sb.append(i);
+			}else {
+				sb.append("<a href='/club/list?keyword=" + keyword + "&currentPage=" + i + "'>" + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='/club/list?keyword=" + keyword + "&currentPage=" + (endNavi + 1) + "'> [다음] </a>");
+		}
+		return sb.toString();
+	}
+
+	private int clubSearchTotalCount(Connection conn, String keyword) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB WHERE CLUB_NAME=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, keyword);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("TOTALCOUNT");
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 	
 }
 
