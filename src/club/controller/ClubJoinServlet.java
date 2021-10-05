@@ -33,6 +33,8 @@ public class ClubJoinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String clubName = request.getParameter("club-name");
+		request.setAttribute("clubName", clubName);
 		request.getRequestDispatcher("/WEB-INF/views/club/ClubJoin.jsp").forward(request, response);
 	}
 

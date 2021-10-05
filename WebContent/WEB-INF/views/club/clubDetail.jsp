@@ -137,8 +137,9 @@ table.type11 td {
 			<textarea style="position: relative; left: 2.3%; margin-top: 1%;" rows="7;" cols="50" readonly="readonly">${club.clubIntroduce }</textarea>
 			</div>
 			&nbsp;&nbsp;&nbsp;
-			<form style="display: inline;" action="#" method="get">
+			<form style="display: inline;" action="/club/join" method="get">
 			<input style="display: inline;"type="submit" value="가입하기">
+			<input type="hidden" value="${club.clubName }" name="club-name">
 			</form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<form style="display: inline;" action="/club/list" method="get">
 			

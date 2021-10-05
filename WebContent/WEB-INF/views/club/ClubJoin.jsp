@@ -73,7 +73,12 @@
                 <div class="col-lg-12">
                     <form action="/club/join" method="post" class="contact-form">
                         <h3>소모임 가입</h3> <hr>
-                        <b>소모임 명</b><input type="text" value="" name="club-Name" id="" style="width: 300px; height: 50px;"> <br><br>
+                        <c:if test="${clubName eq null }">
+                        	<b>소모임 명</b><input type="text" value="" name="club-Name" id="" style="width: 300px; height: 50px;"> <br><br>
+                        </c:if>
+                        <c:if test="${clubName ne null }">
+                        	<b>소모임 명</b><input type="text" value="${clubName }" name="club-Name" id="" style="width: 300px; height: 50px;" readonly="readonly"> <br><br>
+                        </c:if>
                         <b>나이</b><select name="age">
                              <option value="10">10대</option>
                              <option value="20">20대</option>
