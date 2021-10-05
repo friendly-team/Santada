@@ -1,6 +1,8 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,15 +40,43 @@ public class MyPageRemoveServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/member/remove.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("/member/studentError.html");
+			
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String studentId = (String)session.getAttribute("userId");
-		int result = new MemberService().deleteMember(studentId);
+		String userPwd = request.getParameter("user-pwd");
+		int result = new MemberService().deleteMember(studentId, userPwd);
 		if(result > 0) {
-			response.sendRedirect("/member/logout");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+
+			String msg = "회원 탈퇴가 완료되었습니다.";
+			String str="";
+			str = "<script language='javascript'>";
+			str += "alert('"+ msg + "');location.href='/member/logout';";
+			str += "</script>";
+			out.print(str);
 		}else {
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			PrintWriter out = response.getWriter();
+
+			String msg = "비밀번호가 일치하지 않습니다.";
+			String str="";
+			str = "<script language='javascript'>";
+			str += "alert('"+ msg + "');";
+			str += "history.go(-1);";
+			str += "</script>";
+			out.print(str);
+			
+
+		
+
 		}
 	}
 }

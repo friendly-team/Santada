@@ -138,12 +138,12 @@ public class MemberService {
 		}
 		return result;
 	}
-	public int deleteMember(String studentId) {
+	public int deleteMember(String studentId, String userPwd) {
 		int result = 0;
 		Connection conn = null;
 		try {
 			conn = jdbcTemplate.createConnection();
-			result = new MemberDAO().deleteMember(conn, studentId);
+			result = new MemberDAO().deleteMember(conn, studentId, userPwd);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			}else {
