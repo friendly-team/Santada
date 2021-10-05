@@ -479,7 +479,7 @@ public class clubPostDAO {
 			if(i == currentPage) {
 				sb.append(i);
 			}else {
-				sb.append("<a href='/clubPost/List?searchKeyword=" + searchKeyword + "&currentPage=" + i +  i + " </a>");
+				sb.append("<a href='/clubPost/List?searchKeyword=" + searchKeyword + "&currentPage=" + i + "'>" +  i + " </a>");
 			}
 		}
 		if(needNext) {
