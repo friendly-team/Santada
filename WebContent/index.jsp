@@ -27,9 +27,9 @@
                         <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산인증</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산 인증</a></li>
                                 <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">나무심기 캠페인</a></li>
-                                <li><a href="#">랭킹</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="recipe.html">추천코스</a></li>
@@ -171,9 +171,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산인증</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
                                 <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="#">랭킹</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="recipe.html">추천코스</a></li>
