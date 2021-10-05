@@ -1,4 +1,4 @@
-package parking.controller;
+package admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.model.service.AdminService;
+import report.model.vo.Report;
+
 /**
- * Servlet implementation class ParkingLotListServlet
+ * Servlet implementation class AdminReportDetail
  */
-@WebServlet("/parkingLot/list")
-public class ParkingLotListServlet extends HttpServlet {
+@WebServlet("/report/detail")
+public class AdminReportDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ParkingLotListServlet() {
+    public AdminReportDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +29,14 @@ public class ParkingLotListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+		Report report = new AdminService().printReport(reportNo);
+		if(report != null) {
+			request.setAttribute("report", report);
+			request.getRequestDispatcher("/WEB-INF/views/admin/reportDetail.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("/admin/report");
+		}
 	}
 
 	/**

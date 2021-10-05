@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import club.model.service.ClubService;
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 
 /**
  * Servlet implementation class ClubLeave
@@ -29,6 +31,11 @@ public class ClubLeaveServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		ClubManagement cm = new ClubService().printOneId(userId);
+		Club clubName = new ClubService().printClubName(cm.getClubNo());
+		session.setAttribute("clubName", clubName);
 		request.getRequestDispatcher("/WEB-INF/views/club/ClubLeave.jsp").forward(request, response);
 	}
 
