@@ -9,7 +9,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Santada ｜ 등산인증</title>
+    <title>Santada ｜ 등산 인증</title>
 
 <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -66,11 +66,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                        <li><a href="/mountainPost/list">등산인증</a>
+                        <li><a href="/mountainPost/list">등산 인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산인증</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
                                 <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="/ranking">랭킹</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="#">추천코스</a></li>
@@ -96,7 +96,7 @@
 
 <!-- Contents Begin-->
     <div style="margin-top: 100px;">
-        <h1 style="text-align: center; font-size: 30px;">등산인증</h1>
+        <h1 style="text-align: center; font-size: 30px;">등산 인증</h1>
     </div>
     <table class="t__contents">
         <tr class="t__head" align="center">
@@ -146,7 +146,7 @@
                         <a href="${pageContext.request.contextPath}/index.jsp">
                             <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                         </a>
-                        <p>등산인증 by Ahram-Jeong</p>
+                        <p>등산 인증 by Ahram-Jeong</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">

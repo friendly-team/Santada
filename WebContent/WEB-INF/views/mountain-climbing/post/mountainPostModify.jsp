@@ -9,7 +9,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Santada ｜ 등산인증</title>
+    <title>Santada ｜ 등산 인증</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -64,11 +64,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                        <li><a href="/mountainPost/list">등산인증</a>
+                        <li><a href="/mountainPost/list">등산 인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산인증</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
                                 <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="/ranking">랭킹</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="#">추천코스</a></li>
@@ -94,7 +94,7 @@
 
 <!-- Contents Begin-->
     <div style="margin-top: 100px;">
-        <h1 style="text-align: center; font-size: 30px;">등산인증</h1>
+        <h1 style="text-align: center; font-size: 30px;">등산 인증</h1>
     </div>
     <form action="/mountainPost/modify" method="post">
         <table class="t__contents">
@@ -258,5 +258,41 @@
         </table>
         <input type="hidden" name="m-post-no" value="${mPostOne.mountainPostNo}">
     </form>
+    <!-- Contents End-->
+
+<!-- Footer Section Begin -->
+    <footer class="footer-section" style="text-align: center;">
+        <div class="container">
+            <div>
+                <div>
+                    <div class="logo">
+                        <a href="${pageContext.request.contextPath}/index.jsp">
+                            <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
+                        </a>
+                        <p>등산 인증 by Ahram-Jeong</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
