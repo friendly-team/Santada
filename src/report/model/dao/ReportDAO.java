@@ -1,4 +1,4 @@
-package report.model.dao;
+ package report.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -135,7 +135,9 @@ public class ReportDAO {
 				report.setReportDate(rset.getDate("REPORT_DATE"));
 				report.setReportContents(rset.getString("REPORT_CONTENTS"));
 				report.setReportTitle(rset.getString("REPORT_TITLE"));
-				rList.add(report);
+				report.setAnswer(rset.getString("ANSWER"));
+				report.setPostNo(rset.getInt("POST_NO"));
+				nList.add(report);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,5 +204,31 @@ public class ReportDAO {
 		return result;
 	}
 	
-	
+}
+
+	public int deleteReportList(Connection conn, int[] nums) {
+		Statement stmt = null;
+		int result = 0;
+		String params = "";
+		
+		for(int i =0; i<nums.length; i++) {
+			params += nums[i];
+			
+			if(i < nums.length-1)
+				params += ",";
+		}
+		
+		String query = "DELETE REPORT WHERE REPORT_NO IN ("+params+")";
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(stmt);
+		}
+		
+		return result;
+	}
+
 }

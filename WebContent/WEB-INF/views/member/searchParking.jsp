@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,18 +10,62 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>쪽지</title>
+    <title>주차장 예약 조회</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+
+<script>
+    $(function(){
+
+$('#pwd-check').keyup(function(){
+
+var pw1=$('#user-pwd').val().trim();
+
+if(pw1==""){
+
+alert("패스워드를 입력하세요");
+
+$('#pwd-check').val('');
+
+$('#user-pwd').focus();
+
+}
+
+var pw2=$('#pwd-check').val().trim();
+
+if(pw1.length!=0 && pw2.length!=0){
+
+if(pw1==pw2)
+
+{
+
+$('#out').html("패스워드가 일치합니다.");
+
+$('#out').css({'color':'green','font-weight':'bolder'});
+
+}
+
+else{
+
+$('#out').html("패스워드가 일치하지 않습니다.");
+
+$('#out').css({'color':'red','font-weight':'bolder'});
+
+}
+
+}
+
+});
+});
+    </script>
     <style>
         	select {
 
@@ -41,6 +85,20 @@ select::-ms-expand{
 display:none;/*for IE10,11*/
 
 }
+#page-aside{
+    width: 10%;
+    position: relative;
+    right: 15%;
+    /* top: 17%; */
+    margin-top: 20%;
+}
+li{
+    list-style: none;
+    margin-bottom: 15px;
+}
+form ul>li{text-align:right;width:43%;
+
+display: inline-block; margin-right:5px}
     </style>
 </head>
 
@@ -59,7 +117,7 @@ display:none;/*for IE10,11*/
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="/index.jsp">Home</a></li>
+                        <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="about-me.html">등산인증</a></li>
@@ -97,37 +155,54 @@ display:none;/*for IE10,11*/
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/letter/deleteT" class="contact-form" method="">
-                        <h3>쪽지</h3>
-                        
-                        <div class="row">
-
-                            <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">From.</div>
-                                <input type="hidden" style="display: none;" value="${LetterOne.letterNo}" name="letter-no" id="letter-no">
-                                <input type="text" value="${LetterOne.userId} " readonly style="width: 80%;">
+                        <form action="#" class="contact-form">
+                        <h3 style="text-align: center;">My Page</h3>
+                        </form>
+                        <div id="page-aside">
+                            <nav>
+                                <ul>
+                                   <li><a href="/mypage/info">회원 정보</a></li>
+                                    <li><a href="/member/remove">회원 탈퇴</a></li>
+                                    <li><a href="/point/search">포인트 조회</a></li>
+                                    <li><a href="/mypage/list">주차 예약 조회</a></li>
+                                    <li><a href="/report/list">나의 신고 내역</a></li>
+                                </ul>
+                            </nav>
+                        </div> <!-- END COLORLIB-ASIDE -->
+                    <div id="member-info" style="position: relative;bottom: 190px; left:70px;">
+                        <form action="/info/modify" class="contact-form" method="post">
+                           <div class="col-lg-12">
+                                <h3 style="text-align: center; margin-bottom: 3%;">주차 예약 내역</h3>
                             </div>
-
-                            <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">Subject.</div>
-                                <input type="text"  value="${LetterOne.letterSubject}" readonly style="width: 80%;">
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">Date.</div>
-                                <input type="text" value="${LetterOne.writeDate}" readonly style="width: 80%;">
-                                <div style="display: -webkit-inline-box; width: 10%; position: relative;top: 147px;">Comment.</div>
-                                <div id="letter-comment">
-                                ${LetterOne.letterContents}
+                             <div class="col-lg-12">
+                                <div class="inbox-top">
+                                    <div class="inbox" style="width: 8%; text-align: left; position: relative; right: 22px;">산이름</div>
+                                    <div class="inbox" style="    text-align: left;position: relative;left: 10px; width: 10%;">차량종류</div>
+                                    <div class="inbox" style="width: 25%;">예약기간</div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px; width: 25%;">예약시간</div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 10px; width: 25%;">처리상황</div>
                                 </div>
-                            
                             </div>
-                        </div>
-                         <a href="/letter/send"style="padding: 18px 85px;display: inline-block;background: #FC0254;color: #fff;font-size: 18px;font-weight: 700; border: 1px solid #FC0254;">
-                         	답장
-                         </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="submit"id = "insert_btn">삭제</button>
-                    </form>
+							<c:forEach items="${pList }" var="parking" varStatus="index">
+                            <div class="col-lg-12">
+                                <div class="inbox-top2">
+                                    <div class="inbox" style="width: 8%; text-align: left; position: relative; right: 22px;">${parking.mountainName }</div>
+                                    <div class="inbox" style="    text-align: left;position: relative;left: 23px; width: 10%;">${parking.reservationCarType }</div>
+                                    <div class="inbox" style="width: 25%;">${parking.reservationStartDate } - ${parking.reservationEndDate }</div>
+                                    <div class="inbox" style="    position: relative;text-align: right;left: 28px; width: 25%;">${parking.reservationStartTime } - ${parking.reservationEndTime }</div>
+                                    <div class="inbox" style="    position: relative;text-align: right;right: 26px; width: 25%;">
+                                     <c:if test="${parking.reservationCancel eq 'N' }">
+                                     	예약취소
+                                    </c:if>
+                                    <c:if test="${parking.reservationCancel eq 'Y' }">
+                                     	예약완료
+                                    </c:if>
+                                    </div>
+                                </div>
+                            </div>
+							</c:forEach>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -184,8 +259,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
     <script>
     $("#insert_btn").click(function(){
-        if(confirm("정말로 삭제하시겠습니까 ?") == true){
-            alert("정상적으로 삭제되었습니다");
+        if(confirm("정말 수정하시겠습니까 ?") == true){
+            alert("수정되었습니다");
         }
         else{
             return false;

@@ -18,7 +18,6 @@ public class ReportService {
 	public int writeReport(Report report) {
 		Connection conn = null;
 		int result = 0;
-		
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new ReportDAO().inserReport(conn,report);
@@ -35,10 +34,10 @@ public class ReportService {
 		
 		return result;
 	}
+
 	public List<Report> printAllReport(String userId) {
 		Connection conn = null;
 		List<Report> rList = null;
-		
 		try {
 			conn = jdbcTemplate.createConnection();
 			rList = new ReportDAO().selectAllReport(conn,userId);
@@ -49,6 +48,7 @@ public class ReportService {
 		}
 		return rList;
 	}
+
 	public int removeReport(String[] check) {
 		Connection conn = null;
 		int result = 0;
@@ -69,6 +69,7 @@ public class ReportService {
 		}
 		return result;
 	}
+
 	public PageData printAdminReport(int currentPage) {
 		Connection conn = null;
 		PageData pd = new PageData();
@@ -88,10 +89,10 @@ public class ReportService {
 		
 		return pd;
 	}
+	
 	public int modifyAnswer(int reportNo) {
 		Connection conn = null;
 		int result = 0;
-		
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new ReportDAO().updateAnswer(conn,reportNo);
@@ -101,6 +102,13 @@ public class ReportService {
 			}else {
 				JDBCTemplate.rollback(conn);
 			}
+
+	public int deleteReport(int[] nums) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ReportDAO().deleteReportList(conn, nums);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -108,9 +116,5 @@ public class ReportService {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
+
 }

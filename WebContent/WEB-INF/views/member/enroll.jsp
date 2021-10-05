@@ -78,37 +78,37 @@ $('#out').css({'color':'red','font-weight':'bolder'});
 
 
         <div class="txtb">
-            <input type="text" name="user-id" id="user-id">
+            <input type="text" name="user-id" id="user-id" required>
             <span data-placeholder="아이디"></span>
         </div>
 
         <div class="txtb">
-            <input type="password" name="user-pwd" id="user-pwd">
+            <input type="password" name="user-pwd" id="user-pwd" required>
             <span data-placeholder="비밀번호"></span><span id="out"></span>
         </div>
 
         <div class="txtb">
-            <input type="password" name="pwd-check" id="pwd-check">
+            <input type="password" name="pwd-check" id="pwd-check" required>
             <span data-placeholder="비밀번호 확인"></span>
         </div>
 
         <div class="txtb">
-            <input type="text" name="user-name" id="user-name">
+            <input type="text" name="user-name" id="user-name" required>
             <span data-placeholder="이름"></span>
         </div>
 
         <div class="txtb">
-            <input type="text" name="user-phone" id="user-phone">
+            <input type="text" name="user-phone" id="user-phone" required>
             <span data-placeholder="전화번호(-제외)"></span>
         </div>
 
         <div class="txtb">
-            <input type="text" name="user-email" id="user-email">
+            <input type="email" name="user-email" id="user-email" required>
             <span data-placeholder="이메일"></span>
         </div>
 
 
-        <input type="submit" class="logbtn" value="가입하기">
+        <input type="submit" class="logbtn" value="가입하기" >
 
         <div class="bottom-text">
             <a href="/member/login">뒤로가기</a>
@@ -126,6 +126,6 @@ $('#out').css({'color':'red','font-weight':'bolder'});
             $(this).removeClass("focus");
         })
     </script>
-
+    
 </body>
 </html>

@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>아이디 목록</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animatedLogin.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <form action="/member/login.jsp" class="login-form">
+    <form action="/member/login" class="login-form">
         <h1>아이디 찾기</h1>
 
         <b>고객님의 정보와 일치하는 아이디 목록입니다.</b>

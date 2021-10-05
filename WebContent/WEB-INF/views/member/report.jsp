@@ -10,12 +10,13 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
+    <title>신고내역</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
@@ -132,10 +133,11 @@ display: inline-block; margin-right:5px}
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -159,18 +161,18 @@ display: inline-block; margin-right:5px}
                         </form>
                         <div id="page-aside">
                                 <ul>
-                                    <li><a href="/mypage/info">회원 정보</a></li>
+                                     <li><a href="/mypage/info">회원 정보</a></li>
                                     <li><a href="/member/remove">회원 탈퇴</a></li>
                                     <li><a href="/point/search">포인트 조회</a></li>
-                                    <li><a href="#">주차 예약 조회</a></li>
+                                    <li><a href="/mypage/list">주차 예약 조회</a></li>
                                     <li><a href="/report/list">나의 신고 내역</a></li>
                                   
                                 </ul>
                         </div> <!-- END COLORLIB-ASIDE -->
                     <div id="member-info" style="position: relative;bottom: 190px;">
-                        <form action="#" class="contact-form" style="position: relative;left: 7%;">
+                        <form action="/report/remove" class="contact-form" method="post" style="position: relative;left: 7%; ">
                             <div class="col-lg-12">
-                                <h4 style="text-align: left; margin-bottom: 3%;">나의 신고 내역</h4>
+                                <h3 style="text-align: center; margin-bottom: 3%;"><i class="far fa-list-alt"></i>&nbsp;&nbsp;나의 신고 내역</h3>
                             </div>
 
                             <div class="col-lg-12">
@@ -185,7 +187,8 @@ display: inline-block; margin-right:5px}
                             <div class="col-lg-12">
                             <c:forEach items="${sList }" var="report" varStatus="index">
                                 <div class="inbox-top2">
-                                    <div class="inbox" style="width: 6%; text-align: left; position: relative; right: 22px;"><input type="checkbox" style="width: 17px; height: 17px;"></div>
+                                    <div class="inbox" style="width: 6%; text-align: left; position: relative; right: 22px;">
+                                    <input type="checkbox" name="reportNo" value="${report.reportNo }" style="width: 17px; height: 17px;"></div>
                                     <div class="inbox" style="    text-align: left;position: relative;left: 10px; width: 25%;">${report.reportTitle }</div>
                                     <div class="inbox" style="width: 40%;">${report.reportContents }</div>
                                     <div class="inbox" style="    position: relative;text-align: right;right: 10px; width: 25%;">
@@ -198,7 +201,7 @@ display: inline-block; margin-right:5px}
                                     </div>
                                 </div>
                             </c:forEach>
-                                <button type="submit" style="margin-top: 9%;">삭제</button>
+                                <button type="submit"id="insert_btn" style="margin-top: 9%";>삭제</button>
                             </div>
                         </form>
                     </div>
@@ -256,6 +259,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
+      <script>
+    $("#insert_btn").click(function(){
+        if(confirm("정말 삭제하시겠습니까?") == true){
+            alert("신고 내역이 삭제되었습니다");
+        }
+        else{
+            return false;
+        }
+    });
+    </script>
 </body>
 
 </html>

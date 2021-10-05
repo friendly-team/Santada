@@ -14,80 +14,106 @@ public class Report {
 	private String reportTitle;
 	private String reportContents;
 	private String answer;
-	private int postNo;
-	private List<Report> report;
+	private int PostNo;
 	private Date reportDate;
-	
+
 	public Report() {}
-	
+
 	public int getReportNo() {
 		return reportNo;
 	}
+
+
 	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
 	}
+
+
 	public String getUserId() {
 		return userId;
 	}
+
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+
 	public String getPostType() {
 		return postType;
 	}
+
+
 	public void setPostType(String postType) {
 		this.postType = postType;
 	}
+
+
 	public String getReportType() {
 		return reportType;
 	}
+
+
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
+
+
 	public String getReportTitle() {
 		return reportTitle;
 	}
+
+
 	public void setReportTitle(String reportTitle) {
 		this.reportTitle = reportTitle;
 	}
+
+
 	public String getReportContents() {
 		return reportContents;
 	}
+
+
 	public void setReportContents(String reportContents) {
 		this.reportContents = reportContents;
 	}
+
+
 	public String getAnswer() {
 		return answer;
 	}
+
+
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+
+
 	public int getPostNo() {
-		return postNo;
+		return PostNo;
 	}
+
+
 	public void setPostNo(int postNo) {
-		this.postNo = postNo;
+		PostNo = postNo;
 	}
-	public List<Report> getReport() {
-		return report;
-	}
-	public void setReport(List<Report> report) {
-		this.report = report;
-	}
+
+
 	public Date getReportDate() {
 		return reportDate;
 	}
+
+
 	public void setReportDate(Date reportDate) {
 		this.reportDate = reportDate;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", userId=" + userId + ", postType=" + postType + ", reportType="
 				+ reportType + ", reportTitle=" + reportTitle + ", reportContents=" + reportContents + ", answer="
-				+ answer + ", postNo=" + postNo + ", report=" + report + ", reportDate=" + reportDate + "]";
+				+ answer + ", PostNo=" + PostNo + ", reportDate=" + reportDate + "]";
 	}
 
-	
-	
-	
 }

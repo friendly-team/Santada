@@ -19,13 +19,13 @@ import dm.model.vo.PageData;
  * Servlet implementation class LetterInboxServlet
  */
 @WebServlet("/letter/inbox")
-public class LetterInboxServlet extends HttpServlet {
+public class LetterInBoxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LetterInboxServlet() {
+    public LetterInBoxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,7 +51,7 @@ public class LetterInboxServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/DM/LetterInBoxList.jsp").forward(request, response);
 		}else {
 			RequestDispatcher view 
-			= request.getRequestDispatcher("/index.jsp");
+			= request.getRequestDispatcher("/WEB-INF/views/DM/LetterInboxError.jsp");
 			view.forward(request, response);
 		}
 	}

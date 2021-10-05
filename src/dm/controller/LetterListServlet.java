@@ -54,7 +54,7 @@ public class LetterListServlet extends HttpServlet {
 			.forward(request, response);
 		}else {
 			RequestDispatcher view 
-			= request.getRequestDispatcher("/index.jsp");
+			= request.getRequestDispatcher("/WEB-INF/views/DM/LetterSendError.jsp");
 			view.forward(request, response);
 		}
 	}

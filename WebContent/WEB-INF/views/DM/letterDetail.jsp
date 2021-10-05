@@ -10,11 +10,11 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yummy | Template</title>
+    <title>쪽지</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
@@ -73,9 +73,9 @@ display:none;/*for IE10,11*/
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="/LetterSend/page">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="/LetterSend/page">쪽지작성</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
                                 <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
@@ -125,7 +125,7 @@ display:none;/*for IE10,11*/
                          <a href="/letter/send"style="padding: 18px 85px;display: inline-block;background: #FC0254;color: #fff;font-size: 18px;font-weight: 700; border: 1px solid #FC0254;">
                          	답장
                          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="submit">삭제</button>
+                        <button type="submit" id = "insert_btn">삭제</button>
                     </form>
                 </div>
             </div>
@@ -181,6 +181,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    $("#insert_btn").click(function(){
+        if(confirm("정말로 삭제하시겠습니까 ?") == true){
+            alert("정상적으로 삭제되었습니다");
+        }
+        else{
+            return false;
+        }
+    });
+    </script>
 </body>
 
 </html>

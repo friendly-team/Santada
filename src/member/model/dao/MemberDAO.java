@@ -184,13 +184,14 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int deleteMember(Connection conn, String studentId) {
+	public int deleteMember(Connection conn, String studentId, String userPwd) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "DELETE FROM MEMBER WHERE USER_ID = ?";
+		String query = "DELETE FROM MEMBER WHERE USER_ID = ? AND USER_PWD = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, studentId);
+			pstmt.setString(2, userPwd);
 			// 쿼리문 실행 ???
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

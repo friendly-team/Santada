@@ -14,13 +14,13 @@ import member.model.vo.Member;
  * Servlet implementation class PwdsearchServlet
  */
 @WebServlet("/pwd/search")
-public class PwdsearchServlet extends HttpServlet {
+public class PwdSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PwdsearchServlet() {
+    public PwdSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,7 @@ public class PwdsearchServlet extends HttpServlet {
 		
 		if(result > 0) {
 			request.setAttribute("change", userId);
-			request.getRequestDispatcher("/WEB-INF/views/member/Pwdchange.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/member/pwdChange.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/member/searchfail.jsp").forward(request, response);
 		}
