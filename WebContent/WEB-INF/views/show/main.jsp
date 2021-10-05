@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.List"%>
+<%@ page import="mountainPost.model.vo.MountainPost"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +64,7 @@
     <!-- Page Top Recipe Section Begin -->
     <section class="page-top-recipe">
         <div class="container">
+        	<c:forEach items="${mList}" var="mountainCourse" begin="0" end="0">
             <div class="row">
                 <div class="col-lg-6 order-lg-2">
                     <div class="pt-recipe-item large-item">
@@ -70,7 +73,8 @@
                         </div>
                         <div class="pt-recipe-text">
                             <span>March 10, 2019</span>
-                            <h3>설악산 갔다왔어요~</h3>
+                            <h3><a href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo}">
+                            ${mList[0].mountainPostSubject}</a></h3>
                         </div>
                     </div>
                 </div>
@@ -80,7 +84,8 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raw Vegan Carrot Cake Bites with Avocado</h4>
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[1].mountainPostNo}">
+                            ${mList[1].mountainPostSubject}</a></h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -88,7 +93,8 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
+                            ${mList[2].mountainPostSubject}</a></h4>
                         </div>
                     </div>
                 </div>
@@ -98,7 +104,8 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Beef Burger with French Fries and Salad</h4>
+                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
+                            ${mList[3].mountainPostSubject}</a></h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -106,11 +113,13 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raspberry Pancakes with Honey and Butter</h4>
+                           <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
+                            ${mList[4].mountainPostSubject}</a></h4>
                         </div>
                     </div>
                 </div>
             </div>
+            </c:forEach>
         </div>
     </section>
     <!-- Footer Section Begin -->
@@ -119,7 +128,7 @@
             <div>
                 <div>
                         <div class="logo">
-                            <a href="./index.html">
+                            <a href="/show/main.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
                         <p>여기에는 이제 글씨가 들어갑니다!</p>
@@ -169,7 +178,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="../index.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
+                <a href="/show/main.jsp"><img src="${pageContext.request.contextPath}/imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
@@ -233,8 +242,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <span>March 10, 2019</span>
-                            <h3>설악산 갔다왔어요~</h3>
+                            <h3>첫번째 포스트</h3>
                         </div>
                     </div>
                 </div>
@@ -244,7 +252,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raw Vegan Carrot Cake Bites with Avocado</h4>
+                            <h4>두번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -252,7 +260,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                            <h4>세번째</h4>
                         </div>
                     </div>
                 </div>
@@ -262,7 +270,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Beef Burger with French Fries and Salad</h4>
+                            <h4>네번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -270,7 +278,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raspberry Pancakes with Honey and Butter</h4>
+                            <h4>다섯번째</h4>
                         </div>
                     </div>
                 </div>
@@ -388,7 +396,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         </div>
                         <div class="pt-recipe-text">
                             <span>March 10, 2019</span>
-                            <h3>설악산 갔다왔어요~</h3>
+                            <h3>첫번째 포스트</h3>
                         </div>
                     </div>
                 </div>
@@ -398,7 +406,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raw Vegan Carrot Cake Bites with Avocado</h4>
+                            <h4>두번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -406,7 +414,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                            <h4>세번째</h4>
                         </div>
                     </div>
                 </div>
@@ -416,7 +424,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Beef Burger with French Fries and Salad</h4>
+                            <h4>네번째</h4>
                         </div>
                     </div>
                     <div class="pt-recipe-item">
@@ -424,7 +432,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
-                            <h4>Raspberry Pancakes with Honey and Butter</h4>
+                            <h4>다섯번째</h4>
                         </div>
                     </div>
                 </div>

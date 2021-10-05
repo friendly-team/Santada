@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <style>
-        	table.type11 {
+        table.type11 {
 		border-collapse: separate;
 		border-spacing: 1px;
 		text-align: center;
@@ -23,7 +23,7 @@
 		margin: 20px 10px;
 	  }
 	  table.type11 th {
-		width: 155px;
+		width: 145px;
 		padding: 8px;
 		font-weight: bold;
 		vertical-align: top;
@@ -31,7 +31,7 @@
 		background: hsl(198, 54%, 52%);
 	  }
       table.type11 th:nth-child(3){
-          width: 700px;
+          width: 100px;
       }
 	  table.type11 td {
 		width: 100px;
@@ -76,9 +76,9 @@
                                 <li><a href="#">보관함</a></li>
                             </ul>
                         </li>
-                        <li style="display: inline-block;"><a href="/member/login">로그인</a></li>
+                        <li style="display: none;"><a href="/member/login">로그인</a></li>
                         <li style="display: none;"><a href="#">마이페이지</a></li>
-                        <li style="display: none;"><a href="/member/logout">로그아웃</a></li>
+                        <li style="display: inline-block;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
                 </nav>
@@ -127,39 +127,29 @@
                         <div class="recipe-desc">
                                <table class="type11" align="left">
 							        <tr>
-							        <th> 선택 </th>
 							        <th> 아이디 </th> 
 							        <th> 이름 </th>
 							        <th> 이메일 </th>
 							        <th> 연락처 </th>
 							        <th> 가입일 </th>
+							        <th> 처리 </th>
 							        </tr>
+							        <c:forEach items="${requestScope.mList}" var="student" varStatus="index">
+									<!--   <tr>
+									<td>
+										<a href="user/list?userId=${student.userId}">
+										</a> -->
 							        <tr>
-							            <td><input type="checkbox" checked></td>
-							            <td> user01 </td> 
-							            <td> 코코몽 </td>
-							            <td> cocomong@naver.com</td>
-							            <td> 010-3344-5566 </td>
-							            <td> 2018-06-20 </td>
-							        </tr>
-							        <tr>
-							            <td><input type="checkbox" checked></td>
-							            <td> user01 </td> 
-							            <td> 코코몽 </td>
-							            <td> cocomong@naver.com</td>
-							            <td> 010-3344-5566 </td>
-							            <td> 2018-06-20 </td>
-							        </tr>							     
-							        <tr>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td></td>
-							        <td>
-							        <button type="submit">회원삭제</button>
-							        </td>
-							        </tr>
+							           <!--  <td><input type="checkbox" checked></td> -->
+							            <td>${student.userId}</td> 
+							            <td>${student.userName}</td>
+							            <td>${student.userEmail}</td>
+							            <td>${student.userPhone}</td>
+							            <td>${student.enrollDate}</td>
+							            <td><input type="submit" value="강퇴"></td>
+							            <!-- <td><a href="/user/delete?userId=${student.userId}">강퇴</a></td>  -->
+							          </tr>
+							        </c:forEach>
 							    </table>
                         </div>
                     </div>

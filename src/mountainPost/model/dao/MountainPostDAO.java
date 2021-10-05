@@ -436,7 +436,47 @@ public class MountainPostDAO {
 		return result;
 	}
 
-	// 메인화면 post
+	// MainServlet
+	public List<MountainPost> selectAllList(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<MountainPost> mList = null;
+		String query = "SELECT * FROM (SELECT * FROM MOUNTAIN_POST ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM <= 5";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			mList = new ArrayList<MountainPost>();
+			while(rset.next()) {
+				MountainPost mPost = new MountainPost();
+				mPost.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
+				mPost.setMountainName(rset.getString("MOUNTAIN_NAME"));
+				mPost.setMountainPostWriter(rset.getString("USER_ID"));
+				mPost.setMountainPostSubject(rset.getString("MOUNTAIN_POST_SUBJECT"));
+				mPost.setMountainPostContents(rset.getString("MOUNTAIN_POST_CONTENTS"));
+				mPost.setMountainPostDate(rset.getDate("MOUNTAIN_REG_DATE"));
+				mPost.setMountainRegion(rset.getString("MOUNTAIN_REGION"));
+				mPost.setMountainCourse(rset.getString("MOUNTAIN_COURSE"));
+				mPost.setMountainTime(rset.getInt("MOUNTAIN_TIME"));
+				mPost.setMountainParty(rset.getInt("MOUNTAIN_PARTY"));
+				mPost.setMountainLevel(rset.getInt("MOUNTAIN_LEVEL"));
+				mPost.setMountainCaution(rset.getString("MOUNTAIN_CAUTION"));
+				mPost.setMountainNeed(rset.getString("MOUNTAIN_NEED"));
+				mPost.setMountainRecommend(rset.getInt("MOUNTAIN_RECOMMEND"));
+				mPost.setMountainPostState(rset.getString("MOUNTAIN_POST_STATE"));
+				mList.add(mPost);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return mList;
+	}
+	
+	// MainDetailServlet
 	public MountainPost selectMountainPost(Connection conn, int mountainPostNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -465,5 +505,7 @@ public class MountainPostDAO {
 		return mPost;
 
 	}
+
+
 
 }
