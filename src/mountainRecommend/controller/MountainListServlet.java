@@ -64,7 +64,6 @@ public class MountainListServlet extends HttpServlet {
 		if(!pList.isEmpty()) {
 			request.setAttribute("mList", mList);
 			request.setAttribute("pList", pList);
-			// why????????????????????????
 			request.getRequestDispatcher("/WEB-INF/views/recommend/mountainrecommend.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("/index.jsp");

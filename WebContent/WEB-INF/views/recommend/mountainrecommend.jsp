@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="java.util.List"%>
+<%@ page import="mountainPost.model.vo.MountainPost"%>
 <!DOCTYPE html>
 
 <head>
@@ -21,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+
 </head>
 
 <body>
@@ -32,12 +36,12 @@
      <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo" style="height: 100%; width: 25%;">
-                <a href="../index.jsp" ><img src="../imgs/로고6.png" style="height: 100%; width: 60%;" alt=""></a>
+                <a href="${pageContext.request.contextPath}/index.jsp" ><img src="${pageContext.request.contextPath}/imgs/로고6.png" style="height: 100%; width: 60%;" alt=""></a>
             </div>
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a href="../index.jsp">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
                         <li><a href="#">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/write">등산인증</a></li>
@@ -67,8 +71,8 @@
     <!-- Header End -->
 
     <!-- Hero Search Section Begin -->
-    <div class="hero-search set-bg"  data-setbg="imgs/등산.jpg">
-        <div class="container">
+    <div class="hero-search set-bg" date-setbg="" style="background-color:lightblue" >
+        <div class="container" >
             <div class="filter-table">
                 <form action="/mountain/list" class="filter-search" method="get">
                     <select name="mountainRegion" id="region" class="nice-select">
@@ -81,11 +85,11 @@
 		            <option value="제주도">제주도</option>
                     </select>
                     <select name="mountainTime" id="time" class="nice-select">
-                        <option value="1">1시간이내</option>
-                        <option value="2">1시간-2시간</option>
-                        <option value="3">2시간-3시간</option>
-                        <option value="4">3시간-4시간</option>
-                        <option value="5">4시간-5시간</option>
+                        <option value="1">1시간-2시간</option>
+                        <option value="2">2시간-3시간</option>
+                        <option value="3">3시간-4시간</option>
+                        <option value="4">4시간-5시간</option>
+                        <option value="5">5시간-6시간</option>
                         <option value="6">장거리</option>
                     </select>
                     <select name="mountainLevel"  id="level" class="nice-select">
@@ -118,14 +122,15 @@
                <h3> ${pList[0].mountainName} ${pList[0].mountainCourse} 의 BEST POST</h3>
                <br>
             </div>
-            <c:forEach var="post" items="${pList[0].mountainCourse}" varStatus="status">
+            <!-- items = 보내준 리스트 이름 -->
+           <c:forEach items="${pList}" var = "mountainCourse" begin="0" end="0">
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-4.jpg" alt=""></a>
+                        <a href="/mountainPost/detail?mountainPostNo=${pList[0].mountainPostNo}"><img src="img/recipe/recipe-4.jpg" alt=""></a>
                         <div class="ri-text">
                             <div class="cat-name">BEST POST 1</div>
-                            <a href="#">
+                            <a href="/mountainPost/detail?mountainPostNo=${pList[0].mountainPostNo}">
                                 <h4>${pList[0].mountainPostSubject}</h4>
                             </a>
                         </div>
@@ -133,11 +138,11 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-5.jpg" alt=""></a>
+                        <a href="/mountainPost/detail?mountainPostNo=${pList[1].mountainPostNo}"><img src="img/recipe/recipe-5.jpg" alt=""></a>
                         <div class="ri-text">
                             <div class="cat-name">BEST POST 2</div>
-                            <a href="#">
-                                <h4>공룡능선에 공룡이 사나요</h4>
+                            <a href="/mountainPost/detail?mountainPostNo=${pList[1].mountainPostNo}">
+                                <h4>${pList[1].mountainPostSubject}</h4>
                             </a>
                         
                         </div>
@@ -145,17 +150,39 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
-                        <a href="#"><img src="img/recipe/recipe-6.jpg" alt=""></a>
+                        <a href="/mountainPost/detail?mountainPostNo=${pList[2].mountainPostNo}"><img src="img/recipe/recipe-6.jpg" alt=""></a>
                         <div class="ri-text">
                             <div class="cat-name">BEST POST 3</div>
-                            <a href="#">
-                                <h4>티라노사우르스는 없어요</h4>
+                            <a href="/mountainPost/detail?mountainPostNo=${pList[2].mountainPostNo}">
+                                <h4>${pList[2].mountainPostSubject}</h4>
                             </a>
                         </div>
                     </div>
                 </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="recipe-item">
+                        <a href="/mountainPost/detail?mountainPostNo=${pList[3].mountainPostNo}"><img src="img/recipe/recipe-6.jpg" alt=""></a>
+                        <div class="ri-text">
+                            <div class="cat-name">BEST POST 4</div>
+                            <a href="/mountainPost/detail?mountainPostNo=${pList[3].mountainPostNo}">
+                                <h4>${pList[3].mountainPostSubject}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-lg-4 col-sm-6">
+                   <div class="recipe-item">
+                       <a href="/mountainPost/detail?mountainPostNo=${pList[4].mountainPostNo}"><img src="img/recipe/recipe-6.jpg" alt=""></a>
+                       <div class="ri-text">
+                           <div class="cat-name">BEST POST 5</div>
+                           <a href="/mountainPost/detail?mountainPostNo=${pList[4].mountainPostNo}">
+                               <h4>${pList[4].mountainPostSubject}</h4>
+                           </a>
+                       </div>
+                   </div>
+               </div>
               </div>
-              </c:forEach>
+               </c:forEach>
              <!--  best post part -->
 <%--         <div class="container po-relative">
             <div class="section-title">
@@ -227,8 +254,8 @@
             <div>
                 <div>
                       <div class="logo">
-                            <a href="../index.jsp">
-                                <img src="../imgs/로고6.png" alt="">
+                            <a href="${pageContext.request.contextPath}/index.jsp">
+                                <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
                         <p>여기도 글씨 들어가요~</p>
                     </div>

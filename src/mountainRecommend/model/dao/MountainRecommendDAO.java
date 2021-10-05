@@ -94,7 +94,8 @@ public class MountainRecommendDAO {
 				mRecommend.setMountainTime(rset.getInt("MOUNTAIN_TIME")); // -> 추후 변수명 변경 가능성 있음	
 				mRecommend.setMountainCourse(rset.getString("MOUNTAIN_COURSE"));
 				mRecommend.setMountainRegion(rset.getString("MOUNTAIN_REGION"));
-				mRecommend.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));	
+				mRecommend.setMountainPostNo(rset.getInt("MOUNTAIN_POST_NO"));
+				mRecommend.setMountainPostSubject(rset.getString("MOUNTAIN_POST_SUBJECT"));
 				mRecommend.setMountainLevel(rset.getInt("MOUNTAIN_LEVEL"));	
 				pList.add(mRecommend); // -> 저장
 			}

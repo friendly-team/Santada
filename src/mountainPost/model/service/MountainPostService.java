@@ -220,7 +220,26 @@ public class MountainPostService {
 		return result;
 	}
 
-	// 메인화면 POST
+	// mainServlet 
+	public List<MountainPost> printPostAll() {
+		Connection conn = null;
+		List<MountainPost> mList = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			mList = new MountainPostDAO().selectAllList(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		
+		return mList;
+	}
+
+	// mainDetailServlet 
 	public MountainPost printMainPost(int mountainPostNo) {
 		MountainPost mPost = null;
 		Connection conn = null;
