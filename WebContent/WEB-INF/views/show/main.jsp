@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
-<%-- 	<% if(studentId == null) { %> --%>
 	<c:if test="${sessionScope.userId eq null }">
 		<header class="header-section">
         <div class="container">
@@ -28,11 +27,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="/show/main.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산인증</a></li>
-                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">나무 포인트</a></li>
-                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">랭킹</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산 인증</a></li>
+                                <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="/mountain/recommend">추천코스</a></li>
@@ -131,7 +130,7 @@
                             <a href="/show/main.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>여기에는 이제 글씨가 들어갑니다!</p>
+                        <p>Friendly-team</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -170,10 +169,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
 	</c:if>
 </body>
-
 </html>
-<%-- 	<% } %> --%>
-<%-- 	<% if(studentId != null && studentId != "") { %> --%>
 	<c:if test="${userId ne null and userId ne 'admin'}">
 	<header class="header-section">
         <div class="container">
@@ -183,12 +179,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="../index.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li class="active"><a href="/show/main.jsp">Home</a></li>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="/mountainPost/write">등산인증</a></li>
-                                <li><a href="categories.html">나무 포인트</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="/mountain/recommend">추천코스</a></li>
@@ -294,7 +290,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <a href="../index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>여기에는 이제 글씨가 들어갑니다!</p>
+                        <p>Friendly-Team</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -340,7 +336,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </script>
     </c:if>
 </body>
-
 	 <c:if test="${userId eq 'admin' }">
 	<header class="header-section">
         <div class="container">
@@ -351,11 +346,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="../index.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="#">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="/mountain/recommend">추천코스</a></li>
@@ -448,7 +443,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <a href="../index.jsp">
                                 <img src="./imgs/로고6.png" alt="">
                             </a>
-                        <p>여기에는 이제 글씨가 들어갑니다!</p>
+                        <p>Friendly-Team</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -486,8 +481,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
     </c:if> 
-   
-
-
 </html>
-
