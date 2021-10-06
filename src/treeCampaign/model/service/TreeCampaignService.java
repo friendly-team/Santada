@@ -2,8 +2,10 @@ package treeCampaign.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import common.JDBCTemplate;
+import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 import treeCampaign.model.dao.TreeCampaignDAO;
 import treeCampaign.model.vo.TreeCampaign;
@@ -51,4 +53,65 @@ public class TreeCampaignService {
 		return member;
 	}
 
-}
+	public List<TreeCampaign> printPointList() {
+		Connection conn = null;
+		List<TreeCampaign> tList = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			tList = new TreeCampaignDAO().selectPointList(conn);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return tList;
+		}
+
+	public int removePoint(String userId) {
+		int result = 0;
+		int treePoint = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			treePoint = new TreeCampaignDAO().selectTreePoint(conn, userId);
+			result = new TreeCampaignDAO().removePoint(conn, userId, treePoint);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+		}
+
+	
+	public int removeMember(String userId) {
+		int resultOne = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			resultOne = new TreeCampaignDAO().removeMember(conn, userId);
+			if(resultOne > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return resultOne;
+		}
+	
+}	
+
+

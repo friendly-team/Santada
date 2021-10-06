@@ -32,7 +32,7 @@
 		font-weight: bold;
 		vertical-align: top;
 		color: #fff;
-		background: #068006;
+		background: #b2dfdb;
 	  }
       table.type11 th:nth-child(3){
           width: 700px;
@@ -61,11 +61,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="../index.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
                         <li><a href="/mountain/list">추천코스</a></li>
@@ -75,10 +75,11 @@
                                 <li><a href="#">소모임생성</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                         <li style="display: none;"><a href="/member/login">로그인</a></li>
@@ -131,40 +132,24 @@
                                <table class="type11" align="left">
 							        <tr>
 							        <th> NO </th>
-							        <th> 참여자 </th> 
+									<th> 아이디 </th> 
 							        <th> 내용</th>
 							        <th> 작성자 </th>
 							        <th> 작성일 </th>
 							        <th> 처리 </th>
 							        </tr>
+							        <c:forEach items="${tList}" var="tCampaign" varStatus="index">
 							        <tr>
-							            <td></td>
-							            <td> 트리케라톱스 </td> 
-							            <td> 등산뿌셔 </td>
-							            <td> user01</td>
-							            <td> sysdate </td>
-							            <td>
-							            <button type="submit">완료</button>
-							            </td>
+							            <td>${tCampaign.treePostNo} </td> 
+							            <td> ${tCampaign.treeUserId}</td>
+							            <td>${tCampaign.treeContents} </td>
+							            <td>${tCampaign.treeParticipant}</td>
+							            <td>${tCampaign.treeDate} </td>
+										<!--  <input type="hidden" value="${tCampaign.treeUserId}" name="removepoint">  -->					            
+							            <td><a href="/admin/confirm?userId=${tCampaign.treeUserId}">차감</a></td>
 							        </tr>
+							        </c:forEach>
 							         <tr>
-							        <th> NO </th>
-							        <th> 참여자 </th> 
-							        <th> 내용</th>
-							        <th> 작성자 </th>
-							        <th> 작성일 </th>
-							        <th> 처리 </th>
-							        </tr>
-							        <tr>
-							            <td></td>
-							            <td> 트리케라톱스 </td> 
-							            <td> 등산뿌셔 </td>
-							            <td> user01</td>
-							            <td> sysdate </td>
-							            <td>
-							            <button type="submit">완료</button>
-							            </td>
-							        </tr>
 							    </table>
                         </div>
                     </div>
