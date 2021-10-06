@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.model.service.AdminService;
+
 /**
  * Servlet implementation class PointAddServlet
  */
@@ -26,8 +28,15 @@ public class PointAddServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String postState = request.getParameter("post-state");
+		String mPostWriter = request.getParameter("post-writer");
+		int mPostNo = Integer.parseInt(request.getParameter("post-number"));
+		int result = new AdminService().modifyPoint(postState, mPostWriter, mPostNo);
+		if(result > 1) {
+			response.sendRedirect("/mountainPost/list");
+		} else {
+			response.sendRedirect("/mountainPost/list");
+		}
 	}
 
 	/**

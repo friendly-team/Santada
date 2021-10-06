@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import club.model.service.ClubService;
+import club.model.vo.Club;
 import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 import clubPost.model.vo.ClubPost;
@@ -58,6 +59,10 @@ public class ClubPostSearchServlet extends HttpServlet {
 		PageData pd = new ClubPostService().printSearchClubPost(searchKeyword, clubNo, currentPage);
 		List<ClubPost> cpList = pd.getClubPostList();
 		if(!cpList.isEmpty()) {
+			ClubManagement cmNavi = (ClubManagement) session.getAttribute("cm");
+			Club club = (Club)session.getAttribute("club");
+			request.setAttribute("cm", cmNavi);
+			request.setAttribute("club", club);
 			request.setAttribute("cpList", cpList);
 			request.setAttribute("pageNavi", pd.getPageNavi());
 			request.setAttribute("clubName", clubName);

@@ -6,7 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 import clubPost.model.vo.ClubPost;
 import clubPost.model.vo.ClubPostFile;
@@ -34,6 +37,11 @@ public class PrintDetailClubPostServlet extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		ClubPost cpOne = new ClubPostService().printDetailClubPost(postNo);
 		if(cpOne != null) {
+			HttpSession session = request.getSession();
+			ClubManagement cm = (ClubManagement) session.getAttribute("cm");
+			Club club = (Club)session.getAttribute("club");
+			request.setAttribute("cm", cm);
+			request.setAttribute("club", club);
 			ClubPostFile cpFile = new ClubPostFile();
 			cpFile = cpOne.getClubPostFile();
 			request.setAttribute("cpOne", cpOne);

@@ -48,10 +48,10 @@ public class LetterInboxServlet extends HttpServlet {
 		if(!bList.isEmpty()) {
 			request.setAttribute("bList", bList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
-			request.getRequestDispatcher("/WEB-INF/views/DM/LetterInBoxList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/dm/LetterInBoxList.jsp").forward(request, response);
 		}else {
 			RequestDispatcher view 
-			= request.getRequestDispatcher("/WEB-INF/views/DM/LetterInboxError.jsp");
+			= request.getRequestDispatcher("/WEB-INF/views/dm/LetterInboxError.jsp");
 			view.forward(request, response);
 		}
 	}

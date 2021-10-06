@@ -50,11 +50,11 @@ public class LetterListServlet extends HttpServlet {
 		if(!nList.isEmpty()) {
 			request.setAttribute("nList", nList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
-			request.getRequestDispatcher("/WEB-INF/views/DM/LetterSendList.jsp")
+			request.getRequestDispatcher("/WEB-INF/views/dm/LetterSendList.jsp")
 			.forward(request, response);
 		}else {
 			RequestDispatcher view 
-			= request.getRequestDispatcher("/WEB-INF/views/DM/LetterSendError.jsp");
+			= request.getRequestDispatcher("/WEB-INF/views/dm/LetterSendError.jsp");
 			view.forward(request, response);
 		}
 	}
