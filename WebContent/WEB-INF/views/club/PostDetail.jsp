@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>소모임 게시판</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	type="text/css">
@@ -30,58 +31,65 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-table.type11 {
+.t__contents {
+	align-items: center;
+	text-align: center;
+	width: 1500px;
+	height: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 20px;
 	border-collapse: separate;
 	border-spacing: 1px;
-	text-align: center;
 	line-height: 1.5;
-	margin: 20px 10px;
 }
 
-table.type11 th {
-	width: 155px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #ce4869;
+.t__contents th {
+	background-color: #b2dfdb;
+	color: white;
+	font-size: 1.2em;
 }
 
-table.type11 th:nth-child(2) {
-	width: 1000px;
+.t__reply, .t__reply_write {
+	align-items: center;
+	align-content: center;
+	width: 1500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
 }
 
-table.type11 td {
-	width: 155px;
-	padding: 10px;
-	font-weight: normal;
-	font-size: 10pt;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #eee;
+img {
+	width: 700px;
 }
 
-#divserach {
+button {
+	align-items: center;
+	margin: 10px;
 	height: 40px;
-	width: 300px;
-	background-color: #ffffff;
-	display: inline-flex;
-	float: left;
-}
-
-#search {
-	font-size: 16px;
-	width: 325px;
-	padding: 10px;
 	border: 0;
 	outline: none;
-	float: left;
-	background-color: #F5F6FA;
+	border-radius: 4px;
+	background: #b2dfdb;
+	color: white;
+	font-weight: bolder;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+.btn {
+	background-color: #b2dfdb;
+	align-items: center;
+	color: white;
+	padding: 6px;
+	font-weight: bolder;
+	letter-spacing: 1px;
 }
 </style>
 </head>
 <body>
-<!-- 오요요요 -->
+	<!-- 오요요요 -->
 	<header class="header-section-other">
 		<div class="container-fluid">
 			<div class="logo" style="height: 100%; width: 25%;">
@@ -89,48 +97,46 @@ table.type11 td {
 					style="height: 100%; width: 60%;" alt=""></a>
 			</div>
 			<div class="nav-menu">
-                  <nav class="main-menu mobile-menu">
+				<nav class="main-menu mobile-menu">
 					<ul>
-					  <li><a href="/index.jsp">Home</a></li>
-                        <li><a href="/mountainPost/list">등산인증</a>
-                            <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산 인증</a></li>
-                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="/ranking">등산 랭킹</a></li>
-                            </ul>
-                        </li>
+						<li><a href="/index.jsp">Home</a></li>
+						<li><a href="/mountainPost/list">등산인증</a>
+							<ul class="sub-menu">
+								<li><a href="/mountainPost/list">등산 인증</a></li>
+								<li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+								<li><a href="/ranking">등산 랭킹</a></li>
+							</ul></li>
 						<li><a href="/mountain/recommend">추천코스</a></li>
 						<li class="active"><a href="#">소모임</a>
 							<ul class="sub-menu">
-      						  <c:set var="clubName" value="${clubName.clubName }" />
-                                <c:if test="${cm eq null}">
-                                <li><a href="/club/join">소모임가입</a></li>
-                                <li><a href="/club/create">소모임생성</a></li>
-                                <li><a href="/club/list">소모임 리스트</a></li>
-                                </c:if>
-                               <c:if test="${cm.clubNo ne null and cm.approvalPosition eq 'N'}">
-                                <li>${clubName}소모임가입대기중</li>
-                                </c:if>
-                                <c:if test="${cm.clubNo ne null and cm.clubNo ne '' and cm.approvalPosition eq 'Y' and club.userId eq null}">
-                                <li><a href="/clubPost/List">${clubName }소모임</a></li>
-                                <li><a href="/club/leave?clubNo=${cm.clubNo}">소모임탈퇴</a></li>
-                                </c:if>
-                                <c:if test="${club.userId ne null}">
-                                <li><a href="/clubPost/List">${clubName}소모임</a></li>
-                                <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
-                                <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
-                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
-                                </c:if>
-							</ul>
-						</li>
-                        <li><a href="/letter/send">쪽지</a>
-                            <ul class="sub-menu">
-                                <li><a href="/letter/send">쪽지작성</a></li>
-                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
-                                <li><a href="/letter/list">보낸 쪽지함</a></li>
-                            </ul>
-                        </li>
-						 <li><a href="/mypage/info">마이페이지</a></li>
+								<c:set var="clubName" value="${clubName.clubName }" />
+								<c:if test="${cm eq null}">
+									<li><a href="/club/join">소모임가입</a></li>
+									<li><a href="/club/create">소모임생성</a></li>
+									<li><a href="/club/list">소모임 리스트</a></li>
+								</c:if>
+								<c:if test="${cm.clubNo ne null and cm.approvalPosition eq 'N'}">
+									<li>${clubName}소모임가입대기중</li>
+								</c:if>
+								<c:if
+									test="${cm.clubNo ne null and cm.clubNo ne '' and cm.approvalPosition eq 'Y' and club.userId eq null}">
+									<li><a href="/clubPost/List">${clubName }소모임</a></li>
+									<li><a href="/club/leave?clubNo=${cm.clubNo}">소모임탈퇴</a></li>
+								</c:if>
+								<c:if test="${club.userId ne null}">
+									<li><a href="/clubPost/List">${clubName}소모임</a></li>
+									<li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
+									<li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
+									<li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
+								</c:if>
+							</ul></li>
+						<li><a href="/letter/send">쪽지</a>
+							<ul class="sub-menu">
+								<li><a href="/letter/send">쪽지작성</a></li>
+								<li><a href="/letter/inbox">받은 쪽지함</a></li>
+								<li><a href="/letter/list">보낸 쪽지함</a></li>
+							</ul></li>
+						<li><a href="/mypage/info">마이페이지</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -138,163 +144,218 @@ table.type11 td {
 		</div>
 	</header>
 	<c:if test="${cpFile.fileName eq null }">
-		<section style="height: 900px; width: 100%;">
-			<div style="height: 100px; width: 100%;"></div>
-			<h5 style="display: inline;">제목 : ${cpOne.postSubject }</h5>
-				<form action="/clubPost/delete" method="post" style="display: inline;">
-					<input type="hidden" value="${cpOne.postNo }" name="post-no">
-					<input type="hidden" value="${cpOne.clubNo }" name="club-no">
-					<input type="hidden" value="${cpOne.userId }" name="write-user">
-					<input style="position: relative; left: 62.2%;" type="submit" value="게시글 삭제">
-				</form>
-				<form action="/clubPost/modify" method="get" style="display: inline;">
-					<input type="hidden" value="${cpOne.userId }" name="write-user">
-					<input type="hidden" value="${cpOne.postNo }" name="post-no">
-					<input style="position: relative; left: 64.4%;" type="submit" value="게시글 수정">
-				</form>
-			<hr style="background-color: 2f4f4f;">
-			<h6 style="display: inline;">작성자 : ${cpOne.userId }</h6>
-			&nbsp;&nbsp;
-			<h6 style="display: inline;">작성일 : ${cpOne.writeDate }</h6>
-			<form style="display: inline; position: relative; left: 54%;"
-				action="/clubPost/recommend" method="post">
-				<input type="hidden" value="${cpOne.postNo }" name="post-no">
-				<input type="hidden" value="${cpOne.recommend }" name="recommend">
-				<input type="submit" value="추천" onclick="alert('추천완료')">
-			</form>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<form style="display: inline; position: relative; left: 54.3%;"
-				action="/report/write?postNo=${cpOne.postNo }" method="get">
-				<input type="hidden" value="${cpOne.postNo }" name="postNo">
-				<input type="submit" value="신고">
-			</form>
-			<hr style="background-color: 2f4f4f;">
-			<p>${cpOne.postContents }</p>
-			<hr style="background-color: 2f4f4f;">
-		</section>
-		<section>
-			<form action="/clubPostReply/write" method="post">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 : <input type="text" name="replyContents" placeholder="댓글을 작성해보세요" style="width: 40%; height: 9%;">
-				<input type="hidden" name="postNo" value="${cpOne.postNo }">
-				<input type="submit" value="작성">
-			</form>
-		</section>
-		<section>
-			<table style="width: 80%;">
-				<tr>
-					<th style="width: 60%;">댓글</th>
-					<th style="width: 10%;">아이디</th>
-					<th style="width: 10%;">작성날짜</th>
+		<table class="t__contents">
+			<tr>
+				<td colspan="6" align="right"><a href="/clubPost/List"
+					class="btn">목록</a> <c:if
+						test="${userId eq cpOne.userId or userId eq masterId}">
+						<a
+							href="/clubPost/delete?postNo=${cpOne.postNo}&writeUser=${cpOne.userId}&clubNo=${cpOne.clubNo}"
+							class="btn">삭제</a>
+					</c:if>
+					<c:if test="${userId eq cpOne.userId }">
+						<a href="/clubPost/modify?postNo=${cpOne.postNo}&writeUser=${cpOne.userId}"class="btn">수정</a>
+					</c:if>
+					</td>
+			</tr>
+			<tr>
+				<th colspan="6"
+					style="background-color: transparent; text-align: left; font-weight: bolder;">
+					<h2>${cpOne.postSubject}</h2>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="6" align="left">
+					<h5>${cpOne.userId}｜
+						${cpOne.writeDate} ｜ 추천 ${cpOne.recommend}</h5>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="6" align="center">내용</th>
+			</tr>
+			<tr>
+				<td colspan="6" align="center">
+					${cpOne.postContents}</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right" style="width: 50%;">
+					<form action="/clubPost/recommend" method="post">
+						<button type="submit" name="recommend"
+							value="${cpOne.recommend}">추천
+							${cpOne.recommend}</button>
+						<input type="hidden" name="postNo"
+							value="${cpOne.postNo}">
+					</form>
+				</td>
+				<td colspan="3" align="left">
+					<form action="/report/write?postNo=${cpOne.postNo}"
+						method="get">
+						<button>신고</button>
+						<input type="hidden" name="postNo"
+							value="${cpOne.postNo}">
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<br>
+		<!-- 댓글 출력 -->
+		<table class="t__reply">
+			<c:forEach items="${cpOne.clubReplies}" var="reply">
+				<tr colspan="6" align="center">
+					<td>${reply.replyUserId}</td>
+					<td style="width: 60%;">${reply.replyContents}</td>
+					<td>${reply.replyDate}</td>
+					<c:if test="${userId eq reply.replyUserId}">
+						<td><a href="javascript:void(0)"
+							onclick="showModifyReply(this)" class="btn">수정</a>&nbsp;&nbsp; 
+							<a href="/clubPostReply/delete?postNo=${reply.postNo}&replyNo=${reply.replyNo}&replyUser=${reply.replyUserId}"
+							class="btn">삭제</a></td>
+					</c:if>
 				</tr>
-				<c:forEach items="${cpOne.clubReplies }" var="reply">
-					<tr>
-						<td>${reply.replyContents }</td>
-						<td>${reply.replyUserId }</td>
-						<td>${reply.replyDate }</td>
-						<td><a href="javascript:void(0)" onclick="showModifyReply(this)">수정</a></td>
-						<td><a href="/clubPostReply/delete?postNo=${reply.postNo }&replyNo=${reply.replyNo }&replyUser=${reply.replyUserId }">삭제</a></td>
-					</tr>
-					<tr style="display: none;">
-						<td>
-							<input type="text" size="80" value="${reply.replyContents }" id="modifyReply">
-						</td>
-						<td>
-							<a href="javascript:void(0)" 
-							onclick="modifyReply(this,${reply.replyNo},${reply.postNo},'${reply.replyUserId}')">수정완료</a>
-							<a href="javascript:void(0)" onclick="hidenModifyReply(this)">취소</a>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<form action="/clubPostReply/modify" method="post" id="modifyForm">
-				<input type="hidden" name="replyContents" id="modifyReplyContents">
-				<input type="hidden" name="replyNo" id="modifyReplyNo">
-				<input type="hidden" name="postNo" id="modifyPostNo">
-				<input type="hidden" name="replyUser" id="modifyReplyUser">
-			</form>
-		</section>
-		
+				<tr style="display: none; width: 1500px;" colspan="6" align="center";>
+					<td>${reply.replyUserId}</td>
+					<td><input type="text" value="${reply.replyContents}"
+						id="modifyReply" style="width: 800px; padding: 5px;"></td>
+					<td><a href="javascript:void(0)"
+						onclick="modifyReply(this,${reply.replyNo},${reply.postNo},'${reply.replyUserId }')"
+						class="btn">등록</a>&nbsp;&nbsp; <a href="javascript:void(0)"
+						onclick="hideModifyReply(this)" class="btn">취소</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<hr>
+		<!-- 댓글 입력 -->
+		<table class="t__reply_write">
+			<tr colspan="6" align="center">
+				<form action="/clubPostReply/write" method="post">
+					<input type="hidden" name="postNo"
+						value="${cpOne.postNo}"> <input type="text"
+						name="replyContents" placeholder="댓글을 입력하세요" class="t__reply"
+						style="margin-left: 300px; width: 1200px; padding: 5px;">&nbsp;
+					<input type="submit" value="등록" class="btn">
+				</form>
+			</tr>
+		</table>
+		<!-- 전송용 폼태그 -->
+		<form action="/clubPostReply/modify" method="post" id="modifyForm">
+			<input type="hidden" name="replyContents" id="modifyReplyContents">
+			<input type="hidden" name="replyNo" id="modifyReplyNo"> 
+			<input type="hidden" name="postNo" id="modifyPostNo"> 
+			<input type="hidden" name="replyUser" id="modifyReplyUser">
+		</form>
+
 	</c:if>
 	<c:if test="${cpFile.fileName ne null }">
-		<section style="height: 900px; width: 100%;">
-			<div style="height: 100px; width: 100%;"></div>
-			<h5>제목 : ${cpOne.postSubject }</h5>
-			<form action="/clubPost/delete" method="post" style="display: inline;">
-				<input type="hidden" value="${cpOne.postNo }" name="post-no">
-				<input type="hidden" value="${cpOne.clubNo }" name="club-no">
-				<input type="hidden" value="${cpOne.userId }" name="write-user">
-				<input style="position: relative; left: 72.2%;" type="submit" value="게시글 삭제">
-			</form>
-			<form action="/clubPost/modify" method="get" style="display: inline;">
-				<input type="hidden" value="${cpOne.userId }" name="write-user">
-				<input type="hidden" value="${cpOne.postNo }" name="post-no">
-				<input style="position: relative; left: 74%;" type="submit" value="게시글 수정">
-			</form>
-			<hr style="background-color: 2f4f4f;">
-			<h6 style="display: inline;">작성자 : ${cpOne.userId }</h6>
-			&nbsp;&nbsp;
-			<h6 style="display: inline;">작성일 : ${cpOne.writeDate }</h6>
-			<form style="display: inline; position: relative; left: 60%;"
-				action="/clubPost/recommend" method="get">
-				<input type="hidden" value="${cpOne.postNo }" name="post-no">
-				<input type="hidden" value="${cpOne.recommend }" name="recommend">
-				<input type="submit" value="추천" onclick="alert('추천완료')">
-			</form>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<form style="display: inline; position: relative; left: 60%;"
-				action="/report/write?postNo=${cpOne.postNo }" method="get">
-				<input type="hidden" value="${cpOne.postNo }" name="postNo">
-				<input type="submit" value="신고">
-			</form>
-			<hr style="background-color: 2f4f4f;">
-			<div style=" height:80%; width: 100%;">
-				<img style="height: 80%;width: 40%; position: relative; left: 30%;" 
-					src="${pageContext.request.contextPath}/clubUpload/${cpFile.fileName }">
-				<p>${cpOne.postContents }</p>
-			</div>
-			<hr style="background-color: 2f4f4f;">
-		</section>
-		<section>
-			<form action="/clubPostReply/write" method="post">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 : <input type="text" name="replyContents" placeholder="댓글을 작성해보세요" style="width: 40%; height: 9%;">
-				<input type="hidden" name="postNo" value="${cpOne.postNo }">
-				<input type="submit" value="작성">
-			</form>
-		</section>
-		<section>
-			<table style="width: 80%;">
-				<tr>
-					<th style="width: 60%;">댓글</th>
-					<th style="width: 10%;">아이디</th>
-					<th style="width: 10%;">작성날짜</th>
+		<table class="t__contents">
+			<tr>
+				<td colspan="6" align="right"><a href="/clubPost/List"
+					class="btn">목록</a> <c:if
+						test="${userId eq cpOne.userId or userId eq masterId}">
+						<a
+							href="/clubPost/delete?postNo=${cpOne.postNo}&writeUser=${cpOne.userId}&clubNo=${cpOne.clubNo}"
+							class="btn">삭제</a>
+					</c:if>
+					<c:if test="${userId eq cpOne.userId }">
+						<a href="/clubPost/modify?postNo=${cpOne.postNo}&writeUser=${cpOne.userId}"class="btn">수정</a>
+					</c:if>
+					</td>
+			</tr>
+			<tr>
+				<th colspan="6"
+					style="background-color: transparent; text-align: left; font-weight: bolder;">
+					<h2>${cpOne.postSubject}</h2>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="6" align="left">
+					<h5>${cpOne.userId}｜
+						${cpOne.writeDate} ｜ 추천 ${cpOne.recommend}</h5>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="6" align="center">내용</th>
+			</tr>
+			<tr>
+				<td colspan="6" align="center">
+					${cpOne.postContents}</td>
+			</tr>
+			<tr>
+				<th colspan="6" align="center">첨부사진</th>
+			</tr>
+			<tr>
+				<td colspan="6" align="center"><img
+					src="${pageContext.request.contextPath}/clubUpload/${cpFile.fileName}"
+					alt=""></td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right" style="width: 50%;">
+					<form action="/clubPost/recommend" method="post">
+						<button type="submit" name="recommend"
+							value="${cpOne.recommend}">추천
+							${cpOne.recommend}</button>
+						<input type="hidden" name="postNo"
+							value="${cpOne.postNo}">
+					</form>
+				</td>
+				<td colspan="3" align="left">
+					<form action="/report/write?postNo=${cpOne.postNo}"
+						method="get">
+						<button>신고</button>
+						<input type="hidden" name="postNo"
+							value="${cpOne.postNo}">
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<br>
+		<!-- 댓글 출력 -->
+		<table class="t__reply">
+			<c:forEach items="${cpOne.clubReplies}" var="reply">
+				<tr colspan="6" align="center">
+					<td>${reply.replyUserId}</td>
+					<td style="width: 60%;">${reply.replyContents}</td>
+					<td>${reply.replyDate}</td>
+					<c:if test="${userId eq reply.replyUserId}">
+						<td><a href="javascript:void(0)"
+							onclick="showModifyReply(this)" class="btn">수정</a>&nbsp;&nbsp; 
+							<a href="/clubPostReply/delete?postNo=${reply.postNo}&replyNo=${reply.replyNo}&replyUser=${reply.replyUserId}"
+							class="btn">삭제</a></td>
+					</c:if>
 				</tr>
-				<c:forEach items="${cpOne.clubReplies }" var="reply">
-					<tr>
-						<td>${reply.replyContents }</td>
-						<td>${reply.replyUserId }</td>
-						<td>${reply.replyDate }</td>
-						<td><a href="javascript:void(0)" onclick="showModifyReply(this)">수정</a></td>
-						<td><a href="/clubPostReply/delete?postNo=${reply.postNo }&replyNo=${reply.replyNo }&replyUser=${reply.replyUserId }">삭제</a></td>
-					</tr>
-					<tr style="display: none;">
-						<td>
-							<input type="text" size="80" value="${reply.replyContents }" id="modifyReply">
-						</td>
-						<td>
-							<a href="javascript:void(0)" 
-							onclick="modifyReply(this,${reply.replyNo},${reply.postNo},'${reply.replyUserId}')">수정완료</a>
-							<a href="javascript:void(0)" onclick="hidenModifyReply(this)">취소</a>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<form action="/clubPostReply/modify" method="post" id="modifyForm">
-				<input type="hidden" name="replyContents" id="modifyReplyContents">
-				<input type="hidden" name="replyNo" id="modifyReplyNo">
-				<input type="hidden" name="postNo" id="modifyPostNo">
-				<input type="hidden" name="replyUser" id="modifyReplyUser">
-			</form>
-		</section>
+				<tr style="display: none; width: 1500px;" colspan="6" align="center";>
+					<td>${reply.replyUserId}</td>
+					<td><input type="text" value="${reply.replyContents}"
+						id="modifyReply" style="width: 800px; padding: 5px;"></td>
+					<td><a href="javascript:void(0)"
+						onclick="modifyReply(this,${reply.replyNo},${reply.postNo},'${reply.replyUserId }')"
+						class="btn">등록</a>&nbsp;&nbsp; <a href="javascript:void(0)"
+						onclick="hideModifyReply(this)" class="btn">취소</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<hr>
+		<!-- 댓글 입력 -->
+		<table class="t__reply_write">
+			<tr colspan="6" align="center">
+				<form action="/clubPostReply/write" method="post">
+					<input type="hidden" name="postNo"
+						value="${cpOne.postNo}"> <input type="text"
+						name="replyContents" placeholder="댓글을 입력하세요" class="t__reply"
+						style="margin-left: 300px; width: 1200px; padding: 5px;">&nbsp;
+					<input type="submit" value="등록" class="btn">
+				</form>
+			</tr>
+		</table>
+		<!-- 전송용 폼태그 -->
+		<form action="/clubPostReply/modify" method="post" id="modifyForm">
+			<input type="hidden" name="replyContents" id="modifyReplyContents">
+			<input type="hidden" name="replyNo" id="modifyReplyNo"> 
+			<input type="hidden" name="postNo" id="modifyPostNo"> 
+			<input type="hidden" name="replyUser" id="modifyReplyUser">
+		</form>
+		
 	</c:if>
 	<footer class="footer-section" style="text-align: center;">
 		<div class="container">
@@ -346,7 +407,7 @@ table.type11 td {
 	<script src="js/mixitup.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
-	<script>
+<!-- <script>
 		function modifyReply(obj,replyNo,postNo,replyUser){
 			var contents = $(obj).parent().prev().find("input").val();
 			$("#modifyReplyUser").val(replyUser);
@@ -363,5 +424,24 @@ table.type11 td {
 			$(obj).parents("tr").prev().show();
 			$(obj).parents("tr").hide();
 		}
-	</script>
+	</script> -->
+	<script>
+        function showModifyReply(obj) {
+            $(obj).parents("tr").next().show();
+            $(obj).parents("tr").hide();
+        }
+        function hideModifyReply(obj) {
+            $(obj).parents("tr").prev().show();
+            $(obj).parents("tr").hide();
+        }
+
+        function modifyReply(obj, replyNo, postNo, userId) {
+			let contents = $(obj).parent().prev().find("input").val();
+			$("#modifyReplyUser").val(userId);
+			$("#modifyReplyContents").val(contents);
+			$("#modifyReplyNo").val(replyNo);
+			$("#modifyPostNo").val(postNo);
+			$("#modifyForm").submit();
+        }
+    </script>
 </html>

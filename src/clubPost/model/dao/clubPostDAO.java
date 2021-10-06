@@ -510,4 +510,27 @@ public class clubPostDAO {
 		}
 		return result;
 	}
+
+	public int selectClubNoByPostNo(Connection conn, int postNo) {
+		PreparedStatement pstmt = null;
+		int clubNo = 0;
+		ResultSet rset = null;
+		String query = "SELECT * FROM CLUB_POST WHERE CLUB_POST_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, postNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				clubNo = rset.getInt("CLUB_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return clubNo;
+	}
 }

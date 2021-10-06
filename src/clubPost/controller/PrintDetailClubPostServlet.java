@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import club.model.service.ClubService;
 import club.model.vo.Club;
 import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
@@ -35,6 +36,8 @@ public class PrintDetailClubPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		int clubNo = new ClubPostService().selectClubNo(postNo);
+		String masterId = new ClubService().selectMasterId(clubNo);
 		ClubPost cpOne = new ClubPostService().printDetailClubPost(postNo);
 		if(cpOne != null) {
 			HttpSession session = request.getSession();
@@ -44,6 +47,7 @@ public class PrintDetailClubPostServlet extends HttpServlet {
 			request.setAttribute("club", club);
 			ClubPostFile cpFile = new ClubPostFile();
 			cpFile = cpOne.getClubPostFile();
+			request.setAttribute("masterId", masterId);
 			request.setAttribute("cpOne", cpOne);
 			request.setAttribute("cpFile", cpFile);
 			request.getRequestDispatcher("/WEB-INF/views/club/PostDetail.jsp").forward(request, response);
