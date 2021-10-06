@@ -93,6 +93,7 @@ public class ReportService {
 	public int modifyAnswer(int reportNo) {
 		Connection conn = null;
 		int result = 0;
+	
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new ReportDAO().updateAnswer(conn,reportNo);
@@ -102,9 +103,14 @@ public class ReportService {
 			}else {
 				JDBCTemplate.rollback(conn);
 			}
-		
-	
-	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+			
+		return result;
+	}
 
 	public int deleteReport(int[] nums) {
 		Connection conn = null;

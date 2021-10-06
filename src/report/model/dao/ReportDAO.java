@@ -137,7 +137,7 @@ public class ReportDAO {
 				report.setReportTitle(rset.getString("REPORT_TITLE"));
 				report.setAnswer(rset.getString("ANSWER"));
 				report.setPostNo(rset.getInt("POST_NO"));
-				nList.add(report);
+				rList.add(report);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
