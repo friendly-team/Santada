@@ -58,7 +58,7 @@ display:none;/*for IE10,11*/
                         <div class="row">
 
                             <div class="col-lg-12">
-                                <input type="text" placeholder="To" name="recipient-id" >
+                                <input type="text" placeholder="To" name="recipient-id"value="${writeId }" readonly>
                             </div>
 
                             <div class="col-lg-12">
