@@ -192,8 +192,9 @@
                 </form>
             </td>
             <td colspan="3" align="left">
-                <form action="/report/write">
+                <form action="/report/write?postNo=${mPostOne.mountainPostNo}" method="get">
                     <button>신고</button>
+                    <input type="hidden" name="postNo" value="${mPostOne.mountainPostNo}">
                 </form>
             </td>
         </tr>

@@ -240,7 +240,6 @@
 							<c:if test="${mPost.mountainPostState ne '승인'}">
 							<option value="대기">대기</option>
 							<option value="승인">승인</option>
-							<option value="반려">반려</option>
 							</c:if>
 						</select>
 						<input type="hidden" name="post-writer" value="${mPost.mountainPostWriter}">
