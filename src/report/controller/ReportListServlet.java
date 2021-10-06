@@ -16,7 +16,7 @@ import report.model.vo.Report;
 /**
  * Servlet implementation class ReportList
  */
-@WebServlet("/member/reportList")
+@WebServlet("/report/list")
 public class ReportListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,16 +33,15 @@ public class ReportListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		List<Report> rList = new ReportService().printAllReport(userId);
-		
-		if(!rList.isEmpty()) {
-			request.setAttribute("rList", rList);
+		String studentId = (String)session.getAttribute("userId");
+		List<Report> sList = new ReportService().printAllList(studentId);
+		if(sList != null) {
+			request.setAttribute("sList", sList);
 			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/member/report.jsp").forward(request, response);
+			response.sendRedirect("/member/studentError.html");
 		}
-		
+	
 	}
 
 	/**

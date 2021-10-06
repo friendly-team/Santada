@@ -34,7 +34,7 @@ public class MyPageListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String memberId = (String)session.getAttribute("userId");
-		List<ParkingReservation> pList = new ParkingReservationService().printOneById(memberId);
+		List<ParkingReservation> pList = new ParkingReservationService().printOneId(memberId);
 		
 		if(pList != null) {
 			request.setAttribute("pList", pList);

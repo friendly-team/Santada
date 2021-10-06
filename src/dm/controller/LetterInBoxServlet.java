@@ -19,13 +19,13 @@ import dm.model.vo.PageData;
  * Servlet implementation class LetterInboxServlet
  */
 @WebServlet("/letter/inbox")
-public class LetterInBoxServlet extends HttpServlet {
+public class LetterInboxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LetterInBoxServlet() {
+    public LetterInboxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

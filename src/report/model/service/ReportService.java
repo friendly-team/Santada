@@ -102,6 +102,9 @@ public class ReportService {
 			}else {
 				JDBCTemplate.rollback(conn);
 			}
+		
+	
+	
 
 	public int deleteReport(int[] nums) {
 		Connection conn = null;
@@ -116,5 +119,20 @@ public class ReportService {
 		}
 		return result;
 	}
+	public List<Report> printAllList(String studentId) {
+		Connection conn = null;
+		List<Report> sList = null;
+		try {
+			conn = jdbcTemplate.createConnection(); // 연결생성함
+			sList = new ReportDAO().selectOneById(conn, studentId); // 연결 넘겨줌
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return sList;
+	}
+	
 
 }
