@@ -81,6 +81,7 @@ table.type11 td {
 </style>
 </head>
 <body>
+<!-- 오요요요 -->
 	<header class="header-section-other">
 		<div class="container-fluid">
 			<div class="logo" style="height: 100%; width: 25%;">
