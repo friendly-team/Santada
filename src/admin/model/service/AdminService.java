@@ -94,4 +94,36 @@ public class AdminService {
 		return report;
 	}
 
+	public int modifyPoint(String postState, String mPostWriter, int mPostNo) {
+		int sum = 0;
+		int pResult = 0;
+		int sResult = 0;
+		Member member = new Member();
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			if(postState.equals("승인")) {
+				sResult = new AdminDAO().uodatePostState(conn, postState, mPostNo);
+				if(sResult > 0) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+				}
+				member = new AdminDAO().selectPoint(conn, mPostWriter);
+				pResult = new AdminDAO().updatePoint(conn, member, postState, mPostWriter);
+				if(pResult > 0) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+				}
+				sum = pResult + sResult;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return sum;
+	}
+
 }

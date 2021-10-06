@@ -36,7 +36,7 @@ public class LetterSendDetailServlet extends HttpServlet {
 			// 성공하면 디테일 페이지
 			request.setAttribute("LetterOne", LetterOne);
 			// NoticeReply setAttribute 해줌
-			request.getRequestDispatcher("/WEB-INF/views/DM/LetterSendDetail.jsp")
+			request.getRequestDispatcher("/WEB-INF/views/dm/LetterSendDetail.jsp")
 			.forward(request, response);
 		}else {
 			// 실패하면 에러페이지

@@ -106,4 +106,62 @@ public class AdminDAO {
 		return report;
 	}
 
+	public int uodatePostState(Connection conn, String postState, int mPostNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE MOUNTAIN_POST SET MOUNTAIN_POST_STATE = '승인' WHERE MOUNTAIN_POST_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, mPostNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePoint(Connection conn, Member member, String postState, String mPostWriter) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE MEMBER SET TREE_POINT = ? + 10, NORMAL_POINT = ? + 10 WHERE USER_ID = ?";
+		try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, member.getTreePoint());
+				pstmt.setInt(2, member.getNormalPoint());
+				pstmt.setString(3, mPostWriter);
+				result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+
+	public Member selectPoint(Connection conn, String mPostWriter) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_ID = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, mPostWriter);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				member = new Member();
+				member.setTreePoint(rset.getInt("TREE_POINT"));
+				member.setNormalPoint(rset.getInt("NORMAL_POINT"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return member;
+	}
+
 }

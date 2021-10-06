@@ -52,124 +52,261 @@
     </style>
 </head>
 <body>
-<!-- Page Preloder -->
-
-<!-- Header Section Begin -->
-    <header class="header-section-other">
-        <div class="container-fluid">
-            <div class="logo" style="height: 100%; width: 25%;">
-                <a href="${pageContext.request.contextPath}/index.jsp">
-                    <img src="${pageContext.request.contextPath}/imgs/로고6.png" style="height: 100%; width: 60%;" alt="">
-                </a>
-            </div>
-            <div class="nav-menu">
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                        <li><a href="/mountainPost/list">등산 인증</a>
-                            <ul class="sub-menu">
-                                <li><a href="/mountainPost/list">등산 인증</a></li>
-                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
-                                <li><a href="/ranking">등산 랭킹</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">추천코스</a></li>
-                        <li><a href="#">소모임</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">소모임가입</a></li>
-                                <li><a href="#">소모임생성</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">쪽지</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
-<!-- Header End -->
-
-<!-- Contents Begin-->
-    <div style="margin-top: 100px;">
-        <h1 style="text-align: center; font-size: 30px;">등산 인증</h1>
-    </div>
-    <table class="t__contents">
-        <tr class="t__head" align="center">
-            <th>No.</th>
-            <th style="width: 60%;">제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
-            <th>인증상태</th>
-        </tr>
-        <c:forEach items="${requestScope.mList}" var="mPost">
-        <tr align="center">
-            <td>${mPost.mountainPostNo}</td>
-            <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
-            <td>${mPost.mountainPostWriter}</td>
-            <td>${mPost.mountainPostDate}</td>
-            <td>${mPost.mountainPostState}</td>
-        </tr>
-        </c:forEach>
-<!-- 검색, 글쓰기, 네비게이터 -->
-        <tr>
-            <td colspan="4" align="center">
-                <form action="/mountainPost/search" method="get">
-                    <input type="text" name="m-search-keyword" style="width: 80%; padding: 5px;">
-                    <input type="submit" value="검색" class="btn">
-                </form>
-            </td>
-            <td align="center">
-                <form action="/mountainPost/write" method="get">
-                    <input type="submit" value="글쓰기" class="btn">
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5" align="center">
-                ${pageNavi}
-            </td>
-        </tr>
-    </table>
-<!-- Contents End-->
-
-<!-- Footer Section Begin -->
-    <footer class="footer-section" style="text-align: center;">
-        <div class="container">
-            <div>
-                <div>
-                    <div class="logo">
-                        <a href="${pageContext.request.contextPath}/index.jsp">
-                            <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
-                        </a>
-                        <p>등산 인증 by Ahram-Jeong</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 offset-lg-1">
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright-text">
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-<!-- Footer Section End -->
-
-<!-- Js Plugins -->
-    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>    
+	<c:if test="${userId ne null and userId ne 'admin'}">
+	<!-- Header Section Begin -->
+	    <header class="header-section-other">
+	        <div class="container-fluid">
+	            <div class="logo" style="height: 100%; width: 25%;">
+	                <a href="${pageContext.request.contextPath}/index.jsp">
+	                    <img src="${pageContext.request.contextPath}/imgs/로고6.png" style="height: 100%; width: 60%;" alt="">
+	                </a>
+	            </div>
+	            <div class="nav-menu">
+	                <nav class="main-menu mobile-menu">
+	                    <ul>
+	                        <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+	                        <li><a href="/mountainPost/list">등산 인증</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="/mountainPost/list">등산 인증</a></li>
+	                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+	                                <li><a href="/ranking">등산 랭킹</a></li>
+	                            </ul>
+	                        </li>
+	                        <li><a href="#">추천코스</a></li>
+	                        <li><a href="#">소모임</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="#">소모임가입</a></li>
+	                                <li><a href="#">소모임생성</a></li>
+	                            </ul>
+	                        </li>
+	                        <li><a href="#">쪽지</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="#">쪽지작성</a></li>
+	                                <li><a href="#">보관함</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </nav>
+	            </div>
+	            <div id="mobile-menu-wrap"></div>
+	        </div>
+	    </header>
+	<!-- Header End -->
+	
+	<!-- Contents Begin-->
+	    <div style="margin-top: 100px;">
+	        <h1 style="text-align: center; font-size: 30px;">등산 인증</h1>
+	    </div>
+	    <table class="t__contents">
+	        <tr class="t__head" align="center">
+	            <th>No.</th>
+	            <th style="width: 60%;">제목</th>
+	            <th>작성자</th>
+	            <th>작성일</th>
+	            <th>인증상태</th>
+	        </tr>
+	        <c:forEach items="${requestScope.mList}" var="mPost">
+	        <tr align="center">
+	            <td>${mPost.mountainPostNo}</td>
+	            <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
+	            <td>${mPost.mountainPostWriter}</td>
+	            <td>${mPost.mountainPostDate}</td>
+	            <td>${mPost.mountainPostState}</td>
+	        </tr>
+	        </c:forEach>
+	<!-- 검색, 글쓰기, 네비게이터 -->
+	        <tr>
+	            <td colspan="4" align="center">
+	                <form action="/mountainPost/search" method="get">
+	                    <input type="text" name="m-search-keyword" style="width: 80%; padding: 5px;">
+	                    <input type="submit" value="검색" class="btn">
+	                </form>
+	            </td>
+	            <td align="center">
+	                <form action="/mountainPost/write" method="get">
+	                    <input type="submit" value="글쓰기" class="btn">
+	                </form>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td colspan="5" align="center">
+	                ${pageNavi}
+	            </td>
+	        </tr>
+	    </table>
+	<!-- Contents End-->
+	
+	<!-- Footer Section Begin -->
+	    <footer class="footer-section" style="text-align: center;">
+	        <div class="container">
+	            <div>
+	                <div>
+	                    <div class="logo">
+	                        <a href="${pageContext.request.contextPath}/index.jsp">
+	                            <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
+	                        </a>
+	                        <p>등산 인증 by Ahram-Jeong</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-6 offset-lg-1">
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <div class="copyright-text">
+	    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+	<!-- Footer Section End -->
+	
+	<!-- Js Plugins -->
+	    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/main.js"></script>    
+	</c:if>
+	
+	<c:if test="${userId eq 'admin'}">
+	<!-- Header Section Begin -->
+	    <header class="header-section-other">
+	        <div class="container-fluid">
+	            <div class="logo" style="height: 100%; width: 25%;">
+	                <a href="${pageContext.request.contextPath}/index.jsp">
+	                    <img src="${pageContext.request.contextPath}/imgs/로고6.png" style="height: 100%; width: 60%;" alt="">
+	                </a>
+	            </div>
+	            <div class="nav-menu">
+	                <nav class="main-menu mobile-menu">
+	                    <ul>
+	                        <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+	                        <li><a href="/mountainPost/list">등산 인증</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="/mountainPost/list">등산 인증</a></li>
+	                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+	                                <li><a href="/ranking">등산 랭킹</a></li>
+	                            </ul>
+	                        </li>
+	                        <li><a href="#">추천코스</a></li>
+	                        <li><a href="#">소모임</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="#">소모임가입</a></li>
+	                                <li><a href="#">소모임생성</a></li>
+	                            </ul>
+	                        </li>
+	                        <li><a href="#">쪽지</a>
+	                            <ul class="sub-menu">
+	                                <li><a href="#">쪽지작성</a></li>
+	                                <li><a href="#">보관함</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </nav>
+	            </div>
+	            <div id="mobile-menu-wrap"></div>
+	        </div>
+	    </header>
+	<!-- Header End -->
+	
+	<!-- Contents Begin-->
+	    <div style="margin-top: 100px;">
+	        <h1 style="text-align: center; font-size: 30px;">등산 인증</h1>
+	    </div>
+	    <table class="t__contents">
+	        <tr class="t__head" align="center">
+	            <th>No.</th>
+	            <th style="width: 60%;">제목</th>
+	            <th>작성자</th>
+	            <th>작성일</th>
+	            <th>인증상태</th>
+	        </tr>
+	        <c:forEach items="${requestScope.mList}" var="mPost">
+	        <tr align="center">
+	            <td>${mPost.mountainPostNo}</td>
+	            <td><a href="/mountainPost/detail?mountainPostNo=${mPost.mountainPostNo}">${mPost.mountainPostSubject}</a></td>
+	            <td>${mPost.mountainPostWriter}</td>
+	            <td>${mPost.mountainPostDate}</td>
+	            <td>
+					<form action="/point/add" method="get">
+						<select name="post-state" id="">
+							<c:if test="${mPost.mountainPostState eq '승인'}">
+							<option value="승인">승인</option>
+							</c:if>
+							<c:if test="${mPost.mountainPostState ne '승인'}">
+							<option value="대기">대기</option>
+							<option value="승인">승인</option>
+							<option value="반려">반려</option>
+							</c:if>
+						</select>
+						<input type="hidden" name="post-writer" value="${mPost.mountainPostWriter}">
+						<input type="hidden" name="post-state" value="${mPost.mountainPostState}">
+						<input type="hidden" name="post-number" value="${mPost.mountainPostNo}">
+						<input type="submit" value="확인">
+					</form>
+				</td>
+	        </tr>
+	        </c:forEach>
+	<!-- 검색, 글쓰기, 네비게이터 -->
+	        <tr>
+	            <td colspan="4" align="center">
+	                <form action="/mountainPost/search" method="get">
+	                    <input type="text" name="m-search-keyword" style="width: 80%; padding: 5px;">
+	                    <input type="submit" value="검색" class="btn">
+	                </form>
+	            </td>
+	            <td align="center">
+	                <form action="/mountainPost/write" method="get">
+	                    <input type="submit" value="글쓰기" class="btn">
+	                </form>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td colspan="5" align="center">
+	                ${pageNavi}
+	            </td>
+	        </tr>
+	    </table>
+	<!-- Contents End-->
+	
+	<!-- Footer Section Begin -->
+	    <footer class="footer-section" style="text-align: center;">
+	        <div class="container">
+	            <div>
+	                <div>
+	                    <div class="logo">
+	                        <a href="${pageContext.request.contextPath}/index.jsp">
+	                            <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
+	                        </a>
+	                        <p>등산 인증 by Ahram-Jeong</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-6 offset-lg-1">
+	            </div>
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <div class="copyright-text">
+	    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+	<!-- Footer Section End -->
+	
+	<!-- Js Plugins -->
+	    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/js/main.js"></script>    
+	</c:if>
 </body>
 </html>
