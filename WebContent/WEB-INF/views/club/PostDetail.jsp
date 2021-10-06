@@ -155,14 +155,14 @@ table.type11 td {
 			<h6 style="display: inline;">작성자 : ${cpOne.userId }</h6>
 			&nbsp;&nbsp;
 			<h6 style="display: inline;">작성일 : ${cpOne.writeDate }</h6>
-			<form style="display: inline; position: relative; left: 60%;"
+			<form style="display: inline; position: relative; left: 54%;"
 				action="/clubPost/recommend" method="post">
 				<input type="hidden" value="${cpOne.postNo }" name="post-no">
 				<input type="hidden" value="${cpOne.recommend }" name="recommend">
 				<input type="submit" value="추천" onclick="alert('추천완료')">
 			</form>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<form style="display: inline; position: relative; left: 60%;"
+			<form style="display: inline; position: relative; left: 54.3%;"
 				action="/report/write?postNo=${cpOne.postNo }" method="get">
 				<input type="hidden" value="${cpOne.postNo }" name="postNo">
 				<input type="submit" value="신고">
@@ -246,11 +246,11 @@ table.type11 td {
 				<input type="submit" value="신고">
 			</form>
 			<hr style="background-color: 2f4f4f;">
-			<div style=" width: 100%; text-align: center;">
-				<img style="height: 100%; width: 40%; position: relative;"
+			<div style=" height:80%; width: 100%;">
+				<img style="height: 80%;width: 40%; position: relative; left: 30%;" 
 					src="${pageContext.request.contextPath}/clubUpload/${cpFile.fileName }">
+				<p>${cpOne.postContents }</p>
 			</div>
-			<p>${cpOne.postContents }</p>
 			<hr style="background-color: 2f4f4f;">
 		</section>
 		<section>
