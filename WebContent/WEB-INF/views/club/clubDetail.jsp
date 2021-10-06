@@ -28,53 +28,36 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-table.type11 {
+.t__contents {
+	border: 1px solid white;
+	align-items: center;
+	width: 1500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 50px;
 	border-collapse: separate;
 	border-spacing: 1px;
-	text-align: center;
 	line-height: 1.5;
-	margin: 20px 10px;
 }
 
-table.type11 th {
-	width: 155px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #ce4869;
+.t__contents tr {
+	height: 50px;
 }
 
-table.type11 th:nth-child(2) {
-	width: 1000px;
+.t__head {
+	background: #b2dfdb;
+	color: white;
+	font-size: 1.2em;
 }
 
-table.type11 td {
-	width: 155px;
-	padding: 10px;
-	font-weight: normal;
-	font-size: 10pt;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #eee;
-}
-
-#divserach {
-	height: 40px;
-	width: 300px;
-	background-color: #ffffff;
-	display: inline-flex;
-	float: left;
-}
-
-#search {
-	font-size: 16px;
-	width: 325px;
-	padding: 10px;
-	border: 0;
-	outline: none;
-	float: left;
-	background-color: #F5F6FA;
+.btn {
+	background-color: #b2dfdb;
+	align-items: center;
+	color: white;
+	padding: 6px;
+	font-weight: bolder;
+	letter-spacing: 1px;
 }
 </style>
 </head>
@@ -118,36 +101,57 @@ table.type11 td {
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-		<section style="height: 900px; width: 100%; text-align: center;">
+		<section style="height: 1100px; width: 100%; text-align: center;">
 			<div style="height: 100px; width: 100%;"></div>
-			<div>
-			<h5 style="display: inline;">소모임 이름 : </h5>
-			<input style=" position: relative; left: 1%;" type="text" value="${club.clubName }" readonly="readonly">
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="display: inline; position: relative; right: 0.7%;">소모임장 : </h5>
-			<input style="position: relative; left: 1.5%;" type="text" value="${club.userId }">
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="display: inline; position: relative; right: 0.6%;">활동 지역 : </h5>
-			<input style="position: relative; left: 1.4%;" type="text" value="${club.clubRegion }">
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="display: inline; position: relative; right: 0.6%;">모집 연령 : </h5>
-			<input style="position: relative; left: 1.4%;" type="text" value="${club.clubAge }대">
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="display: inline; position: relative; left: 0.3%;">소모임 생성일 : </h5>
-			<input style="position: relative; left: 0.5%;" type="text" value="${club.clubCreateDate }">
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="display: inline; position: relative; left: 0.3%;">소모임 회원수 : </h5>
-			<input style="position: relative; left: 0.5%;" type="text" value="${clubPersonnel }">	
-			</div>
-			<div style="margin-top: 1%;">
-			<h5 style="position: relative; right: 5.5%;">소모임 소개 </h5>
-			<textarea style="position: relative; left: 2.3%; margin-top: 1%;" rows="7;" cols="50" readonly="readonly">${club.clubIntroduce }</textarea>
-			</div>
+			<table class="t__contents" style="position: relative;top: 3%; margin-left: auto; margin-right: auto;">
+				<tr class="t__head" align="center">
+					<th>소모임 이름</th>
+				</tr>
+				<tr align="center">
+					<td>${club.clubName }</td>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>소모임장 아이디</th>
+				</tr>
+				<tr align="center">
+					<td>${club.userId }</td>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>활동 지역</th>
+				</tr>
+				<tr align="center">
+					<td>${club.clubRegion }</td>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>모집 연령</th>
+				</tr>
+				<tr align="center">
+					<c:if test="${club.clubAge eq 0 }">
+						<td>무관</td>
+					</c:if>
+					<c:if test="${club.clubAge ne 0 }">
+						<td>${club.clubAge }대</td>
+					</c:if>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>소모임 생성일</th>
+				</tr>
+				<tr align="center">
+					<td>${club.clubCreateDate }</td>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>소모임 회원수</th>
+				</tr>
+				<tr align="center">
+					<td>${clubPersonnel } 명</td>
+				</tr>
+				<tr class="t__head" align="center">
+					<th>소모임 소개</th>
+				</tr>
+				<tr align="center">
+					<td>${club.clubIntroduce }</td>
+				</tr>
+			</table>
 			&nbsp;&nbsp;&nbsp;
 			<form style="display: inline;" action="/club/join" method="get">
 			<input style="display: inline;"type="submit" value="가입하기">

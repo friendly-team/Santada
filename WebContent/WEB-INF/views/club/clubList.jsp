@@ -20,51 +20,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
+.t__contents {
+	border: 1px solid white;
+	align-items: center;
+	width: 1500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	border-collapse: separate;
+	border-spacing: 1px;
+	line-height: 1.5;
+}
 
-	table.type11 {
-		border-collapse: separate;
-		border-spacing: 1px;
-		text-align: center;
-		line-height: 1.5;
-		margin: 20px 10px;
-	  }
-	  table.type11 th {
-		width: 155px;
-		padding: 10px;
-		font-weight: bold;
-		vertical-align: top;
-		color: #fff;
-		background: #ce4869 ;
-	  }
-      table.type11 th:nth-child(2){
-          width: 1000px;
-      }
-	  table.type11 td {
-		width: 155px;
-		padding: 10px;
-        font-weight: normal;
-        font-size: 10pt;
-		vertical-align: top;
-		border-bottom: 1px solid #ccc;
-		background: #eee;
-      
-	  }
-      #divserach{
-          height: 40px;
-          width: 300px;
-          background-color: #ffffff;
-          display: inline-flex;
-          float: left;
-      }
-      #search {
-            font-size: 16px;
-            width: 325px;
-            padding: 10px;
-            border: 0;
-            outline: none;
-            float: left;
-            background-color: #F5F6FA;
-        }
+.t__contents tr {
+	height: 50px;
+}
+
+.t__head {
+	background: #b2dfdb;
+	color: white;
+	font-size: 1.2em;
+}
+
+.btn {
+	background-color: #b2dfdb;
+	align-items: center;
+	color: white;
+	padding: 6px;
+	font-weight: bolder;
+	letter-spacing: 1px;
+}
 </style>
 </head>
 <body>
@@ -111,14 +97,14 @@
 		<h2 style="position: relative; top: 3%; left: 3%;">소모임 리스트</h2>
 		<hr style="position: relative; top: 3%; background-color: D3D3D3;">
 		<div style="width: 100%; height: 80%; position: relative; top: 3%; text-align: center;">
-			<table class="type11" style="position: relative;top: 3%; margin-left: auto; margin-right: auto;">
-				<tr>
+			<table class="t__contents" style="position: relative;top: 3%; margin-left: auto; margin-right: auto;">
+				<tr class="t__head" align="center">
 					<th>소모임장</th>
 					<th>소모임명</th>
 					<th>생성일</th>
 				</tr>
 				<c:forEach items="${cList }" var ="cOne" varStatus="index">
-					<tr>
+					<tr align="center">
 						<td>${cOne.userId }</td>
 						<td><a href="/club/detail?clubNo=${cOne.clubNo }">${cOne.clubName }</a></td>
 						<td>${cOne.clubCreateDate }</td>
@@ -131,7 +117,7 @@
 					</tr>
 			</table>
 			<!-- 여기서 serch작업 -->
-			<form action="/club/search" method="post" style="display: inline; position: relative; right: 28.4%;">
+			<form action="/club/search" method="post" style="display: inline; position: relative; right: 32.8%;">
 				<input type="text" placeholder="소모임명을 입력하세요" name="keyword">
 				<input type="submit" value="검색">
 			</form>
