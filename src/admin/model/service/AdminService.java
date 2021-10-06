@@ -103,7 +103,7 @@ public class AdminService {
 		try {
 			conn = jdbcTemplate.createConnection();
 			if(postState.equals("승인")) {
-				sResult = new AdminDAO().uodatePostState(conn, postState, mPostNo);
+				sResult = new AdminDAO().updatePostState(conn, postState, mPostNo);
 				if(sResult > 0) {
 					JDBCTemplate.commit(conn);
 				} else {

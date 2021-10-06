@@ -106,7 +106,7 @@ public class AdminDAO {
 		return report;
 	}
 
-	public int uodatePostState(Connection conn, String postState, int mPostNo) {
+	public int updatePostState(Connection conn, String postState, int mPostNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "UPDATE MOUNTAIN_POST SET MOUNTAIN_POST_STATE = '승인' WHERE MOUNTAIN_POST_NO = ?";
