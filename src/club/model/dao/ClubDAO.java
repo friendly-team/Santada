@@ -878,7 +878,7 @@ public class ClubDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rset = null;
-		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = ?";
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = ? AND APPROVAL_POSITION = 'Y'";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -900,14 +900,14 @@ public class ClubDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Club> cList = null;
-		String query = "SELECT * FROM CLUB WHERE CLUB_NAME = ?";
+		String query = "SELECT * FROM CLUB WHERE CLUB_NAME LIKE ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			int viewCountPerPage = 10;
 			int start = currentPage * viewCountPerPage - (viewCountPerPage - 1);
 			int end = currentPage * viewCountPerPage;
-			pstmt.setString(1, keyword);
+			pstmt.setString(1, "%" + keyword + "%");
 			cList = new ArrayList<Club>();
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
