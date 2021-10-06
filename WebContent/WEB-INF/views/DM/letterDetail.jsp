@@ -82,9 +82,6 @@ display:none;/*for IE10,11*/
                         </li>
                     </ul>
                 </nav>
-                <div class="nav-right search-switch">
-                    <i class="fa fa-search"></i>
-                </div>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>

@@ -80,7 +80,7 @@ public class ParkingReservationDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ParkingReservation> pList = null;
-		String query = "SELECT * FROM PARKINGLOT_RESERVATIONNT WHERE USER_ID = ?";
+		String query = "SELECT * FROM PARKINGLOT_RESERVATION WHERE USER_ID = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
