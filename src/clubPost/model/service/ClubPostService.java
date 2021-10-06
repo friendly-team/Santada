@@ -267,5 +267,20 @@ private JDBCTemplate jdbcTemplate;
 		return pd;
 	}
 
+	public int selectClubNo(int postNo) {
+		Connection conn = null;
+		int clubNo = 0;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			clubNo = new clubPostDAO().selectClubNoByPostNo(conn, postNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return clubNo;
+	}
+
 
 }
