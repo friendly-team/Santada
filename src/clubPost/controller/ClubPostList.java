@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import club.model.service.ClubService;
 import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 import clubPost.model.vo.ClubPost;
 import clubPost.model.vo.PageData;
@@ -48,6 +49,10 @@ public class ClubPostList extends HttpServlet {
 		PageData pageData = new ClubPostService().printAllClubPost(currentPage, userId);
 		List<ClubPost> cpList = pageData.getClubPostList();
 		if(!cpList.isEmpty()) {
+			ClubManagement cm = (ClubManagement) session.getAttribute("cm");
+			Club club = (Club)session.getAttribute("club");
+			request.setAttribute("cm", cm);
+			request.setAttribute("club", club);
 			request.setAttribute("cpList", cpList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
 			request.getRequestDispatcher("/WEB-INF/views/club/postList.jsp").forward(request, response);

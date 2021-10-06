@@ -10,7 +10,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>${clubName.clubName } 소모임 폐쇠</title>
+    <title>${clubName.clubName } 소모임 폐쇄</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="#">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="about-me.html">등산인증</a></li>
@@ -46,12 +46,12 @@
                             </ul>
                         </li>
                         <li><a href="recipe.html">추천코스</a></li>
-                        <li><a href="club.html">소모임</a>
+                        <li class="active"><a href="club.html">소모임</a>
                             <ul class="sub-menu">
           					<li><a href="/club/ClubJoin.jsp">${clubName.clubName}소모임</a></li>
                                 <li><a href="/club/memberList">소모임회원관리</a></li>
                                 <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
-                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇠</a></li>
+                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">쪽지</a>
@@ -75,10 +75,10 @@
                 <div class="col-lg-12">
                     <form action="/remove/club" method="post" class="contact-form">
                         <h3>${club.clubName} 소모임</h3>
-                        <h5>소모임을 폐쇠 하기 전 회원분들과 충분한 상의를 통하여 결정 하셨나요?</h5>
+                        <h5>소모임을 폐쇄 하기 전 회원분들과 충분한 상의를 통하여 결정 하셨나요?</h5>
                       
                         <br> <br><br>
-                        소모임을 폐쇠하면 복구가 불가능합니다. <br>
+                        소모임을 폐쇄하면 복구가 불가능합니다. <br>
                         그래도 삭제 하시겠습니까?
                         <br><br><br>
                         <button type="submit" style="background-color: deeppink; border: none;">네</button> <button type ="reset" onclick="moveIndex();">아니요</button>

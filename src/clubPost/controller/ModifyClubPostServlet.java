@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 import clubPost.model.vo.ClubPost;
 
@@ -36,6 +38,10 @@ public class ModifyClubPostServlet extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("post-no"));
 		ClubPost cp = null;
 		if(writeUser.equals(userId)) {
+			ClubManagement cm = (ClubManagement) session.getAttribute("cm");
+			Club club = (Club)session.getAttribute("club");
+			request.setAttribute("cm", cm);
+			request.setAttribute("club", club);
 			cp = new ClubPostService().printDetailClubPost(postNo);
 			request.setAttribute("cp", cp);
 			request.getRequestDispatcher("/WEB-INF/views/club/modifyPost.jsp").forward(request, response);
