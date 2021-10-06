@@ -878,7 +878,7 @@ public class ClubDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rset = null;
-		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = ?";
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM CLUB_MANAGEMENT WHERE CLUB_NO = ? AND APPROVAL_POSITION = 'Y'";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
