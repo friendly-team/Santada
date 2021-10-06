@@ -104,8 +104,8 @@ display:none;/*for IE10,11*/
                             </div>
                             <b style="line-height: 37px;">신고 유형</b>
                             <div style="position: relative; left: 440px; top: 30px;">
-                                <span><select name="reportType" id="">
-                                 <option value="${report.reportType }">광고</option>
+                                <span><select name="reportType" id="" style="position: relative; bottom: 67px;">
+                                 <option value="${report.reportType }">${report.reportType }</option>
                             </select></span>
                             </div>
                         </div>
