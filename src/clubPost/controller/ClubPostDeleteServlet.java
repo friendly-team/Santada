@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 
 /**
@@ -44,6 +46,10 @@ public class ClubPostDeleteServlet extends HttpServlet {
 		int clubNo = Integer.parseInt(request.getParameter("club-no"));
 		int result = new ClubPostService().removeClubPost(postNo, clubNo, userId, writeUser);
 		if(result > 0) {
+			ClubManagement cm = (ClubManagement) session.getAttribute("cm");
+			Club club = (Club)session.getAttribute("club");
+			request.setAttribute("cm", cm);
+			request.setAttribute("club", club);
 			response.sendRedirect("/clubPost/List");
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/club/deleteError.html").forward(request, response);

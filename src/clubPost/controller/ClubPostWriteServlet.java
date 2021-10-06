@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import club.model.vo.Club;
+import club.model.vo.ClubManagement;
 import clubPost.model.service.ClubPostService;
 import clubPost.model.vo.ClubPost;
 import clubPost.model.vo.ClubPostFile;
@@ -39,6 +41,11 @@ public class ClubPostWriteServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		ClubManagement cm = (ClubManagement) session.getAttribute("cm");
+		Club club = (Club)session.getAttribute("club");
+		request.setAttribute("cm", cm);
+		request.setAttribute("club", club);
 		request.getRequestDispatcher("/WEB-INF/views/club/clubPostWrite.jsp").forward(request, response);
 	}
 

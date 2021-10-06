@@ -88,18 +88,30 @@ table.type11 td {
 			<div class="nav-menu">
 				<nav class="main-menu mobile-menu">
 					<ul>
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">등산인증</a>
+					  <li><a href="/index.jsp">Home</a></li>
+                        <li><a href="/mountainPost/list">등산인증</a>
+                            <ul class="sub-menu">
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
+                            </ul>
+                        </li>
+						<li><a href="/mountain/recommend">추천코스</a></li>
+						<li class="active"><a href="#">소모임</a>
 							<ul class="sub-menu">
-								<li><a href="about-me.html">About Me</a></li>
-								<li><a href="categories.html">Categories</a></li>
-								<li><a href="recipe.html">Recipe</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul></li>
-						<li><a href="recipe.html">추천코스</a></li>
-						<li><a href="#">소모임</a></li>
-						<li><a href="contact.html">마이페이지</a></li>
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/create">소모임생성</a></li>
+                                <li><a href="/club/list">소모임 리스트</a></li>
+							</ul>
+						</li>
+                        <li><a href="/letter/send">쪽지</a>
+                            <ul class="sub-menu">
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
+                            </ul>
+                        </li>
+						 <li><a href="/mypage/info">마이페이지</a></li>
 					</ul>
 				</nav>
 			</div>
