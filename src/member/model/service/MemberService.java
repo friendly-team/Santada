@@ -157,6 +157,8 @@ public class MemberService {
 		}
 		return result;
 	}
+	
+	
 	public Member printPointById(String studentId) {
 		Member student = null;
 		Connection conn = null;
@@ -190,6 +192,24 @@ public class MemberService {
 			
 			return mList;
 		}
+	public int removeMember(String studentId) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new MemberDAO().removeMember(conn, studentId);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 	
 
 	

@@ -30,7 +30,7 @@ public class UserDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String studentId = request.getParameter("userId");
-		int result = new MemberService().deleteMember(studentId);
+		int result = new MemberService().removeMember(studentId);
 		if(result != 0 ) {
 			// 로그아웃 서블릿에 이미 파괴하는 것이 있으니까 이걸 호출해주면 됨.
 			// 로그아웃 서블릿 호출은 어떻게 할까
