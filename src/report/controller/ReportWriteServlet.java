@@ -33,12 +33,12 @@ public class ReportWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int postNo = Integer.parseInt(request.getParameter("postNo"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		Report report = new Report();
 		report.setUserId(userId);
-		//report.setPostNo(postNo);
+		report.setPostNo(postNo);
 		request.setAttribute("Report", report);
 		request.getRequestDispatcher("/WEB-INF/views/report/ReportWrite.jsp").forward(request, response);
 	}
