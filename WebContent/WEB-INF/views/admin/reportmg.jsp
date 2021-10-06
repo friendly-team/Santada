@@ -111,7 +111,7 @@
                                     <ul>
 										<li><a href="/user/list">회원 관리</a></li>
                                         <li><a href="/admin/report">신고 관리</a></li>
-                                        <li><a href="/admin/treeCampaignmg">나무 포인트 관리</a></li>
+                                        <li><a href="/admin/point">나무 포인트 관리</a></li>
                                     </ul>
                                 </div>
                             </div>
