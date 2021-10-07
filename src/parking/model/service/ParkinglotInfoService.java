@@ -18,7 +18,7 @@ public class ParkinglotInfoService {
 		
 	}
 
-	public ParkinglotInfo Detail(String parkinglotNo) {
+	public ParkinglotInfo printOneDetail(String parkinglotNo) {
 		ParkinglotInfo pInfo = null;
 		Connection conn = null;
 
