@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SANTADA | MAIN</title>
+<title>Santada</title>
 <link rel="stylesheet" href="css/animatedLogin.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
@@ -70,9 +70,11 @@
                     <div class="pt-recipe-item large-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main1.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
-                        <!--  href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo} -->
+                        <!--  사진사진사진사진사진 -->
+                        <!-- <img src="${pageContext.request.contextPath}/mtUpload/${mFileOne.fileName}" alt=""> -->
                         
                             <h3><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
                             ${mList[0].mountainPostSubject}</a></h3>
@@ -83,6 +85,7 @@
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main2.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
@@ -92,6 +95,7 @@
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main3.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
@@ -103,6 +107,7 @@
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main4.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
@@ -112,6 +117,7 @@
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main5.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                            <h4><a href="/member/login" onclick="alert('산타다 회원만 조회 가능합니다.')">
@@ -210,7 +216,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <li><a href="/clubPost/List">${clubName}소모임</a></li>
                                 <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
                                 <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
-                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇠</a></li>
+                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
                                 </c:if>
                             </ul>
                         </li>
@@ -242,6 +248,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-lg-6 order-lg-2">
                     <div class="pt-recipe-item large-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
+                        <img src="${pageContext.request.contextPath}/imgs/main1.jpg" alt="">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
@@ -252,7 +259,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
                 <div class="col-lg-3 col-md-6 order-lg-1">
                     <div class="pt-recipe-item">
-                        <div class="pt-recipe-img set-bg" data-setbg="">
+                        <div class="pt-recipe-img set-bg">
+                       	<img src="${pageContext.request.contextPath}/imgs/main2.jpg" alt="">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
@@ -263,6 +271,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                            <img src="${pageContext.request.contextPath}/imgs/main3.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
@@ -274,6 +283,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                            <img src="${pageContext.request.contextPath}/imgs/main4.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
@@ -283,6 +293,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                            <img src="${pageContext.request.contextPath}/imgs/main5.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
@@ -403,6 +414,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item large-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main1.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h3><a href="/mountainPost/detail?mountainPostNo=${mList[0].mountainPostNo}">
@@ -414,6 +426,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main2.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/mountainPost/detail?mountainPostNo=${mList[1].mountainPostNo}">
@@ -423,6 +436,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main3.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/mountainPost/detail?mountainPostNo=${mList[2].mountainPostNo}">
@@ -434,6 +448,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main4.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                             <h4><a href="/mountainPost/detail?mountainPostNo=${mList[3].mountainPostNo}">
@@ -443,6 +458,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg="">
                             <i class="fa fa-plus"></i>
+                             <img src="${pageContext.request.contextPath}/imgs/main5.jpg" alt="">
                         </div>
                         <div class="pt-recipe-text">
                            <h4><a href="/mountainPost/detail?mountainPostNo=${mList[4].mountainPostNo}">
