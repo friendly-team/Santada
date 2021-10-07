@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SANTADA | ADMIN_회원관리</title>
+<title>Santada | ADMIN_회원관리</title>
 <link rel="stylesheet" href="css/animatedLogin.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
@@ -63,7 +63,7 @@
                                 <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="/mountain/list">추천코스</a></li>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
                         <li><a href="categories.html">소모임</a>
                             <ul class="sub-menu">
                                 <li><a href="#">소모임가입</a></li>
@@ -165,7 +165,7 @@
                             <a href="../index.jsp">
                                 <img src="../imgs/로고6.png" alt="">
                             </a>
-                        <p>여기도 글씨 들어가요~</p>
+                        <p>회원관리 by Jungeun chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
