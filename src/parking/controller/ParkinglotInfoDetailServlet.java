@@ -32,7 +32,7 @@ public class ParkinglotInfoDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String parkinglotNo = request.getParameter("PARKINGLOT_NO");
-		ParkinglotInfo pInfo = new ParkinglotInfoService().Detail(parkinglotNo);
+		ParkinglotInfo pInfo = new ParkinglotInfoService().printOneDetail(parkinglotNo);
 		
 		if(pInfo != null) {
 			request.setAttribute("pInfo", pInfo);
