@@ -755,14 +755,19 @@ public class ClubDAO {
 		
 	}
 	public List<Club> printAllClub(Connection conn, int currentPage) {
-		Statement stmt = null;
+		PreparedStatement pstmt = null;;
 		ResultSet rset = null;
 		List<Club> cList = null;
-		String query = "SELECT * FROM CLUB";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY CLUB_NO DESC)AS NUM, CLUB_NO, USER_ID, CLUB_NAME,CLUB_REGION, CLUB_AGE, CLUB_INTRODUCE, CLUB_CREATE_DATE FROM CLUB) WHERE NUM BETWEEN ? AND ?";
 		try {
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(query);
+			int viewCountPerPage = 10;
+			int start = (currentPage * viewCountPerPage) - (viewCountPerPage - 1);
+			int end = currentPage * viewCountPerPage;
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			cList = new ArrayList<Club>();
-			rset = stmt.executeQuery(query);
+			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Club club = new Club();
 				club.setClubNo(rset.getInt("CLUB_NO"));
@@ -778,7 +783,7 @@ public class ClubDAO {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return cList;
 	}
@@ -900,14 +905,15 @@ public class ClubDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Club> cList = null;
-		String query = "SELECT * FROM CLUB WHERE CLUB_NAME LIKE ?";
-		
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY CLUB_NO DESC)AS NUM, CLUB_NO, USER_ID, CLUB_NAME,CLUB_REGION, CLUB_AGE, CLUB_INTRODUCE, CLUB_CREATE_DATE FROM CLUB WHERE CLUB_NAME LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			int viewCountPerPage = 10;
 			int start = currentPage * viewCountPerPage - (viewCountPerPage - 1);
 			int end = currentPage * viewCountPerPage;
 			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			cList = new ArrayList<Club>();
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
