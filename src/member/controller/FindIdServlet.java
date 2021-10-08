@@ -49,7 +49,7 @@ public class FindIdServlet extends HttpServlet {
 			request.setAttribute("idOne", idOne);
 			request.getRequestDispatcher("/WEB-INF/views/member/MyId.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/member/searchfail.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/member/IdSearchFail.jsp").forward(request, response);
 		}
 	}
 
