@@ -119,19 +119,19 @@ display: inline-block; margin-right:5px}
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                       <li class="active"><a href="/index.jsp">Home</a></li>
+                          <li><a href="/mountainPost/list">등산 인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="recipe.html">추천코스</a></li>
-                        <li><a href="categories.html">소모임</a>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
+                        <li><a href="/clubPost/list">소모임</a>
                             <ul class="sub-menu">
-                                <li><a href="#">소모임가입</a></li>
-                                <li><a href="#">소모임생성</a></li>
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/create">소모임생성</a></li>
                             </ul>
                         </li>
                         <li><a href="/letter/send">쪽지</a>
@@ -143,9 +143,7 @@ display: inline-block; margin-right:5px}
                         </li>
                     </ul>
                 </nav>
-                <div class="nav-right search-switch">
-                    <i class="fa fa-search"></i>
-                </div>
+               
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
@@ -166,7 +164,6 @@ display: inline-block; margin-right:5px}
                                     <li><a href="/mypage/info">회원 정보</a></li>
                                     <li><a href="/member/remove">회원 탈퇴</a></li>
                                     <li><a href="/point/search">포인트 조회</a></li>
-                                    <li><a href="/mypage/list">주차 예약 조회</a></li>
                                     <li><a href="/report/list">나의 신고 내역</a></li>
                                 </ul>
                             </nav>
