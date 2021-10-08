@@ -219,7 +219,13 @@ display: inline-block; margin-right:5px}
                             <a href="./index.html">
                                 <img src="/imgs/로고6.png" alt="">
                             </a>
-                        <p>여기도 글씨 들어가요~</p>
+                         <p>Friendly-team&nbsp;&nbsp;&nbsp;|&nbsp; 
+                        &nbsp;&nbsp;Seungtaek-Kwon  
+                        &nbsp;&nbsp;Hyeonjong-Oh  
+                        &nbsp;&nbsp;Seokin-Yun  
+                        &nbsp;&nbsp;Woobin-Jeon  
+                        &nbsp;&nbsp;Ahram-Jeong  
+                        &nbsp;&nbsp;Jungeun-Chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
