@@ -96,7 +96,7 @@
                             </ul>
                         </li>
 						<li><a href="/mountain/recommend">추천코스</a></li>
-						<li class="active"><a href="#">소모임</a>
+						<li class="active"><a href="/clubPost/List">소모임</a>
 							<ul class="sub-menu">
       							<li><a href="/clubPost/List">${clubName.clubName}소모임</a></li>
                                 <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
