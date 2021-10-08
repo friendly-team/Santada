@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <title>Yummy | Template</title>
+    <title>신고하기</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -104,8 +104,8 @@ display:none;/*for IE10,11*/
                             </div>
                             <b style="line-height: 37px;">신고 유형</b>
                             <div style="position: relative; left: 440px; top: 30px;">
-                                <span><select name="reportType" id="">
-                                 <option value="${report.reportType }">광고</option>
+                                <span><select name="reportType" id="" style="position: relative; bottom: 67px;">
+                                 <option value="${report.reportType }">${report.reportType }</option>
                             </select></span>
                             </div>
                         </div>
@@ -113,6 +113,7 @@ display:none;/*for IE10,11*/
 
                              <div class="col-lg-12" style="display: inherit;">
                                 <input type="text" style="margin-right: 20%; font-weight: bold;display: inline-block; " readonly value="신고자 ID : ${report.userId }">
+                               
                                <b style="width: 22%; position: relative; right: 5%; top: 20%; ">게시글번호</b><input type="text" name="postNo" style="font-weight: bold; " readonly value="${report.postNo}">
                             </div>
                             <div class="col-lg-12">
@@ -120,8 +121,7 @@ display:none;/*for IE10,11*/
                                 <textarea name="Contents" placeholder="내용">${report.reportContents }</textarea>
                             </div>
                         </div>
-                        	<input type="hidden" value="${report.reportNo }">
-                           <button type="submit" onclick="openWin();" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">답변하기</button> 
+                           <button type="submit" onclick="openWin();" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">답변하기</button>
                            </form>
                            <form action="/club/exit" method="post" class="contact-form">
                            <input type="hidden" value="${cm.userId }" name="userId">
@@ -185,7 +185,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     function moveIndex(){
         location.href = "/admin/report";
    }function openWin(){  
-	    window.open("/admin/letter?reportNo=${report.reportNo}", "쪽지보내기", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no" );  
+	    window.open("/admin/letter?reportNo=${report.reportNo}&writeId=${report.userId}", "쪽지보내기", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no" );  
 		
    }  
     </script>

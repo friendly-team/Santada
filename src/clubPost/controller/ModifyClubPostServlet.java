@@ -34,8 +34,8 @@ public class ModifyClubPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userId = String.valueOf(session.getAttribute("userId"));
-		String writeUser = request.getParameter("write-user");
-		int postNo = Integer.parseInt(request.getParameter("post-no"));
+		String writeUser = request.getParameter("writeUser");
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		ClubPost cp = null;
 		if(writeUser.equals(userId)) {
 			ClubManagement cm = (ClubManagement) session.getAttribute("cm");

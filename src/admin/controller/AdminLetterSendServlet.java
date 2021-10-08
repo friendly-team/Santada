@@ -31,7 +31,9 @@ public class AdminLetterSendServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+		String writeId = (String)(request.getParameter("writeId"));
 		request.setAttribute("reportNo", reportNo);
+		request.setAttribute("writeId", writeId);
 		request.getRequestDispatcher("/WEB-INF/views/admin/adminDM.jsp").forward(request, response);
 	}
 

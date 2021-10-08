@@ -37,7 +37,7 @@ public class RecommendClubPostServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int recommend = Integer.parseInt(request.getParameter("recommend"));
-		int postNo = Integer.parseInt(request.getParameter("post-no"));
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		int result = new ClubPostService().recommendClubPost(postNo, recommend);
 		if(result > 0) {
 			response.sendRedirect("/clubPost/detail?postNo=" + postNo);

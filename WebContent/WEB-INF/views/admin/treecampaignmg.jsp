@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SANTADA | ADMIN_나무포인트</title>
+<title>Santada | ADMIN_나무포인트</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -68,7 +68,7 @@
                                 <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="/mountain/list">추천코스</a></li>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
                         <li><a href="categories.html">소모임</a>
                             <ul class="sub-menu">
                                 <li><a href="#">소모임가입</a></li>
@@ -166,7 +166,7 @@
                             <a href="../index.jsp">
                                 <img src="../imgs/로고6.png" alt="">
                             </a>
-                        <p>여기도 글씨 들어가요~</p>
+                        <p>나무포인트관리 by Jungeun chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">

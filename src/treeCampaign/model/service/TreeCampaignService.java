@@ -90,28 +90,9 @@ public class TreeCampaignService {
 			JDBCTemplate.close(conn);
 		}
 		return result;
-		}
+	}
+}
 
 	
-	public int removeMember(String userId) {
-		int resultOne = 0;
-		Connection conn = null;
-		try {
-			conn = jdbcTemplate.createConnection();
-			resultOne = new TreeCampaignDAO().removeMember(conn, userId);
-			if(resultOne > 0) {
-				JDBCTemplate.commit(conn);
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return resultOne;
-		}
-	
-}	
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SANTADA | ADMIN_신고관리</title>
+<title>Santada | ADMIN_신고관리</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 
@@ -52,20 +52,20 @@
  		<header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/index.html"><img src="../imgs/로고5.png" alt=""></a>
+                <a href="../index.jsp"><img src="../imgs/로고5.png" alt=""></a>
             </div>
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="../index.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                  		<li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="/mountain/list">추천코스</a></li>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
                         <li><a href="categories.html">소모임</a>
                             <ul class="sub-menu">
                                 <li><a href="#">소모임가입</a></li>
@@ -168,7 +168,7 @@
                             <a href="../index.jsp">
                                 <img src="../imgs/로고6.png" alt="">
                             </a>
-                        <p>여기도 글씨 들어가요~</p>
+                        <p>추천코스 by woobin Jeon</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">

@@ -125,22 +125,7 @@ public class TreeCampaignDAO {
 		return treePoint;
 	}
 
-	public int removeMember(Connection conn, String userId) {
-		PreparedStatement pstmt = null;
-		int resultOne = 0;
-		String query = "DELETE FROM TREE_CAMPAIGN WHERE USER_ID = ?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, userId);
-			// 쿼리문 실행 ???
-			resultOne = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
-		}
-		return resultOne;
-	}
+
 }
 
 

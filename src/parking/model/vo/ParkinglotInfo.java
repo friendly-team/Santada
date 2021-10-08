@@ -2,134 +2,155 @@ package parking.model.vo;
 
 public class ParkinglotInfo {
 	
-		private int parkinglot_no;
-		private String mountain_name;
-		private String parkinglot_name;
-		private String parkinglot_address;
-		private String parkinglot_tel;
-		private String parkinglot_open_time;
-		private String parkinglot_close_time;
-		private int parkinglot_price_big;
-		private int parkinglot_price_small;
-		private int parkinglot_dayprice_big;
-		private int parkinglot_dayprice_small;
-		private int parkinglot_google_map_x;
-		private int parkinglot_google_map_y;
+		private int parkinglotNo;
+		private String mountainName;
+		private String parkinglotName;
+		private String parkinglotAddress;
+		private String parkinglotTel;
+		private String parkinglotOpenTime;
+		private String parkinglotCloseTime;
+		private int parkinglotPriceBig;
+		private int parkinglotPriceSmall;
+		private int parkinglotDayPriceBig;
+		private int parkinglotDayPriceSmall;
+		private int parkinglotGoogleMapX;
+		private int parkinglotGoogleMapY;
 		
 		public ParkinglotInfo() {}
-		
-		
-		public ParkinglotInfo(int parkinglot_no, String mountain_name, String parkinglot_name,
-				String parkinglot_address, String parkinglot_tel, String parkinglot_open_time,
-				String parkinglot_close_time, int parkinglot_price_big, int parkinglot_price_small,
-				int parkinglot_dayprice_big, int parkinglot_dayprice_small, int parkinglot_google_map_x,
-				int parkinglot_google_map_y) {
+
+		public ParkinglotInfo(int parkinglotNo, String mountainName, String parkinglotName, String parkinglotAddress,
+				String parkinglotTel, String parkinglotOpenTime, String parkinglotCloseTime, int parkinglotPriceBig,
+				int parkinglotPriceSmall, int parkinglotDayPriceBig, int parkinglotDayPriceSmall,
+				int parkinglotGoogleMapX, int parkinglotGoogleMapY) {
 			super();
-			this.parkinglot_no = parkinglot_no;
-			this.mountain_name = mountain_name;
-			this.parkinglot_name = parkinglot_name;
-			this.parkinglot_address = parkinglot_address;
-			this.parkinglot_tel = parkinglot_tel;
-			this.parkinglot_open_time = parkinglot_open_time;
-			this.parkinglot_close_time = parkinglot_close_time;
-			this.parkinglot_price_big = parkinglot_price_big;
-			this.parkinglot_price_small = parkinglot_price_small;
-			this.parkinglot_dayprice_big = parkinglot_dayprice_big;
-			this.parkinglot_dayprice_small = parkinglot_dayprice_small;
-			this.parkinglot_google_map_x = parkinglot_google_map_x;
-			this.parkinglot_google_map_y = parkinglot_google_map_y;
+			this.parkinglotNo = parkinglotNo;
+			this.mountainName = mountainName;
+			this.parkinglotName = parkinglotName;
+			this.parkinglotAddress = parkinglotAddress;
+			this.parkinglotTel = parkinglotTel;
+			this.parkinglotOpenTime = parkinglotOpenTime;
+			this.parkinglotCloseTime = parkinglotCloseTime;
+			this.parkinglotPriceBig = parkinglotPriceBig;
+			this.parkinglotPriceSmall = parkinglotPriceSmall;
+			this.parkinglotDayPriceBig = parkinglotDayPriceBig;
+			this.parkinglotDayPriceSmall = parkinglotDayPriceSmall;
+			this.parkinglotGoogleMapX = parkinglotGoogleMapX;
+			this.parkinglotGoogleMapY = parkinglotGoogleMapY;
 		}
-		public int getParkinglot_no() {
-			return parkinglot_no;
+
+		public int getParkinglotNno() {
+			return parkinglotNo;
 		}
-		public void setParkinglot_no(int parkinglot_no) {
-			this.parkinglot_no = parkinglot_no;
+
+		public void setParkinglotNo(int parkinglotNo) {
+			this.parkinglotNo = parkinglotNo;
 		}
-		public String getMountain_name() {
-			return mountain_name;
+
+		public String getMountainName() {
+			return mountainName;
 		}
-		public void setMountain_name(String mountain_name) {
-			this.mountain_name = mountain_name;
+
+		public void setMountainName(String mountainName) {
+			this.mountainName = mountainName;
 		}
-		public String getParkinglot_name() {
-			return parkinglot_name;
+
+		public String getParkinglotName() {
+			return parkinglotName;
 		}
-		public void setParkinglot_name(String parkinglot_name) {
-			this.parkinglot_name = parkinglot_name;
+
+		public void setParkinglotName(String parkinglotName) {
+			this.parkinglotName = parkinglotName;
 		}
-		public String getParkinglot_address() {
-			return parkinglot_address;
+
+		public String getParkinglotAddress() {
+			return parkinglotAddress;
 		}
-		public void setParkinglot_address(String parkinglot_address) {
-			this.parkinglot_address = parkinglot_address;
+
+		public void setParkinglotAddress(String parkinglotAddress) {
+			this.parkinglotAddress = parkinglotAddress;
 		}
-		public String getParkinglot_tel() {
-			return parkinglot_tel;
+
+		public String getParkinglotTel() {
+			return parkinglotTel;
 		}
-		public void setParkinglot_tel(String parkinglot_tel) {
-			this.parkinglot_tel = parkinglot_tel;
+
+		public void setParkinglotTel(String parkinglotTel) {
+			this.parkinglotTel = parkinglotTel;
 		}
-		public String getParkinglot_open_time() {
-			return parkinglot_open_time;
+
+		public String getParkinglotOpenTime() {
+			return parkinglotOpenTime;
 		}
-		public void setParkinglot_open_time(String parkinglot_open_time) {
-			this.parkinglot_open_time = parkinglot_open_time;
+
+		public void setParkinglotOpenTime(String parkinglotOpenTime) {
+			this.parkinglotOpenTime = parkinglotOpenTime;
 		}
-		public String getParkinglot_close_time() {
-			return parkinglot_close_time;
+
+		public String getParkinglotCloseTime() {
+			return parkinglotCloseTime;
 		}
-		public void setParkinglot_close_time(String parkinglot_close_time) {
-			this.parkinglot_close_time = parkinglot_close_time;
+
+		public void setParkinglotCloseTime(String parkinglotCloseTime) {
+			this.parkinglotCloseTime = parkinglotCloseTime;
 		}
-		public int getParkinglot_price_big() {
-			return parkinglot_price_big;
+
+		public int getParkinglotPriceBig() {
+			return parkinglotPriceBig;
 		}
-		public void setParkinglot_price_big(int parkinglot_price_big) {
-			this.parkinglot_price_big = parkinglot_price_big;
+
+		public void setParkinglotPriceBig(int parkinglotPriceBig) {
+			this.parkinglotPriceBig = parkinglotPriceBig;
 		}
-		public int getParkinglot_price_small() {
-			return parkinglot_price_small;
+
+		public int getParkinglotPriceSmall() {
+			return parkinglotPriceSmall;
 		}
-		public void setParkinglot_price_small(int parkinglot_price_small) {
-			this.parkinglot_price_small = parkinglot_price_small;
+
+		public void setParkinglotPriceSmall(int parkinglotPriceSmall) {
+			this.parkinglotPriceSmall = parkinglotPriceSmall;
 		}
-		public int getParkinglot_dayprice_big() {
-			return parkinglot_dayprice_big;
+
+		public int getParkinglotDayPriceBig() {
+			return parkinglotDayPriceBig;
 		}
-		public void setParkinglot_dayprice_big(int parkinglot_dayprice_big) {
-			this.parkinglot_dayprice_big = parkinglot_dayprice_big;
+
+		public void setParkinglotDayPriceBig(int parkinglotDayPriceBig) {
+			this.parkinglotDayPriceBig = parkinglotDayPriceBig;
 		}
-		public int getParkinglot_dayprice_small() {
-			return parkinglot_dayprice_small;
+
+		public int getParkinglotDayPriceSmall() {
+			return parkinglotDayPriceSmall;
 		}
-		public void setParkinglot_dayprice_small(int parkinglot_dayprice_small) {
-			this.parkinglot_dayprice_small = parkinglot_dayprice_small;
+
+		public void setParkinglotDayPriceSmall(int parkinglotDayPriceSmall) {
+			this.parkinglotDayPriceSmall = parkinglotDayPriceSmall;
 		}
-		public int getParkinglot_google_map_x() {
-			return parkinglot_google_map_x;
+
+		public int getParkinglotGoogleMapX() {
+			return parkinglotGoogleMapX;
 		}
-		public void setParkinglot_google_map_x(int parkinglot_google_map_x) {
-			this.parkinglot_google_map_x = parkinglot_google_map_x;
+
+		public void setParkinglotGoogleMapX(int parkinglotGoogleMapX) {
+			this.parkinglotGoogleMapX = parkinglotGoogleMapX;
 		}
-		public int getParkinglot_google_map_y() {
-			return parkinglot_google_map_y;
+
+		public int getParkinglotGoogleMapY() {
+			return parkinglotGoogleMapY;
 		}
-		public void setParkinglot_google_map_y(int parkinglot_google_map_y) {
-			this.parkinglot_google_map_y = parkinglot_google_map_y;
+
+		public void setParkinglotGoogleMapY(int parkinglotGoogleMapY) {
+			this.parkinglotGoogleMapY = parkinglotGoogleMapY;
 		}
+
 		@Override
 		public String toString() {
-			return "ParkinglotInfo [parkinglot_no=" + parkinglot_no + ", mountain_name=" + mountain_name
-					+ ", parkinglot_name=" + parkinglot_name + ", parkinglot_address=" + parkinglot_address
-					+ ", parkinglot_tel=" + parkinglot_tel + ", parkinglot_open_time=" + parkinglot_open_time
-					+ ", parkinglot_close_time=" + parkinglot_close_time + ", parkinglot_price_big="
-					+ parkinglot_price_big + ", parkinglot_price_small=" + parkinglot_price_small
-					+ ", parkinglot_dayprice_big=" + parkinglot_dayprice_big + ", parkinglot_dayprice_small="
-					+ parkinglot_dayprice_small + ", parkinglot_google_map_x=" + parkinglot_google_map_x
-					+ ", parkinglot_google_map_y=" + parkinglot_google_map_y + "]";
+			return "ParkinglotInfo [parkinglotNno=" + parkinglotNo + ", mountainName=" + mountainName
+					+ ", parkinglotName=" + parkinglotName + ", parkinglotAddress=" + parkinglotAddress
+					+ ", parkinglotTel=" + parkinglotTel + ", parkinglotOpenTime=" + parkinglotOpenTime
+					+ ", parkinglotCloseTime=" + parkinglotCloseTime + ", parkinglotPriceBig=" + parkinglotPriceBig
+					+ ", parkinglotPriceSmall=" + parkinglotPriceSmall + ", parkinglotDayPriceBig="
+					+ parkinglotDayPriceBig + ", parkinglotDayPriceSmall=" + parkinglotDayPriceSmall
+					+ ", parkinglotGoogleMapX=" + parkinglotGoogleMapX + ", parkinglotGoogleMapY="
+					+ parkinglotGoogleMapY + "]";
 		}
-		
-		
-		
-		
 }

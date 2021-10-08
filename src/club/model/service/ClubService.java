@@ -391,5 +391,19 @@ public class ClubService {
 			}
 			return cPd;
 		}
+		public String selectMasterId(int clubNo) {
+			Connection conn = null;
+			String masterId = null;
+			
+			try {
+				conn = jdbcTemplate.createConnection();
+				masterId = new ClubDAO().selectMasterId(conn, clubNo);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return masterId;
+		}
 }
 	
