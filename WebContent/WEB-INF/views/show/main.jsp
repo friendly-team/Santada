@@ -138,7 +138,7 @@
                             <a href="/index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>Friendly-team</p>
+                        <p>Friendly-team ｜ Seungtaek-Kwon&nbsp;&nbsp;&nbsp;Hyeonjong-Oh&nbsp;&nbsp;&nbsp;Seokin-Yun&nbsp;&nbsp;&nbsp;Woobin-Jeon&nbsp;&nbsp;&nbsp;Ahram-Jeong&nbsp;&nbsp;&nbsp;Jungeun-Chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -197,7 +197,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             </ul>
                         </li>
                         <li><a href="/mountain/recommend">추천코스</a></li>
-                        <li><a href="#">소모임</a>
+                        <li><a href="/clubPost/List">소모임</a>
                             <ul class="sub-menu">
                                 <c:set var="clubName" value="${clubName.clubName }" />
                                 <c:if test="${cm eq null}">
@@ -314,7 +314,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <a href="../index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>Friendly-Team</p>
+                        <p>Friendly-team ｜ Seungtaek-Kwon&nbsp;&nbsp;&nbsp;Hyeonjong-Oh&nbsp;&nbsp;&nbsp;Seokin-Yun&nbsp;&nbsp;&nbsp;Woobin-Jeon&nbsp;&nbsp;&nbsp;Ahram-Jeong&nbsp;&nbsp;&nbsp;Jungeun-Chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
@@ -479,7 +479,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <a href="../index.jsp">
                                 <img src="${pageContext.request.contextPath}/imgs/로고6.png" alt="">
                             </a>
-                        <p>Friendly-Team</p>
+                        <p>Friendly-team ｜ Seungtaek-Kwon&nbsp;&nbsp;&nbsp;Hyeonjong-Oh&nbsp;&nbsp;&nbsp;Seokin-Yun&nbsp;&nbsp;&nbsp;Woobin-Jeon&nbsp;&nbsp;&nbsp;Ahram-Jeong&nbsp;&nbsp;&nbsp;Jungeun-Chae</p>
                     </div>
                 </div>
                 <div class="col-lg-6 offset-lg-1">
