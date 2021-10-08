@@ -86,7 +86,7 @@
                             </ul>
                         </li>
 						<li><a href="/mountain/recommend">추천코스</a></li>
-						<li class="active"><a href="#">소모임</a>
+						<li class="active"><a href="/clubPost/List">소모임</a>
 							<ul class="sub-menu">
       						  <c:set var="clubName" value="${clubName }" />
                                 <c:if test="${cm eq null}">
