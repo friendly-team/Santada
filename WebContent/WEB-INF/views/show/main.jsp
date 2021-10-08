@@ -26,7 +26,7 @@
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="/show/main.jsp">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">등산 인증</a></li>
@@ -188,7 +188,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="/show/main.jsp">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산 인증</a></li>
@@ -369,7 +369,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             <div class="nav-menu" style="width: 100%;">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="../index.jsp">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산 인증</a></li>

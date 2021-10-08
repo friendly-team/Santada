@@ -65,7 +65,7 @@
 			<div class="nav-menu">
 				<nav class="main-menu mobile-menu">
 					<ul>
-						<li class="active"><a href="/show/main.jsp">Home</a></li>
+						<li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산 인증</a></li>
