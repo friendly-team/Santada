@@ -69,16 +69,16 @@
                             </ul>
                         </li>
                         <li><a href="/mountain/recommend">추천코스</a></li>
-                        <li><a href="categories.html">소모임</a>
+                        <li><a href="/clubPost/List">소모임</a>
                             <ul class="sub-menu">
-                                <li><a href="#">소모임가입</a></li>
-                                <li><a href="#">소모임생성</a></li>
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/join">소모임생성</a></li>
                             </ul>
                         </li>
                         <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
                                 <li><a href="/letter/send">쪽지작성</a></li>
-                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                               <li><a href="/letter/inbox">받은 쪽지함</a></li>
                                 <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
