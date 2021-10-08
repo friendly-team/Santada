@@ -112,7 +112,7 @@
     						<a href="../index.jsp">
                                 <img src="../imgs/로고6.png" alt="">
                             </a>
-                        <p>여기도 글씨 들어가요~</p>
+                        <p>Friendly-Team Woobin-Jeon</p>
                     	</div>
                 	</div>
               	</div>

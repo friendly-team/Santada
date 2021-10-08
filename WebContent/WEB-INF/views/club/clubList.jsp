@@ -130,7 +130,7 @@
 					<div class="logo">
 						<a href="../index.jsp"> <img src="../imgs/로고6.png" alt="">
 						</a>
-						<p>여기도 글씨 들어가요~</p>
+						<p>Friendly-Team SeungTaek Kwon</p>
 					</div>
 				</div>
 				<div class="col-lg-6 offset-lg-1"></div>
