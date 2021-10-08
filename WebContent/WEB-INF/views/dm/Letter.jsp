@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,17 +10,18 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>쪽지</title>
+    <title>쪽지 전송</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Css Styles -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nice-select.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slicknav.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
     <style>
         	select {
 
@@ -50,6 +51,7 @@ display:none;/*for IE10,11*/
     </div> -->
 
     <!-- Header Section Begin -->
+    <c:if test="${userId ne null and userId ne '' }">
     <header class="header-section-other">
         <div class="container-fluid">
             <div class="logo">
@@ -59,24 +61,24 @@ display:none;/*for IE10,11*/
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="/index.jsp">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="categories.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                               <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="recipe.html">추천코스</a></li>
-                        <li><a href="categories.html">소모임</a>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
+                        <li><a href="/clubPost/list">소모임</a>
                             <ul class="sub-menu">
-                                <li><a href="#">소모임가입</a></li>
-                                <li><a href="#">소모임생성</a></li>
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/create">소모임생성</a></li>
                             </ul>
                         </li>
                         <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
                                 <li><a href="/letter/send">쪽지작성</a></li>
-                               <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
                                 <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
@@ -93,36 +95,25 @@ display:none;/*for IE10,11*/
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/letter/delete" class="contact-form" method="">
-                        <h3>쪽지</h3>
+                    <form action="/letter/send" class="contact-form" method="post">
+                        <h3><i class="far fa-edit"></i>&nbsp;&nbsp;Note</h3>
                         
                         <div class="row">
 
                             <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">From.</div>
-                                <input type="hidden" style="display: none;" value="${LetterOne.letterNo}" name="letter-no" id="letter-no">
-                                <input type="text" value="${LetterOne.userId} " readonly style="width: 80%;">
+                                <input type="text" placeholder="To" name="recipient-id" required>
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">Subject.</div>
-                                <input type="text"  value="${LetterOne.letterSubject}" readonly style="width: 80%;">
+                                <input type="text" placeholder="From" name="user-id" value="${userId}" readonly>
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="display: -webkit-inline-box; width: 10%;">Date.</div>
-                                <input type="text" value="${LetterOne.writeDate}" readonly style="width: 80%;">
-                                <div style="display: -webkit-inline-box; width: 10%; position: relative;top: 147px;">Comment.</div>
-                                <div id="letter-comment">
-                                ${LetterOne.letterContents}
-                                </div>
-                            
+                                <input type="text" placeholder="Subject" name="letter-subject" required>
+                                <textarea placeholder="Comment" name="letter-contents" required></textarea>
                             </div>
                         </div>
-                         <a href="/letter/send"style="padding: 18px 85px;display: inline-block;background: #FC0254;color: #fff;font-size: 18px;font-weight: 700; border: 1px solid #FC0254;">
-                         	답장
-                         </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="submit" id = "insert_btn">삭제</button>
+                        <button type="submit" id = "insert_btn">Send</button>
                     </form>
                 </div>
             </div>
@@ -178,16 +169,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-    $("#insert_btn").click(function(){
-        if(confirm("정말로 삭제하시겠습니까 ?") == true){
-            alert("정상적으로 삭제되었습니다");
-        }
-        else{
-            return false;
-        }
-    });
-    </script>
+ 
+    </c:if>
 </body>
 
 </html>
+	<c:if test="${sessionScope.userId eq null }">
+		<script>window.location.href="/login/home"</script>
+	</c:if>
+	
