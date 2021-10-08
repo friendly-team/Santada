@@ -9,19 +9,19 @@ public class ParkinglotInfo {
 		private String parkinglotTel;
 		private String parkinglotOpenTime;
 		private String parkinglotCloseTime;
-		private int parkinglotPriceBig;
-		private int parkinglotPriceSmall;
-		private int parkinglotDayPriceBig;
-		private int parkinglotDayPriceSmall;
-		private int parkinglotGoogleMapX;
-		private int parkinglotGoogleMapY;
+		private String parkinglotPriceBig;
+		private String parkinglotPriceSmall;
+		private String parkinglotDayPriceBig;
+		private String parkinglotDayPriceSmall;
+		private String parkinglotGoogleMapX;
+		private String parkinglotGoogleMapY;
 		
 		public ParkinglotInfo() {}
 
 		public ParkinglotInfo(int parkinglotNo, String mountainName, String parkinglotName, String parkinglotAddress,
-				String parkinglotTel, String parkinglotOpenTime, String parkinglotCloseTime, int parkinglotPriceBig,
-				int parkinglotPriceSmall, int parkinglotDayPriceBig, int parkinglotDayPriceSmall,
-				int parkinglotGoogleMapX, int parkinglotGoogleMapY) {
+				String parkinglotTel, String parkinglotOpenTime, String parkinglotCloseTime, String parkinglotPriceBig,
+				String parkinglotPriceSmall, String parkinglotDayPriceBig, String parkinglotDayPriceSmall,
+				String parkinglotGoogleMapX, String parkinglotGoogleMapY) {
 			super();
 			this.parkinglotNo = parkinglotNo;
 			this.mountainName = mountainName;
@@ -38,7 +38,7 @@ public class ParkinglotInfo {
 			this.parkinglotGoogleMapY = parkinglotGoogleMapY;
 		}
 
-		public int getParkinglotNno() {
+		public int getParkinglotNo() {
 			return parkinglotNo;
 		}
 
@@ -94,57 +94,57 @@ public class ParkinglotInfo {
 			this.parkinglotCloseTime = parkinglotCloseTime;
 		}
 
-		public int getParkinglotPriceBig() {
+		public String getParkinglotPriceBig() {
 			return parkinglotPriceBig;
 		}
 
-		public void setParkinglotPriceBig(int parkinglotPriceBig) {
+		public void setParkinglotPriceBig(String parkinglotPriceBig) {
 			this.parkinglotPriceBig = parkinglotPriceBig;
 		}
 
-		public int getParkinglotPriceSmall() {
+		public String getParkinglotPriceSmall() {
 			return parkinglotPriceSmall;
 		}
 
-		public void setParkinglotPriceSmall(int parkinglotPriceSmall) {
+		public void setParkinglotPriceSmall(String parkinglotPriceSmall) {
 			this.parkinglotPriceSmall = parkinglotPriceSmall;
 		}
 
-		public int getParkinglotDayPriceBig() {
+		public String getParkinglotDayPriceBig() {
 			return parkinglotDayPriceBig;
 		}
 
-		public void setParkinglotDayPriceBig(int parkinglotDayPriceBig) {
+		public void setParkinglotDayPriceBig(String parkinglotDayPriceBig) {
 			this.parkinglotDayPriceBig = parkinglotDayPriceBig;
 		}
 
-		public int getParkinglotDayPriceSmall() {
+		public String getParkinglotDayPriceSmall() {
 			return parkinglotDayPriceSmall;
 		}
 
-		public void setParkinglotDayPriceSmall(int parkinglotDayPriceSmall) {
+		public void setParkinglotDayPriceSmall(String parkinglotDayPriceSmall) {
 			this.parkinglotDayPriceSmall = parkinglotDayPriceSmall;
 		}
 
-		public int getParkinglotGoogleMapX() {
+		public String getParkinglotGoogleMapX() {
 			return parkinglotGoogleMapX;
 		}
 
-		public void setParkinglotGoogleMapX(int parkinglotGoogleMapX) {
+		public void setParkinglotGoogleMapX(String parkinglotGoogleMapX) {
 			this.parkinglotGoogleMapX = parkinglotGoogleMapX;
 		}
 
-		public int getParkinglotGoogleMapY() {
+		public String getParkinglotGoogleMapY() {
 			return parkinglotGoogleMapY;
 		}
 
-		public void setParkinglotGoogleMapY(int parkinglotGoogleMapY) {
+		public void setParkinglotGoogleMapY(String parkinglotGoogleMapY) {
 			this.parkinglotGoogleMapY = parkinglotGoogleMapY;
 		}
 
 		@Override
 		public String toString() {
-			return "ParkinglotInfo [parkinglotNno=" + parkinglotNo + ", mountainName=" + mountainName
+			return "ParkinglotInfo [parkinglotNo=" + parkinglotNo + ", mountainName=" + mountainName
 					+ ", parkinglotName=" + parkinglotName + ", parkinglotAddress=" + parkinglotAddress
 					+ ", parkinglotTel=" + parkinglotTel + ", parkinglotOpenTime=" + parkinglotOpenTime
 					+ ", parkinglotCloseTime=" + parkinglotCloseTime + ", parkinglotPriceBig=" + parkinglotPriceBig
@@ -153,4 +153,9 @@ public class ParkinglotInfo {
 					+ ", parkinglotGoogleMapX=" + parkinglotGoogleMapX + ", parkinglotGoogleMapY="
 					+ parkinglotGoogleMapY + "]";
 		}
+
+		
+		
+		
+		
 }

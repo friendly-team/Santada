@@ -22,24 +22,17 @@
 
 
     <style>
-	    
-	 
-	    
-	    
 	    input {
-	    border:none
-	  
+	    border:none;
 	  	}
-	  
+	    
 	    th, td {
 	    border-bottom: 1px solid #444444;
 	    padding: 10px;
 	  	}
-	  
+	  	
 	    ul{
 	    list-style:none;
-	    
-
 	  	}
 	  
 	  	.wrap {
@@ -52,14 +45,18 @@
 		 margin-left: auto; 
 		 margin-right: 110px;
 	    }
+	    
+	    .go{
+	   
+		 text-align: center; 
+	    }
 	  
+	  .btn { display:block; width:200px; height:40px; line-height:21px; border: 1px rgb(243, 238, 232) solid; margin:35px auto; background-color:rgb(247, 246, 244); text-align:center; cursor: pointer; color:rgb(29, 26, 29); transition:all 0.9s, color 0.6; } .btn:hover{color:rgb(29, 26, 29)}
+	  .hover4:hover{ box-shadow: 200px 0 0 0 rgb(238, 245, 228) inset, -200px 0 0 0 rgba(0,0,0,0.25) inset; }
 	</style>
            
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPFgHJIaTcEiKvpRjt8HcYE6cGZSJbosM&callback=initMap"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-  
 
 </head>
 <body onload="initialize(${pInfo.parkinglotGoogleMapX},${pInfo.parkinglotGoogleMapY})"> 
@@ -90,15 +87,18 @@
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-	
+
 	<section>
-	<div style="text-align: center;">
-        <h2><input name ="mountainName" value="${pInfo.mountainName}" type='text' style="text-align:center; width:100;height:30;text-align:right;padding-top:5;"><input name="parkinglotName" value="${pInfo.parkinglotName}"></h2>
-    </div>	
-	<div class = "wrap" >
 		
-       <center><div id="map_canvas"style="width:600px; height:400px; float:left;"></div></center>
-           
+		<div class = "wrap" >
+       	
+       	<div clss= "header"  style="text-align: center; margin-bottom:60px;">
+	        <h2><span class="jjong"><input name ="mountainName" value="${pInfo.mountainName}" type='text' style="text-align:center; width:10%; ">
+	        <input type ="text" id="resizable" name="parkinglotName" value="${pInfo.parkinglotName}" style="text-align:center; text-align:left; width:60%;"></span></h2>
+	    </div>	
+       	
+       		<center><div id="map_canvas"style="width:600px; height:400px; float:left;"></div></center>
+                
                 <table  border-collapse: collapse; style="margin-left: auto; margin-right: auto;">
                     <tr align ="center">
                         <th colspan = "3">주차장 요금</th>
@@ -106,7 +106,7 @@
                     <tr>
                         <td align ="center">-</td>
                         <td align ="center">대형</td>
-                        <td align ="center">소형</td>
+                        <td align ="center">중/소형</td>
                     </tr>
                     <tr>
                         <td>1시간</td>
@@ -119,25 +119,29 @@
                         <td align ="center"><input name = "parkinglotDayPriceSmall" value="${pInfo.parkinglotDayPriceSmall}원" type='text' style='text-align:center'></td>
                     </tr>
                 </table>
-				<div style="font-size:12px; margin-right:10px;">
-				   *1시간에 500원추가 
-				</div>                
-        <div style ="text-align: center;  vertical-align: middle;">
-            <ul class="contact_list" >
-                    <li class="parkinglot"><i class="fas fa-map-marker-alt"></i>
-                    <div>주소 : <input name = "parkinglotAddress" value="${pInfo.parkinglotAddress}"></div>
-                </li>
-                    <li class="parkinglot"><i class="fas fa-phone-alt"></i>
-                    <div>연락처 : <input name = "parkinglotTel" value="${pInfo.parkinglotTel}"></div>
-                </li>
-                    <li class="parkinglot"><i class="fas fa-parking"></i>
-                    <div style="margin-left: auto; margin-right: auto;">이용시간 : <input name = "parkinglotOpenTime" value="${pInfo.parkinglotOpenTime}"  size=2 maxlength=6> - <input name = "parkinglotCloseTime" value="${pInfo.parkinglotCloseTime}" size=6 maxlength=6></div>
-                </li>
-            
+				          
+        
+        <div class="go" style="margin-top :40px; align:right; margin-left:400px;">
+                 <ul style="width:100%;">
+                    <li class="parkinglot"><i class="fas fa-map-marker-alt" style="color:#b3e47c; "></i>
+                    	주    소 : <input name = "parkinglotAddress" value="${pInfo.parkinglotAddress}" style="width:47%; auto;"></li>
+            		
+                    <li class="fas fa-phone-alt" style="color:#b3e47c;"></li>
+                      	연 락 처 : <input name = "parkinglotTel" value="${pInfo.parkinglotTel}" style="width:44%;">
+                
+                    <li class="parkinglot"><i class="fas fa-parking" style="color:#b3e47c;"></i>
+                     	이용시간 : <input name = "parkinglotOpenTime" value="${pInfo.parkinglotOpenTime}"  size=2 maxlength=6> - <input name = "parkinglotCloseTime" value="${pInfo.parkinglotCloseTime}" style="width:35%;">
+        		 	</li>
+        		 </ul>
         </div>
-	        <div style ="text-align: center;">
-	            <a href="../index.jsp"><input type="button" value="다음에 이용하기" style="height: 40px;width: 140px;"></a>
-	            <a href="/parkingReservation/register"><input type="button" value="예약하기" style="height: 40px;width: 100px;"></a> 
+	        
+	        
+
+	            <a href="../index.jsp"><button class="btn hover4">확인</button>
+
+<!-- 	        <div class = "button" style ="text-align: center;"> -->
+<!-- 	            <input type="button" value="확인" style="height: 40px;width: 140px; background-color:rgb(247, 242, 242)"></a> -->
+<!-- 	            <a href="/parkingReservation/register"><input type="button" value="예약하기" style="height: 40px;width: 100px;"></a>  -->
 	        </div>
        </div>
     </section>
@@ -177,7 +181,7 @@
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
-   
+   	
     
 	<script>
 	    function initialize(X, Y) {

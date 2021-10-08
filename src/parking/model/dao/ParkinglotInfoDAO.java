@@ -33,12 +33,12 @@ public class ParkinglotInfoDAO {
 				pInfo.setParkinglotTel(rset.getString("PARKINGLOT_TEL"));
 				pInfo.setParkinglotOpenTime(rset.getString("PARKINGLOT_OPEN_TIME"));
 				pInfo.setParkinglotCloseTime(rset.getString("PARKINGLOT_CLOSE_TIME"));
-				pInfo.setParkinglotPriceBig(rset.getInt("PARKINGLOT_PRICE_BIG"));
-				pInfo.setParkinglotPriceSmall(rset.getInt("PARKINGLOT_PRICE_SMALL"));
-				pInfo.setParkinglotDayPriceBig(rset.getInt("PARKINGLOT_DAY_PRICE_BIG"));
-				pInfo.setParkinglotDayPriceSmall(rset.getInt("PARKINGLOT_DAY_PRICE_SMALL"));
-				pInfo.setParkinglotGoogleMapX(rset.getInt("PARKINGLOT_GOOLE_MAP_X"));
-				pInfo.setParkinglotGoogleMapY(rset.getInt("PARKINGLOT_GOOLE_MAP_Y"));
+				pInfo.setParkinglotPriceBig(rset.getString("PARKINGLOT_PRICE_BIG"));
+				pInfo.setParkinglotPriceSmall(rset.getString("PARKINGLOT_PRICE_SMALL"));
+				pInfo.setParkinglotDayPriceBig(rset.getString("PARKINGLOT_DAY_PRICE_BIG"));
+				pInfo.setParkinglotDayPriceSmall(rset.getString("PARKINGLOT_DAY_PRICE_SMALL"));
+				pInfo.setParkinglotGoogleMapX(rset.getString("PARKINGLOT_GOOLE_MAP_X"));
+				pInfo.setParkinglotGoogleMapY(rset.getString("PARKINGLOT_GOOLE_MAP_Y"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
