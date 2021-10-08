@@ -47,8 +47,9 @@ public class MountainPostListServlet extends HttpServlet {
 			request.setAttribute("pageNavi", pageData.getPageNavi());
 			request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mountainPostList.jsp").forward(request, response);
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mPostError.html");
-			view.forward(request, response);
+			request.setAttribute("mList", mList);
+			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.getRequestDispatcher("/WEB-INF/views/mountain-climbing/post/mountainPostList.jsp").forward(request, response);
 		}
 	}
 
