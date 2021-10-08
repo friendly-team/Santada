@@ -208,7 +208,8 @@
                      <div class="col-sm-4" align="center">
                     	<div class="car"  style="align-content: center">
 		        <h3><b>자동차</b> 타고 가세요?</h3><br>
-		        	<input type="submit" id="search" name="submit" alt="search" value="">
+		        	<a href="/member/login" onclick="alert('회원만 이용 가능한 서비스입니다.')">
+		        	<input type="submit" id="search" name="submit" alt="search" value=""></a>
 		        	 <h5>주차장 예약 페이지로 이동합니다.</h5>
 		        	 </div>
 		        </div>
@@ -299,8 +300,9 @@
                      <div class="col-sm-4" align="center">
                     	<div class="car"  style="align-content: center">
 		        <h3><b>자동차</b> 타고 가세요?</h3><br>
-		        	 <a href="/mountainPost/detail?parkingLotNo=${pList[0].parkingLotNo}"><input type="submit" id="search" name="submit" alt="search" value=""></a>
-		        	 <h5>주차장 예약 페이지로 이동합니다.</h5>
+		        	 <a href="/parkinglotInfo/Detail?PARKINGLOT_NO=${mList[0].parkingLotNo}">
+		        	 <input type="submit" id="search" name="submit" alt="search" value=""></a>
+		        	 <h5>주차장 정보 조회 페이지로 이동합니다.</h5>
 		        	 </div>
 		        </div>
 		        </div>
