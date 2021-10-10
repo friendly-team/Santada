@@ -392,7 +392,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             </ul>
                         </li>
                         <li style="display: none;"><a href="/member/login">로그인</a></li>
-                        <li style="display: inline-block;"><a href="/admin/report"">관리 페이지</a></li>
+                        <li style="display: inline-block;"><a href="/admin/report">관리 페이지</a></li>
                         <li style="display: inline-block; margin-right: -11px;"><a href="/member/logout">로그아웃</a></li>
                     </ul>
 
