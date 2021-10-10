@@ -58,25 +58,43 @@ display:none;/*for IE10,11*/
             <div class="nav-menu">
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">등산인증</a>
+                       <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+	                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
-                                <li><a href="about-me.html">등산인증</a></li>
-                                <li><a href="club.html">등산후기</a></li>
-                                <li><a href="recipe.html">랭킹</a></li>
+                                <li><a href="/mountainPost/list">등산 인증</a></li>
+                                <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
+                                <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="recipe.html">추천코스</a></li>
-                        <li><a href="club.html">소모임</a>
+                        <li><a href="/mountain/recommend">추천코스</a></li>
+                        <li><a href="/clubPost/List">소모임</a>
                             <ul class="sub-menu">
-                                <li><a href="#">소모임가입</a></li>
-                                <li><a href="#">소모임생성</a></li>
+                                <c:set var="clubName" value="${clubName.clubName }" />
+                                <c:if test="${cm eq null}">
+                                <li><a href="/club/join">소모임가입</a></li>
+                                <li><a href="/club/create">소모임생성</a></li>
+                                <li><a href="/club/list">소모임 리스트</a></li>
+                                </c:if>
+                               <c:if test="${cm.clubNo ne null and cm.approvalPosition eq 'N'}">
+                                <li>${clubName}소모임가입대기중</li>
+                                </c:if>
+                                <c:if test="${cm.clubNo ne null and cm.clubNo ne '' and cm.approvalPosition eq 'Y' and club.userId eq null}">
+                                <li><a href="/clubPost/List">${clubName }소모임</a></li>
+                                <li><a href="/club/leave?clubNo=${cm.clubNo}">소모임탈퇴</a></li>
+                                </c:if>
+                                <c:if test="${club.userId ne null}">
+                                <li><a href="/clubPost/List">${clubName}소모임</a></li>
+                                <li><a href="/club/memberList?clubNo=${cm.clubNo }">소모임회원관리</a></li>
+                                <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
+                                <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
+                                </c:if>
                             </ul>
                         </li>
-                        <li><a href="contact.html">쪽지</a>
+                        <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
-                                <li><a href="#">쪽지작성</a></li>
-                                <li><a href="#">보관함</a></li>
+                                <li><a href="/letter/send">쪽지작성</a></li>
+                                <li><a href="/letter/inbox">받은 쪽지함</a></li>
+                                <li><a href="/letter/list">보낸 쪽지함</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -104,8 +122,8 @@ display:none;/*for IE10,11*/
                             </div>
                             <b style="line-height: 37px;">신고 유형</b>
                             <div style="position: relative; left: 440px; top: 30px;">
-                                <span><select name="reportType" id="" style="position: relative; bottom: 67px;">
-                                 <option value="${report.reportType }">${report.reportType }</option>
+                                <span><select name="reportType" id="">
+                                 <option value="${report.reportType }">광고</option>
                             </select></span>
                             </div>
                         </div>
@@ -113,7 +131,6 @@ display:none;/*for IE10,11*/
 
                              <div class="col-lg-12" style="display: inherit;">
                                 <input type="text" style="margin-right: 20%; font-weight: bold;display: inline-block; " readonly value="신고자 ID : ${report.userId }">
-                               
                                <b style="width: 22%; position: relative; right: 5%; top: 20%; ">게시글번호</b><input type="text" name="postNo" style="font-weight: bold; " readonly value="${report.postNo}">
                             </div>
                             <div class="col-lg-12">
@@ -121,7 +138,8 @@ display:none;/*for IE10,11*/
                                 <textarea name="Contents" placeholder="내용">${report.reportContents }</textarea>
                             </div>
                         </div>
-                           <button type="submit" onclick="openWin();" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">답변하기</button>
+                        	<input type="hidden" value="${report.reportNo }">
+                           <button type="submit" onclick="openWin();" style="float: left; margin-left: 200px; background-color: deeppink; border: none;">답변하기</button> 
                            </form>
                            <form action="/club/exit" method="post" class="contact-form">
                            <input type="hidden" value="${cm.userId }" name="userId">
@@ -185,7 +203,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     function moveIndex(){
         location.href = "/admin/report";
    }function openWin(){  
-	    window.open("/admin/letter?reportNo=${report.reportNo}&writeId=${report.userId}", "쪽지보내기", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no" );  
+	    window.open("/admin/letter?reportNo=${report.reportNo}", "쪽지보내기", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no" );  
 		
    }  
     </script>
