@@ -58,18 +58,18 @@ display:none;/*for IE10,11*/
             <div class="nav-menu">
                    <nav class="main-menu mobile-menu">
 					<ul>
-					    <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-	                        <li><a href="/mountainPost/list">등산인증</a>
+					  <li><a href="/index.jsp">Home</a></li>
+                        <li><a href="/mountainPost/list">등산인증</a>
                             <ul class="sub-menu">
                                 <li><a href="/mountainPost/list">등산 인증</a></li>
                                 <li><a href="/treeCampaign/write">나무심기 캠페인</a></li>
                                 <li><a href="/ranking">등산 랭킹</a></li>
                             </ul>
                         </li>
-                        <li><a href="/mountain/recommend">추천코스</a></li>
-                        <li><a href="/clubPost/List">소모임</a>
-                            <ul class="sub-menu">
-                                <c:set var="clubName" value="${clubName.clubName }" />
+						<li><a href="/mountain/recommend">추천코스</a></li>
+						<li><a href="#">소모임</a>
+							<ul class="sub-menu">
+      						  <c:set var="clubName" value="${clubName.clubName }" />
                                 <c:if test="${cm eq null}">
                                 <li><a href="/club/join">소모임가입</a></li>
                                 <li><a href="/club/create">소모임생성</a></li>
@@ -88,8 +88,8 @@ display:none;/*for IE10,11*/
                                 <li><a href="/clubjoin/management?userId=${club.userId}">소모임승인관리</a></li>
                                 <li><a href="/remove/club?clubNo=${cm.clubNo}">소모임폐쇄</a></li>
                                 </c:if>
-                            </ul>
-                        </li>
+							</ul>
+						</li>
                         <li><a href="/letter/send">쪽지</a>
                             <ul class="sub-menu">
                                 <li><a href="/letter/send">쪽지작성</a></li>
