@@ -28,7 +28,7 @@
 - 취미 생활과 더불어 등산을 통하여 참여할 수 있는 '나무심기 캠페인'으로 지역사회에 기여하고, 지구 환경에 긍정적인 영향을 주는 것을 목표
 ---
 ### 개발 환경
-![산타다 개발환경](https://user-images.githubusercontent.com/86512230/143592268-9893e682-34d5-48df-b0ee-e169d3ce738c.png)
+![산타다 개발환경](https://user-images.githubusercontent.com/86512230/143598135-4b11ae93-a244-48f0-a225-b180d3bfc657.png)
 
 ---
 ### 역할 분담
